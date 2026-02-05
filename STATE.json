@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "started_at": "2026-02-04T00:00:00Z",
-  "last_updated": "2026-02-05T09:30:00Z",
+  "last_updated": "2026-02-05T12:00:00Z",
   "phase": "implementation",
   "resources": {
     "api_keys": {
@@ -91,10 +91,15 @@
       "notes": "Full CRUD for IP pools. Supports name (max 64 chars). Outputs poolName and ips list. Uses pool name as resource ID with URL encoding for special characters. Integration test skipped - requires dedicated IP plan (403 access forbidden without it). Unit tests verify all CRUD operations, error handling, and URL encoding."
     },
     "suppressions": {
-      "status": "pending",
-      "unit_tests": "pending",
-      "integration_tests": "pending",
-      "drift_tests": "pending"
+      "status": "completed",
+      "unit_tests": "passed",
+      "integration_tests": "skipped",
+      "drift_tests": "skipped",
+      "files": [
+        "provider/global_suppression.go",
+        "provider/global_suppression_test.go"
+      ],
+      "notes": "Implemented GlobalSuppression resource for managing email addresses in SendGrid's global suppression list. Full CRUD operations: POST /v3/asm/suppressions/global to add, GET /v3/asm/suppressions/global/{email} to read, DELETE /v3/asm/suppressions/global/{email} to remove. Uses email address as resource ID with proper URL encoding. Integration tests skipped - requires live SendGrid API key."
     },
     "webhooks": {
       "status": "pending",
@@ -124,10 +129,10 @@
   "current_task": null,
   "errors": [],
   "metrics": {
-    "resources_completed": 7,
+    "resources_completed": 8,
     "resources_in_progress": 0,
     "resources_total": 12,
-    "tests_passed": 63,
+    "tests_passed": 81,
     "tests_failed": 0
   }
 }
