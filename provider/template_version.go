@@ -375,7 +375,7 @@ func buildTemplateVersionState(result struct {
 	}
 
 	// Convert generatePlainContent
-	var generatePlainContent *bool = &result.GeneratePlainContent
+	var generatePlainContent = &result.GeneratePlainContent
 
 	return TemplateVersionState{
 		TemplateVersionArgs: TemplateVersionArgs{
