@@ -217,15 +217,15 @@ func (tv *TemplateVersion) Read(ctx context.Context, req infer.ReadRequest[Templ
 
 	// Build inputs from state
 	inputs := TemplateVersionArgs{
-		TemplateID: state.TemplateID,
-		Name:       state.Name,
-		Subject:    state.Subject,
-		HtmlContent: state.HtmlContent,
-		PlainContent: state.PlainContent,
-		Active:     state.Active,
-		Editor:     state.Editor,
+		TemplateID:           state.TemplateID,
+		Name:                 state.Name,
+		Subject:              state.Subject,
+		HtmlContent:          state.HtmlContent,
+		PlainContent:         state.PlainContent,
+		Active:               state.Active,
+		Editor:               state.Editor,
 		GeneratePlainContent: state.GeneratePlainContent,
-		TestData:   state.TestData,
+		TestData:             state.TestData,
 	}
 
 	return infer.ReadResponse[TemplateVersionArgs, TemplateVersionState]{
@@ -375,8 +375,7 @@ func buildTemplateVersionState(result struct {
 	}
 
 	// Convert generatePlainContent
-	var generatePlainContent *bool
-	generatePlainContent = &result.GeneratePlainContent
+	var generatePlainContent *bool = &result.GeneratePlainContent
 
 	return TemplateVersionState{
 		TemplateVersionArgs: TemplateVersionArgs{

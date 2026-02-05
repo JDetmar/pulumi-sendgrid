@@ -40,12 +40,12 @@ func TestSendGridClient_CreateEventWebhook(t *testing.T) {
 		errorContains  string
 	}{
 		{
-			name:         "successful create with all events",
-			webhookURL:   "https://example.com/webhook",
-			enabled:      boolPtr(true),
-			friendlyName: strPtr("My Webhook"),
-			bounce:       boolPtr(true),
-			delivered:    boolPtr(true),
+			name:           "successful create with all events",
+			webhookURL:     "https://example.com/webhook",
+			enabled:        boolPtr(true),
+			friendlyName:   strPtr("My Webhook"),
+			bounce:         boolPtr(true),
+			delivered:      boolPtr(true),
 			responseStatus: http.StatusCreated,
 			responseBody: `{
 				"id": "webhook-123",

@@ -96,15 +96,15 @@ func (l *LinkBranding) Annotate(annotator infer.Annotator) {
 
 // linkBrandingAPIResponse represents the SendGrid API response structure
 type linkBrandingAPIResponse struct {
-	ID        int                        `json:"id"`
-	UserID    int                        `json:"user_id"`
-	Domain    string                     `json:"domain"`
-	Subdomain string                     `json:"subdomain"`
-	Username  string                     `json:"username"`
-	Default   bool                       `json:"default"`
-	Valid     bool                       `json:"valid"`
-	Legacy    bool                       `json:"legacy"`
-	DNS       linkBrandingDNSResponse    `json:"dns"`
+	ID        int                     `json:"id"`
+	UserID    int                     `json:"user_id"`
+	Domain    string                  `json:"domain"`
+	Subdomain string                  `json:"subdomain"`
+	Username  string                  `json:"username"`
+	Default   bool                    `json:"default"`
+	Valid     bool                    `json:"valid"`
+	Legacy    bool                    `json:"legacy"`
+	DNS       linkBrandingDNSResponse `json:"dns"`
 }
 
 type linkBrandingDNSResponse struct {

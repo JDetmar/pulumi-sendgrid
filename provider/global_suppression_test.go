@@ -385,9 +385,9 @@ func TestGlobalSuppression_URLEncoding(t *testing.T) {
 	t.Parallel()
 
 	testCases := []struct {
-		name          string
-		email         string
-		encodedEmail  string
+		name         string
+		email        string
+		encodedEmail string
 	}{
 		{
 			name:         "simple email",
