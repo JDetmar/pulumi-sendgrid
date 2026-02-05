@@ -18,6 +18,8 @@
         "config/vars.ts",
         "domainAuthentication.ts",
         "index.ts",
+        "ipPool.ts",
+        "linkBranding.ts",
         "provider.ts",
         "template.ts",
         "templateVersion.ts",

@@ -61,6 +61,29 @@
         "data"
       ]
     },
+    "sendgrid:index:LinkBrandingDNSRecord": {
+      "properties": {
+        "data": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      },
+      "type": "object",
+      "required": [
+        "valid",
+        "type",
+        "host",
+        "data"
+      ]
+    },
     "sendgrid:index:TemplateVersionSummary": {
       "properties": {
         "active": {
@@ -238,6 +261,99 @@
           "items": {
             "type": "string"
           }
+        },
+        "region": {
+          "type": "string"
+        },
+        "subdomain": {
+          "type": "string"
+        }
+      },
+      "requiredInputs": [
+        "domain"
+      ]
+    },
+    "sendgrid:index:IpPool": {
+      "description": "Manages a SendGrid IP Pool.\n\nIP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you might have separate pools for transactional and marketing emails, so that each pool maintains its own reputation.\n\nNote: Each account can create up to 100 IP pools. IP pools can only be used with IP addresses that have reverse DNS configured.",
+      "properties": {
+        "ips": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "poolName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "poolName",
+        "ips"
+      ],
+      "inputProperties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "requiredInputs": [
+        "name"
+      ]
+    },
+    "sendgrid:index:LinkBranding": {
+      "description": "Manages a SendGrid Link Branding.\n\nLink Branding (formerly Link Whitelabel) allows you to customize the links in your emails to use your own domain instead of sendgrid.net. This helps improve deliverability and brand recognition.\n\nAfter creating this resource, you must add the DNS records to your domain's DNS settings and then validate the link branding using the SendGrid console or API.",
+      "properties": {
+        "brandCname": {
+          "$ref": "#/types/sendgrid:index:LinkBrandingDNSRecord"
+        },
+        "default": {
+          "type": "boolean"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "legacy": {
+          "type": "boolean"
+        },
+        "linkId": {
+          "type": "integer"
+        },
+        "ownerCname": {
+          "$ref": "#/types/sendgrid:index:LinkBrandingDNSRecord"
+        },
+        "region": {
+          "type": "string"
+        },
+        "subdomain": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "username": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "domain",
+        "linkId",
+        "userId",
+        "username",
+        "valid",
+        "legacy"
+      ],
+      "inputProperties": {
+        "default": {
+          "type": "boolean"
+        },
+        "domain": {
+          "type": "string"
         },
         "region": {
           "type": "string"

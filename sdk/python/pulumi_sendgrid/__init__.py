@@ -8,6 +8,8 @@ import typing
 # Export this package's modules as members:
 from .api_key import *
 from .domain_authentication import *
+from .ip_pool import *
+from .link_branding import *
 from .provider import *
 from .template import *
 from .template_version import *
@@ -31,6 +33,8 @@ _utilities.register(
   "classes": {
    "sendgrid:index:ApiKey": "ApiKey",
    "sendgrid:index:DomainAuthentication": "DomainAuthentication",
+   "sendgrid:index:IpPool": "IpPool",
+   "sendgrid:index:LinkBranding": "LinkBranding",
    "sendgrid:index:Template": "Template",
    "sendgrid:index:TemplateVersion": "TemplateVersion",
    "sendgrid:index:VerifiedSender": "VerifiedSender"

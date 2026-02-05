@@ -12,6 +12,13 @@ export interface DNSRecord {
     valid: boolean;
 }
 
+export interface LinkBrandingDNSRecord {
+    data: string;
+    host: string;
+    type: string;
+    valid: boolean;
+}
+
 export interface TemplateVersionSummary {
     active: boolean;
     id: string;

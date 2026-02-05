@@ -110,6 +110,103 @@ func (o DNSRecordPtrOutput) Valid() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+type LinkBrandingDNSRecord struct {
+	Data  string `pulumi:"data"`
+	Host  string `pulumi:"host"`
+	Type  string `pulumi:"type"`
+	Valid bool   `pulumi:"valid"`
+}
+
+type LinkBrandingDNSRecordOutput struct{ *pulumi.OutputState }
+
+func (LinkBrandingDNSRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LinkBrandingDNSRecord)(nil)).Elem()
+}
+
+func (o LinkBrandingDNSRecordOutput) ToLinkBrandingDNSRecordOutput() LinkBrandingDNSRecordOutput {
+	return o
+}
+
+func (o LinkBrandingDNSRecordOutput) ToLinkBrandingDNSRecordOutputWithContext(ctx context.Context) LinkBrandingDNSRecordOutput {
+	return o
+}
+
+func (o LinkBrandingDNSRecordOutput) Data() pulumi.StringOutput {
+	return o.ApplyT(func(v LinkBrandingDNSRecord) string { return v.Data }).(pulumi.StringOutput)
+}
+
+func (o LinkBrandingDNSRecordOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v LinkBrandingDNSRecord) string { return v.Host }).(pulumi.StringOutput)
+}
+
+func (o LinkBrandingDNSRecordOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LinkBrandingDNSRecord) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o LinkBrandingDNSRecordOutput) Valid() pulumi.BoolOutput {
+	return o.ApplyT(func(v LinkBrandingDNSRecord) bool { return v.Valid }).(pulumi.BoolOutput)
+}
+
+type LinkBrandingDNSRecordPtrOutput struct{ *pulumi.OutputState }
+
+func (LinkBrandingDNSRecordPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LinkBrandingDNSRecord)(nil)).Elem()
+}
+
+func (o LinkBrandingDNSRecordPtrOutput) ToLinkBrandingDNSRecordPtrOutput() LinkBrandingDNSRecordPtrOutput {
+	return o
+}
+
+func (o LinkBrandingDNSRecordPtrOutput) ToLinkBrandingDNSRecordPtrOutputWithContext(ctx context.Context) LinkBrandingDNSRecordPtrOutput {
+	return o
+}
+
+func (o LinkBrandingDNSRecordPtrOutput) Elem() LinkBrandingDNSRecordOutput {
+	return o.ApplyT(func(v *LinkBrandingDNSRecord) LinkBrandingDNSRecord {
+		if v != nil {
+			return *v
+		}
+		var ret LinkBrandingDNSRecord
+		return ret
+	}).(LinkBrandingDNSRecordOutput)
+}
+
+func (o LinkBrandingDNSRecordPtrOutput) Data() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LinkBrandingDNSRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Data
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LinkBrandingDNSRecordPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LinkBrandingDNSRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LinkBrandingDNSRecordPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LinkBrandingDNSRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LinkBrandingDNSRecordPtrOutput) Valid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LinkBrandingDNSRecord) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Valid
+	}).(pulumi.BoolPtrOutput)
+}
+
 type TemplateVersionSummary struct {
 	Active     bool    `pulumi:"active"`
 	Id         string  `pulumi:"id"`
@@ -175,6 +272,8 @@ func (o TemplateVersionSummaryArrayOutput) Index(i pulumi.IntInput) TemplateVers
 func init() {
 	pulumi.RegisterOutputType(DNSRecordOutput{})
 	pulumi.RegisterOutputType(DNSRecordPtrOutput{})
+	pulumi.RegisterOutputType(LinkBrandingDNSRecordOutput{})
+	pulumi.RegisterOutputType(LinkBrandingDNSRecordPtrOutput{})
 	pulumi.RegisterOutputType(TemplateVersionSummaryOutput{})
 	pulumi.RegisterOutputType(TemplateVersionSummaryArrayOutput{})
 }

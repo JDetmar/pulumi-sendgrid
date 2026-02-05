@@ -1,0 +1,3 @@
+name: ip-pools-integration-test
+runtime: go
+description: Integration test for SendGrid IpPool resource

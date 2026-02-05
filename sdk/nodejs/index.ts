@@ -15,6 +15,16 @@ export type DomainAuthentication = import("./domainAuthentication").DomainAuthen
 export const DomainAuthentication: typeof import("./domainAuthentication").DomainAuthentication = null as any;
 utilities.lazyLoad(exports, ["DomainAuthentication"], () => require("./domainAuthentication"));
 
+export { IpPoolArgs } from "./ipPool";
+export type IpPool = import("./ipPool").IpPool;
+export const IpPool: typeof import("./ipPool").IpPool = null as any;
+utilities.lazyLoad(exports, ["IpPool"], () => require("./ipPool"));
+
+export { LinkBrandingArgs } from "./linkBranding";
+export type LinkBranding = import("./linkBranding").LinkBranding;
+export const LinkBranding: typeof import("./linkBranding").LinkBranding = null as any;
+utilities.lazyLoad(exports, ["LinkBranding"], () => require("./linkBranding"));
+
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
@@ -53,6 +63,10 @@ const _module = {
                 return new ApiKey(name, <any>undefined, { urn })
             case "sendgrid:index:DomainAuthentication":
                 return new DomainAuthentication(name, <any>undefined, { urn })
+            case "sendgrid:index:IpPool":
+                return new IpPool(name, <any>undefined, { urn })
+            case "sendgrid:index:LinkBranding":
+                return new LinkBranding(name, <any>undefined, { urn })
             case "sendgrid:index:Template":
                 return new Template(name, <any>undefined, { urn })
             case "sendgrid:index:TemplateVersion":
