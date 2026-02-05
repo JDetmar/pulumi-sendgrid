@@ -5,6 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface DNSRecord {
+    data: string;
+    host: string;
+    type: string;
+    valid: boolean;
+}
+
 export interface TemplateVersionSummary {
     active: boolean;
     id: string;

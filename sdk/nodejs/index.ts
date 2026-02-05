@@ -10,6 +10,11 @@ export type ApiKey = import("./apiKey").ApiKey;
 export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
 utilities.lazyLoad(exports, ["ApiKey"], () => require("./apiKey"));
 
+export { DomainAuthenticationArgs } from "./domainAuthentication";
+export type DomainAuthentication = import("./domainAuthentication").DomainAuthentication;
+export const DomainAuthentication: typeof import("./domainAuthentication").DomainAuthentication = null as any;
+utilities.lazyLoad(exports, ["DomainAuthentication"], () => require("./domainAuthentication"));
+
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
@@ -46,6 +51,8 @@ const _module = {
         switch (type) {
             case "sendgrid:index:ApiKey":
                 return new ApiKey(name, <any>undefined, { urn })
+            case "sendgrid:index:DomainAuthentication":
+                return new DomainAuthentication(name, <any>undefined, { urn })
             case "sendgrid:index:Template":
                 return new Template(name, <any>undefined, { urn })
             case "sendgrid:index:TemplateVersion":

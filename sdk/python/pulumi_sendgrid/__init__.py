@@ -7,6 +7,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .api_key import *
+from .domain_authentication import *
 from .provider import *
 from .template import *
 from .template_version import *
@@ -29,6 +30,7 @@ _utilities.register(
   "fqn": "pulumi_sendgrid",
   "classes": {
    "sendgrid:index:ApiKey": "ApiKey",
+   "sendgrid:index:DomainAuthentication": "DomainAuthentication",
    "sendgrid:index:Template": "Template",
    "sendgrid:index:TemplateVersion": "TemplateVersion",
    "sendgrid:index:VerifiedSender": "VerifiedSender"

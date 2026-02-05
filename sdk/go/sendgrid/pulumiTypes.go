@@ -13,6 +13,103 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type DNSRecord struct {
+	Data  string `pulumi:"data"`
+	Host  string `pulumi:"host"`
+	Type  string `pulumi:"type"`
+	Valid bool   `pulumi:"valid"`
+}
+
+type DNSRecordOutput struct{ *pulumi.OutputState }
+
+func (DNSRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DNSRecord)(nil)).Elem()
+}
+
+func (o DNSRecordOutput) ToDNSRecordOutput() DNSRecordOutput {
+	return o
+}
+
+func (o DNSRecordOutput) ToDNSRecordOutputWithContext(ctx context.Context) DNSRecordOutput {
+	return o
+}
+
+func (o DNSRecordOutput) Data() pulumi.StringOutput {
+	return o.ApplyT(func(v DNSRecord) string { return v.Data }).(pulumi.StringOutput)
+}
+
+func (o DNSRecordOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v DNSRecord) string { return v.Host }).(pulumi.StringOutput)
+}
+
+func (o DNSRecordOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v DNSRecord) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o DNSRecordOutput) Valid() pulumi.BoolOutput {
+	return o.ApplyT(func(v DNSRecord) bool { return v.Valid }).(pulumi.BoolOutput)
+}
+
+type DNSRecordPtrOutput struct{ *pulumi.OutputState }
+
+func (DNSRecordPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DNSRecord)(nil)).Elem()
+}
+
+func (o DNSRecordPtrOutput) ToDNSRecordPtrOutput() DNSRecordPtrOutput {
+	return o
+}
+
+func (o DNSRecordPtrOutput) ToDNSRecordPtrOutputWithContext(ctx context.Context) DNSRecordPtrOutput {
+	return o
+}
+
+func (o DNSRecordPtrOutput) Elem() DNSRecordOutput {
+	return o.ApplyT(func(v *DNSRecord) DNSRecord {
+		if v != nil {
+			return *v
+		}
+		var ret DNSRecord
+		return ret
+	}).(DNSRecordOutput)
+}
+
+func (o DNSRecordPtrOutput) Data() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DNSRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Data
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DNSRecordPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DNSRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DNSRecordPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DNSRecord) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DNSRecordPtrOutput) Valid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DNSRecord) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Valid
+	}).(pulumi.BoolPtrOutput)
+}
+
 type TemplateVersionSummary struct {
 	Active     bool    `pulumi:"active"`
 	Id         string  `pulumi:"id"`
@@ -76,6 +173,8 @@ func (o TemplateVersionSummaryArrayOutput) Index(i pulumi.IntInput) TemplateVers
 }
 
 func init() {
+	pulumi.RegisterOutputType(DNSRecordOutput{})
+	pulumi.RegisterOutputType(DNSRecordPtrOutput{})
 	pulumi.RegisterOutputType(TemplateVersionSummaryOutput{})
 	pulumi.RegisterOutputType(TemplateVersionSummaryArrayOutput{})
 }

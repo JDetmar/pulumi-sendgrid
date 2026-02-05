@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "sendgrid:index:ApiKey":
 		r = &ApiKey{}
+	case "sendgrid:index:DomainAuthentication":
+		r = &DomainAuthentication{}
 	case "sendgrid:index:Template":
 		r = &Template{}
 	case "sendgrid:index:TemplateVersion":

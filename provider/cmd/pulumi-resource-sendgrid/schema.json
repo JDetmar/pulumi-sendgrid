@@ -38,6 +38,29 @@
     }
   },
   "types": {
+    "sendgrid:index:DNSRecord": {
+      "properties": {
+        "data": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      },
+      "type": "object",
+      "required": [
+        "valid",
+        "type",
+        "host",
+        "data"
+      ]
+    },
     "sendgrid:index:TemplateVersionSummary": {
       "properties": {
         "active": {
@@ -129,6 +152,102 @@
       },
       "requiredInputs": [
         "name"
+      ]
+    },
+    "sendgrid:index:DomainAuthentication": {
+      "description": "Manages a SendGrid Domain Authentication.\n\nDomain Authentication (formerly Domain Whitelabel) allows you to authenticate your domain so that emails appear to come directly from your domain, removing the 'via sendgrid.net' message that recipients may see.\n\nAfter creating this resource, you must add the DNS records to your domain's DNS settings and then validate the domain using the SendGrid console or API.",
+      "properties": {
+        "automaticSecurity": {
+          "type": "boolean"
+        },
+        "customDkimSelector": {
+          "type": "string"
+        },
+        "customSpf": {
+          "type": "boolean"
+        },
+        "default": {
+          "type": "boolean"
+        },
+        "dkim1": {
+          "$ref": "#/types/sendgrid:index:DNSRecord"
+        },
+        "dkim2": {
+          "$ref": "#/types/sendgrid:index:DNSRecord"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "domainId": {
+          "type": "integer"
+        },
+        "ips": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "legacy": {
+          "type": "boolean"
+        },
+        "mailCname": {
+          "$ref": "#/types/sendgrid:index:DNSRecord"
+        },
+        "region": {
+          "type": "string"
+        },
+        "subdomain": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "username": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "domain",
+        "domainId",
+        "userId",
+        "username",
+        "valid",
+        "legacy"
+      ],
+      "inputProperties": {
+        "automaticSecurity": {
+          "type": "boolean"
+        },
+        "customDkimSelector": {
+          "type": "string"
+        },
+        "customSpf": {
+          "type": "boolean"
+        },
+        "default": {
+          "type": "boolean"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "ips": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "region": {
+          "type": "string"
+        },
+        "subdomain": {
+          "type": "string"
+        }
+      },
+      "requiredInputs": [
+        "domain"
       ]
     },
     "sendgrid:index:Template": {

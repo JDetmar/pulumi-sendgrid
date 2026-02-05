@@ -43,6 +43,7 @@ func Provider() p.Provider {
 			infer.Resource(&Template{}),
 			infer.Resource(&TemplateVersion{}),
 			infer.Resource(&VerifiedSender{}),
+			infer.Resource(&DomainAuthentication{}),
 		).
 		WithConfig(infer.Config(&Config{})).
 		WithModuleMap(map[tokens.ModuleName]tokens.ModuleName{

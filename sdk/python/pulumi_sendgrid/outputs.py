@@ -15,8 +15,42 @@ else:
 from . import _utilities
 
 __all__ = [
+    'DNSRecord',
     'TemplateVersionSummary',
 ]
+
+@pulumi.output_type
+class DNSRecord(dict):
+    def __init__(__self__, *,
+                 data: _builtins.str,
+                 host: _builtins.str,
+                 type: _builtins.str,
+                 valid: _builtins.bool):
+        pulumi.set(__self__, "data", data)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "valid", valid)
+
+    @_builtins.property
+    @pulumi.getter
+    def data(self) -> _builtins.str:
+        return pulumi.get(self, "data")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def valid(self) -> _builtins.bool:
+        return pulumi.get(self, "valid")
+
 
 @pulumi.output_type
 class TemplateVersionSummary(dict):
