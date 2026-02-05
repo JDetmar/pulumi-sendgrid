@@ -1,7 +1,7 @@
 {
   "name": "sendgrid",
-  "displayName": "pulumi-sendgrid",
-  "description": "An example built with pulumi-go-provider.",
+  "displayName": "SendGrid",
+  "description": "A Pulumi provider for managing SendGrid resources.",
   "homepage": "https://www.pulumi.com",
   "namespace": "pulumi",
   "language": {
@@ -10,7 +10,7 @@
     },
     "go": {
       "generateResourceContainerTypes": true,
-      "importBasePath": "github.com/JDetmar/pulumi-sendgrid/sdk/go/pulumi-sendgrid",
+      "importBasePath": "github.com/JDetmar/pulumi-sendgrid/sdk/go/sendgrid",
       "respectSchemaVersion": true
     },
     "nodejs": {
@@ -25,68 +25,83 @@
   },
   "config": {
     "variables": {
-      "itsasecret": {
-        "type": "boolean"
+      "apiKey": {
+        "type": "string",
+        "description": "The SendGrid API key for authentication. Can also be set via the SENDGRID_API_KEY environment variable.",
+        "secret": true
+      },
+      "baseUrl": {
+        "type": "string",
+        "description": "The SendGrid API base URL. Defaults to https://api.sendgrid.com. Use https://api.eu.sendgrid.com for EU regional subusers.",
+        "default": "https://api.sendgrid.com"
       }
     }
   },
   "provider": {
     "properties": {
-      "itsasecret": {
-        "type": "boolean"
+      "apiKey": {
+        "type": "string",
+        "description": "The SendGrid API key for authentication. Can also be set via the SENDGRID_API_KEY environment variable.",
+        "secret": true
+      },
+      "baseUrl": {
+        "type": "string",
+        "description": "The SendGrid API base URL. Defaults to https://api.sendgrid.com. Use https://api.eu.sendgrid.com for EU regional subusers.",
+        "default": "https://api.sendgrid.com"
       }
     },
     "inputProperties": {
-      "itsasecret": {
-        "type": "boolean"
+      "apiKey": {
+        "type": "string",
+        "description": "The SendGrid API key for authentication. Can also be set via the SENDGRID_API_KEY environment variable.",
+        "secret": true
+      },
+      "baseUrl": {
+        "type": "string",
+        "description": "The SendGrid API base URL. Defaults to https://api.sendgrid.com. Use https://api.eu.sendgrid.com for EU regional subusers.",
+        "default": "https://api.sendgrid.com"
       }
     }
   },
   "resources": {
-    "sendgrid:index:Random": {
+    "sendgrid:index:ApiKey": {
+      "description": "Manages a SendGrid API Key.\n\nAPI keys are used to authenticate access to SendGrid services. You can create keys with specific scopes to limit their permissions.\n\n**Note:** The actual API key value is only returned on creation and cannot be retrieved again. Make sure to store it securely.",
       "properties": {
-        "length": {
-          "type": "integer"
+        "apiKey": {
+          "type": "string",
+          "secret": true
         },
-        "result": {
+        "apiKeyId": {
           "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
-        "length",
-        "result"
+        "name",
+        "apiKeyId"
       ],
       "inputProperties": {
-        "length": {
-          "type": "integer"
+        "name": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "requiredInputs": [
-        "length"
+        "name"
       ]
-    },
-    "sendgrid:index:RandomComponent": {
-      "properties": {
-        "length": {
-          "type": "integer"
-        },
-        "password": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "length",
-        "password"
-      ],
-      "inputProperties": {
-        "length": {
-          "type": "integer"
-        }
-      },
-      "requiredInputs": [
-        "length"
-      ],
-      "isComponent": true
     }
   }
 }

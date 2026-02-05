@@ -26,6 +26,25 @@ This is an autonomous agentic system for building a Pulumi native provider for S
 
 ## Development Workflow
 
+### Checkpoint After Each Resource
+
+**IMPORTANT:** Commit after completing each resource (all tests passing). This enables:
+- Easy rollback if issues arise
+- Clear git history showing incremental progress
+- Safe resume points for autonomous development
+
+```bash
+# After a resource is fully tested:
+make codegen
+git add .
+git commit -m "feat(provider): add {ResourceName} resource
+
+- Implement full CRUD operations
+- Add unit tests with mocked HTTP
+- Add integration tests with real Pulumi stack
+- Verify drift detection and reconciliation"
+```
+
 ### After Provider Code Changes
 
 **IMPORTANT:** After modifying any Go code in `provider/`, you MUST run `make codegen` before committing.
@@ -100,9 +119,25 @@ All progress is tracked in `STATE.json`. The orchestrator reads this file to:
 ## Testing Requirements
 
 Every resource must pass:
-1. **Unit Tests**: Mocked HTTP, no API calls
-2. **Integration Tests**: Real Pulumi stack with live SendGrid API
+1. **Unit Tests**: Mocked HTTP, no API calls (`provider/{resource}_test.go`)
+2. **Integration Tests**: Real Pulumi stack with live SendGrid API (`tests/integration/{resource}_stack/`)
 3. **Drift Tests**: Out-of-band changes detected and reconciled
+
+### Running Integration Tests
+
+```bash
+# Use local Pulumi backend (no cloud account needed)
+export PULUMI_BACKEND_URL="file://~/.pulumi-test"
+export PULUMI_CONFIG_PASSPHRASE="test"
+export SENDGRID_API_KEY="SG.your-key"
+
+# From the test stack directory
+cd tests/integration/api_keys_stack
+pulumi stack init test
+pulumi up --yes      # Create resources
+pulumi refresh --yes # Detect drift
+pulumi destroy --yes # Clean up
+```
 
 ## SendGrid API Reference
 
