@@ -24,15 +24,17 @@ import (
 	"testing"
 	"time"
 
-	sendgrid "github.com/JDetmar/pulumi-sendgrid/provider"
 	"github.com/blang/semver"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+
 	p "github.com/pulumi/pulumi-go-provider"
 	"github.com/pulumi/pulumi-go-provider/integration"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/property"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
+
+	sendgrid "github.com/JDetmar/pulumi-sendgrid/provider"
 )
 
 // skipIfNoAPIKey skips the test if SENDGRID_API_KEY is not set
