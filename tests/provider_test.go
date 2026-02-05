@@ -28,7 +28,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/property"
 
-	xyz "github.com/pulumi/pulumi-provider-boilerplate/provider"
+	sendgrid "github.com/JDetmar/pulumi-sendgrid/provider"
 )
 
 func TestRandomCreate(t *testing.T) {
@@ -60,9 +60,9 @@ func urn(typ string) resource.URN {
 func provider(t *testing.T) integration.Server {
 	s, err := integration.NewServer(
 		context.Background(),
-		xyz.Name,
+		sendgrid.Name,
 		semver.MustParse("1.0.0"),
-		integration.WithProvider(xyz.Provider()),
+		integration.WithProvider(sendgrid.Provider()),
 	)
 	require.NoError(t, err)
 	return s

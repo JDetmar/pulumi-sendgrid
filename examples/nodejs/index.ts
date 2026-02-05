@@ -1,10 +1,10 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as boilerplate from "@pulumi/provider-boilerplate";
+import * as sendgrid from "@jdetmar/pulumi-sendgrid";
 
-const myRandomResource = new boilerplate.Random("myRandomResource", {
+const myRandomResource = new sendgrid.Random("myRandomResource", {
   length: 24,
 });
-const myRandomComponent = new boilerplate.RandomComponent("myRandomComponent", {
+const myRandomComponent = new sendgrid.RandomComponent("myRandomComponent", {
   length: 24,
 });
 export const output = {

@@ -1,11 +1,11 @@
-module github.com/pulumi/pulumi-provider-boilerplate/examples/go
+module github.com/JDetmar/pulumi-sendgrid/examples/go
 
 go 1.24.7
 
-replace github.com/pulumi/pulumi-provider-boilerplate/sdk/go/pulumi-provider-boilerplate => ../../sdk/go/pulumi-provider-boilerplate
+replace github.com/JDetmar/pulumi-sendgrid/sdk/go/sendgrid => ../../sdk/go/sendgrid
 
 require (
-	github.com/pulumi/pulumi-provider-boilerplate/sdk/go/pulumi-provider-boilerplate v0.0.99
+	github.com/JDetmar/pulumi-sendgrid/sdk/go/sendgrid v0.0.99
 	github.com/pulumi/pulumi/sdk/v3 v3.212.0
 )
 

@@ -1,5 +1,5 @@
 {
-  "name": "provider-boilerplate",
+  "name": "sendgrid",
   "devDependencies": {
     "@types/node": "^20"
   },

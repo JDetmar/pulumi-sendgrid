@@ -20,12 +20,12 @@ import (
 	"fmt"
 	"os"
 
-	xyz "github.com/pulumi/pulumi-provider-boilerplate/provider"
+	sendgrid "github.com/JDetmar/pulumi-sendgrid/provider"
 )
 
 // Serve the provider against Pulumi's Provider protocol.
 func main() {
-	err := xyz.Provider().Run(context.Background(), xyz.Name, xyz.Version)
+	err := sendgrid.Provider().Run(context.Background(), sendgrid.Name, sendgrid.Version)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %s", err.Error())
 		os.Exit(1)

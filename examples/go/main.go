@@ -1,19 +1,19 @@
 package main
 
 import (
-	boilerplate "github.com/pulumi/pulumi-provider-boilerplate/sdk/go/pulumi-provider-boilerplate"
+	sendgrid "github.com/JDetmar/pulumi-sendgrid/sdk/go/sendgrid"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
-		myRandomResource, err := boilerplate.NewRandom(ctx, "myRandomResource", &boilerplate.RandomArgs{
+		myRandomResource, err := sendgrid.NewRandom(ctx, "myRandomResource", &sendgrid.RandomArgs{
 			Length: pulumi.Int(24),
 		})
 		if err != nil {
 			return err
 		}
-		_, err = boilerplate.NewRandomComponent(ctx, "myRandomComponent", &boilerplate.RandomComponentArgs{
+		_, err = sendgrid.NewRandomComponent(ctx, "myRandomComponent", &sendgrid.RandomComponentArgs{
 			Length: pulumi.Int(24),
 		})
 		if err != nil {

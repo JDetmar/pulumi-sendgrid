@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pulumi;
-using Boilerplate = Pulumi.ProviderBoilerplate;
+using Sendgrid = Pulumi.Sendgrid;
 
 return await Deployment.RunAsync(() => 
 {
-    var myRandomResource = new Boilerplate.Random("myRandomResource", new()
+    var myRandomResource = new Sendgrid.Random("myRandomResource", new()
     {
         Length = 24,
     });
 
-    var myRandomComponent = new Boilerplate.RandomComponent("myRandomComponent", new()
+    var myRandomComponent = new Sendgrid.RandomComponent("myRandomComponent", new()
     {
         Length = 24,
     });

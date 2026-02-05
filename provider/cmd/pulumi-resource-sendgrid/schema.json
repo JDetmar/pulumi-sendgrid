@@ -1,6 +1,6 @@
 {
-  "name": "provider-boilerplate",
-  "displayName": "pulumi-provider-boilerplate",
+  "name": "sendgrid",
+  "displayName": "pulumi-sendgrid",
   "description": "An example built with pulumi-go-provider.",
   "homepage": "https://www.pulumi.com",
   "namespace": "pulumi",
@@ -10,7 +10,7 @@
     },
     "go": {
       "generateResourceContainerTypes": true,
-      "importBasePath": "github.com/pulumi/pulumi-provider-boilerplate/sdk/go/pulumi-provider-boilerplate",
+      "importBasePath": "github.com/JDetmar/pulumi-sendgrid/sdk/go/pulumi-sendgrid",
       "respectSchemaVersion": true
     },
     "nodejs": {
@@ -43,7 +43,7 @@
     }
   },
   "resources": {
-    "provider-boilerplate:index:Random": {
+    "sendgrid:index:Random": {
       "properties": {
         "length": {
           "type": "integer"
@@ -65,7 +65,7 @@
         "length"
       ]
     },
-    "provider-boilerplate:index:RandomComponent": {
+    "sendgrid:index:RandomComponent": {
       "properties": {
         "length": {
           "type": "integer"

@@ -1,13 +1,13 @@
-name: provider-boilerplate
+name: sendgrid
 runtime: yaml
 
 resources:
   myRandomResource:
-    type: provider-boilerplate:Random
+    type: sendgrid:Random
     properties:
       length: 24
   myRandomComponent:
-    type: provider-boilerplate:RandomComponent
+    type: sendgrid:RandomComponent
     properties:
       length: 24
 

@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-provider-boilerplate
+module github.com/JDetmar/pulumi-sendgrid
 
 go 1.24.7
 

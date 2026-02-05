@@ -7,7 +7,7 @@ on:
     inputs: {}
 
 env:
-  PROVIDER: provider-boilerplate
+  PROVIDER: sendgrid
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
   TRAVIS_OS_NAME: linux
   PULUMI_GO_DEP_ROOT: ${{ github.workspace }}/..

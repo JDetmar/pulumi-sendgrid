@@ -1,10 +1,10 @@
-PROJECT_NAME := Pulumi Provider Boilerplate
+PROJECT_NAME := Pulumi Provider Sendgrid
 
-PACK             := provider-boilerplate
+PACK             := sendgrid
 PACKDIR          := sdk
-PROJECT          := github.com/pulumi/pulumi-provider-boilerplate
-NODE_MODULE_NAME := @pulumi/boilerplate
-NUGET_PKG_NAME   := Pulumi.Boilerplate
+PROJECT          := github.com/JDetmar/pulumi-sendgrid
+NODE_MODULE_NAME := @jdetmar/pulumi-sendgrid
+NUGET_PKG_NAME   := Pulumi.Sendgrid
 
 PROVIDER        := pulumi-resource-${PACK}
 PROVIDER_PATH   := provider
@@ -12,7 +12,7 @@ VERSION_PATH    := ${PROVIDER_PATH}/version.Version
 
 PULUMI          := pulumi
 
-SCHEMA_FILE     := provider/cmd/pulumi-resource-provider-boilerplate/schema.json
+SCHEMA_FILE     := provider/cmd/pulumi-resource-sendgrid/schema.json
 export GOPATH   := $(shell go env GOPATH)
 
 WORKING_DIR     := $(shell pwd)
@@ -22,16 +22,16 @@ prepare:
 	@if test -z "${NAME}"; then echo "NAME not set"; exit 1; fi
 	@if test -z "${REPOSITORY}"; then echo "REPOSITORY not set"; exit 1; fi
 	@if test -z "${ORG}"; then echo "ORG not set"; exit 1; fi
-	@if test ! -d "provider/cmd/pulumi-resource-provider-boilerplate"; then "Project already prepared"; exit 1; fi # SED_SKIP
+	@if test ! -d "provider/cmd/pulumi-resource-sendgrid"; then "Project already prepared"; exit 1; fi # SED_SKIP
 
 	# SED needs to not fail when encountering unicode characters
 	LC_CTYPE=C 
 	LANG=C
 
-	mv "provider/cmd/pulumi-resource-provider-boilerplate" provider/cmd/pulumi-resource-${NAME} # SED_SKIP
+	mv "provider/cmd/pulumi-resource-sendgrid" provider/cmd/pulumi-resource-${NAME} # SED_SKIP
 	
 	# In MacOS the -i parameter needs an empty  to execute in place.
-	if [[ "${OS}" == "Darwin" ]]; then \
+	if [[ "$$(uname)" == "Darwin" ]]; then \
 		find . \( -path './.git' -o -path './sdk' \) -prune -o -not -name 'go.sum' -type f -exec sed -i '' '/SED_SKIP/!s,github.com/pulumi/pulumi-[x]yz,${REPOSITORY},g' {} \; ; \
 		find . \( -path './.git' -o -path './sdk' \) -prune -o -not -name 'go.sum' -type f -exec sed -i '' '/SED_SKIP/!s/[xX]yz/${NAME}/g' {} \; ; \
 		find . \( -path './.git' -o -path './sdk' \) -prune -o -not -name 'go.sum' -type f -exec sed -i '' '/SED_SKIP/!s/[aA]bc/${ORG}/g' {} \; ; \
@@ -55,7 +55,7 @@ ensure::
 
 $(SCHEMA_FILE): provider
 	$(PULUMI) package get-schema $(WORKING_DIR)/bin/${PROVIDER} | \
-		jq 'del(.version)' > $(SCHEMA_FILE)
+		jq 'del(.version) | (.language.go.importBasePath="${PROJECT}/sdk/go/${PACK}")' > $(SCHEMA_FILE)
 
 # Codegen generates the schema file and *generates* all sdks. This is a local process and
 # does not require the ability to build all SDKs.
@@ -70,13 +70,29 @@ sdk/%: $(SCHEMA_FILE)
 	rm -rf $@
 	$(PULUMI) package gen-sdk --language $* $(SCHEMA_FILE) --version "${VERSION_GENERIC}"
 
+sdk/nodejs: $(SCHEMA_FILE)
+	rm -rf $@
+	$(PULUMI) package gen-sdk --language nodejs $(SCHEMA_FILE) --version "${VERSION_GENERIC}"
+	cp README.md ${PACKDIR}/nodejs/
+
 sdk/java: $(SCHEMA_FILE)
 	rm -rf $@
 	$(PULUMI) package gen-sdk --language java $(SCHEMA_FILE)
+	# Generated settings.gradle references a non-existent 'lib' module; drop it for a single-module build.
+	@if [ "$$(uname)" = "Darwin" ]; then \
+		sed -i '' '/^include("lib")/d' sdk/java/settings.gradle; \
+	else \
+		sed -i '/^include("lib")/d' sdk/java/settings.gradle; \
+	fi
+	# Post-process build.gradle for Maven Central publishing
+	@echo "Post-processing Java SDK build.gradle for Maven Central..."
+	@python3 scripts/patch-java-build-gradle.py sdk/java/build.gradle
 
 sdk/python: $(SCHEMA_FILE)
 	rm -rf $@
 	$(PULUMI) package gen-sdk --language python $(SCHEMA_FILE) --version "${VERSION_GENERIC}"
+	# Pulumi SDK generator doesn't set version in setup.py, so we patch it manually
+	sed -i.bak 's/VERSION = "0.0.0"/VERSION = "${VERSION_GENERIC}"/' ${PACKDIR}/python/setup.py && rm ${PACKDIR}/python/setup.py.bak
 	cp README.md ${PACKDIR}/python/
 
 sdk/dotnet: $(SCHEMA_FILE)
@@ -87,15 +103,20 @@ sdk/dotnet: $(SCHEMA_FILE)
 sdk/go: ${SCHEMA_FILE}
 	rm -rf $@
 	$(PULUMI) package gen-sdk --language go ${SCHEMA_FILE} --version "${VERSION_GENERIC}"
-	cp go.mod ${PACKDIR}/go/pulumi-${PACK}/go.mod
-	cd ${PACKDIR}/go/pulumi-${PACK} && \
-		go mod edit -module=github.com/pulumi/pulumi-${PACK}/${PACKDIR}/go/pulumi-${PACK} && \
+	GO_PKG_DIR=${PACKDIR}/go/${PACK}; \
+	mkdir -p $$GO_PKG_DIR; \
+	cp go.mod $$GO_PKG_DIR/go.mod; \
+	cd $$GO_PKG_DIR && \
+		go mod edit -module=${PROJECT}/sdk/go/${PACK} && \
 		go mod tidy
 
 .PHONY: provider
 provider: bin/${PROVIDER} bin/pulumi-gen-${PACK} # Required by CI
 
-bin/${PROVIDER}:
+# Provider source files to track for rebuilds
+PROVIDER_SRC := $(shell find provider -name '*.go')
+
+bin/${PROVIDER}: $(PROVIDER_SRC)
 	cd provider && go build -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION_GENERIC}" $(PROJECT)/${PROVIDER_PATH}/cmd/$(PROVIDER)
 
 .PHONY: provider_debug
@@ -103,7 +124,7 @@ provider_debug:
 	(cd provider && go build -o $(WORKING_DIR)/bin/${PROVIDER} -gcflags="all=-N -l" -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION_GENERIC}" $(PROJECT)/${PROVIDER_PATH}/cmd/$(PROVIDER))
 
 test_provider:
-	cd provider && go test -short -v -count=1 -cover -timeout 2h -parallel ${TESTPARALLELISM} -coverprofile="coverage.txt" ./...
+	cd provider && go test -short -race -v -count=1 -cover -timeout 2h -parallel ${TESTPARALLELISM} -coverprofile="coverage.txt" ./...
 
 dotnet_sdk: sdk/dotnet
 	cd ${PACKDIR}/dotnet/&& \
@@ -149,7 +170,7 @@ install:: install_nodejs_sdk install_dotnet_sdk
 	cp $(WORKING_DIR)/bin/${PROVIDER} ${GOPATH}/bin
 
 
-GO_TEST := go test -v -count=1 -cover -timeout 2h -parallel ${TESTPARALLELISM}
+GO_TEST := go test -race -v -count=1 -cover -timeout 2h -parallel ${TESTPARALLELISM}
 
 test_all:: test
 	cd provider/pkg && $(GO_TEST) ./...
@@ -177,7 +198,6 @@ install_nodejs_sdk::
 	yarn link --cwd $(WORKING_DIR)/sdk/nodejs/bin
 
 test:: test_provider
-	cd examples && go test -v -tags=all -timeout 2h
 
 # Set these variables to enable signing of the windows binary
 AZURE_SIGNING_CLIENT_ID ?=
