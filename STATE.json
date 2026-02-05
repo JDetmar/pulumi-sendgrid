@@ -113,10 +113,15 @@
       "notes": "Implemented EventWebhook resource for managing SendGrid Event Webhooks. Full CRUD operations: POST/GET/PATCH/DELETE /v3/user/webhooks/event/settings/{id}. Supports all event types (bounce, click, deferred, delivered, dropped, open, processed, spam_report, unsubscribe, group_resubscribe, group_unsubscribe), enabled/disabled state, friendly name, and webhook URL. Integration tests skipped - requires live SendGrid API key and webhook endpoint."
     },
     "subusers": {
-      "status": "pending",
-      "unit_tests": "pending",
-      "integration_tests": "pending",
-      "drift_tests": "pending"
+      "status": "completed",
+      "unit_tests": "passed",
+      "integration_tests": "skipped",
+      "drift_tests": "skipped",
+      "files": [
+        "provider/subuser.go",
+        "provider/subuser_test.go"
+      ],
+      "notes": "Implemented Subuser resource for managing SendGrid Subusers. Full CRUD operations: POST /v3/subusers to create, GET /v3/subusers/{username} to read, PATCH /v3/subusers/{username} to update disabled status, DELETE /v3/subusers/{username} to delete. Supports username, email, password, IPs, region, and disabled state. Uses username as resource ID with URL encoding. Integration tests skipped - requires live SendGrid API key and Pro plan for regional subusers."
     },
     "teammates": {
       "status": "pending",
@@ -134,10 +139,10 @@
   "current_task": null,
   "errors": [],
   "metrics": {
-    "resources_completed": 9,
+    "resources_completed": 10,
     "resources_in_progress": 0,
     "resources_total": 12,
-    "tests_passed": 99,
+    "tests_passed": 117,
     "tests_failed": 0
   }
 }
