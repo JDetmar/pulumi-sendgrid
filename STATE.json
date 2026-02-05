@@ -135,19 +135,24 @@
       "notes": "Implemented Teammate resource for managing SendGrid Teammates. Supports inviting teammates via email with configurable permissions/scopes. Full CRUD: POST /v3/teammates to invite, GET /v3/teammates/{username} to read, PATCH /v3/teammates/{username} to update permissions, DELETE /v3/teammates/{username} to delete. Handles pending invitations separately via /v3/teammates/pending endpoint. Integration tests skipped - requires live SendGrid account."
     },
     "alerts": {
-      "status": "pending",
-      "unit_tests": "pending",
-      "integration_tests": "pending",
-      "drift_tests": "pending"
+      "status": "completed",
+      "unit_tests": "passed",
+      "integration_tests": "skipped",
+      "drift_tests": "skipped",
+      "files": [
+        "provider/alert.go",
+        "provider/alert_test.go"
+      ],
+      "notes": "Implemented Alert resource for managing SendGrid Alerts. Supports two alert types: usage_limit (percentage-based email usage alerts) and stats_notification (periodic stats emails with daily/weekly/monthly frequency). Full CRUD: POST /v3/alerts to create, GET /v3/alerts/{id} to read, PATCH /v3/alerts/{id} to update, DELETE /v3/alerts/{id} to delete. Integration tests skipped - requires live SendGrid API key."
     }
   },
   "current_task": null,
   "errors": [],
   "metrics": {
-    "resources_completed": 11,
+    "resources_completed": 12,
     "resources_in_progress": 0,
     "resources_total": 12,
-    "tests_passed": 135,
+    "tests_passed": 153,
     "tests_failed": 0
   }
 }

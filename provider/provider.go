@@ -51,6 +51,7 @@ func Provider() p.Provider {
 			infer.Resource(&EventWebhook{}),
 			infer.Resource(&Subuser{}),
 			infer.Resource(&Teammate{}),
+			infer.Resource(&Alert{}),
 		).
 		WithConfig(infer.Config(&Config{})).
 		WithModuleMap(map[tokens.ModuleName]tokens.ModuleName{
