@@ -10,6 +10,7 @@ from .api_key import *
 from .provider import *
 from .template import *
 from .template_version import *
+from .verified_sender import *
 from . import outputs
 
 # Make subpackages available:
@@ -29,7 +30,8 @@ _utilities.register(
   "classes": {
    "sendgrid:index:ApiKey": "ApiKey",
    "sendgrid:index:Template": "Template",
-   "sendgrid:index:TemplateVersion": "TemplateVersion"
+   "sendgrid:index:TemplateVersion": "TemplateVersion",
+   "sendgrid:index:VerifiedSender": "VerifiedSender"
   }
  }
 ]

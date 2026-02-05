@@ -249,6 +249,107 @@
         "templateId",
         "name"
       ]
+    },
+    "sendgrid:index:VerifiedSender": {
+      "description": "Manages a SendGrid Verified Sender.\n\nVerified Senders are sender identities that have been verified for sending email. After creation, SendGrid will send a verification email to the from_email address. The sender must click the verification link to complete the verification process.\n\n**Note:** The `verified` status will be `false` until the verification email is confirmed.",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "fromEmail": {
+          "type": "string"
+        },
+        "fromName": {
+          "type": "string"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "replyTo": {
+          "type": "string"
+        },
+        "replyToName": {
+          "type": "string"
+        },
+        "senderId": {
+          "type": "integer"
+        },
+        "state": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean"
+        },
+        "zip": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nickname",
+        "fromEmail",
+        "replyTo",
+        "address",
+        "city",
+        "country",
+        "senderId",
+        "verified",
+        "locked"
+      ],
+      "inputProperties": {
+        "address": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "fromEmail": {
+          "type": "string"
+        },
+        "fromName": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "replyTo": {
+          "type": "string"
+        },
+        "replyToName": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      },
+      "requiredInputs": [
+        "nickname",
+        "fromEmail",
+        "replyTo",
+        "address",
+        "city",
+        "country"
+      ]
     }
   }
 }

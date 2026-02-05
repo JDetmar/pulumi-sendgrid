@@ -25,6 +25,11 @@ export type TemplateVersion = import("./templateVersion").TemplateVersion;
 export const TemplateVersion: typeof import("./templateVersion").TemplateVersion = null as any;
 utilities.lazyLoad(exports, ["TemplateVersion"], () => require("./templateVersion"));
 
+export { VerifiedSenderArgs } from "./verifiedSender";
+export type VerifiedSender = import("./verifiedSender").VerifiedSender;
+export const VerifiedSender: typeof import("./verifiedSender").VerifiedSender = null as any;
+utilities.lazyLoad(exports, ["VerifiedSender"], () => require("./verifiedSender"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -45,6 +50,8 @@ const _module = {
                 return new Template(name, <any>undefined, { urn })
             case "sendgrid:index:TemplateVersion":
                 return new TemplateVersion(name, <any>undefined, { urn })
+            case "sendgrid:index:VerifiedSender":
+                return new VerifiedSender(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
