@@ -40,22 +40,22 @@ export class DomainAuthentication extends pulumi.CustomResource {
         return obj['__pulumiType'] === DomainAuthentication.__pulumiType;
     }
 
-    public readonly automaticSecurity!: pulumi.Output<boolean | undefined>;
-    public readonly customDkimSelector!: pulumi.Output<string | undefined>;
-    public readonly customSpf!: pulumi.Output<boolean | undefined>;
-    public readonly default!: pulumi.Output<boolean | undefined>;
-    public /*out*/ readonly dkim1!: pulumi.Output<outputs.DNSRecord | undefined>;
-    public /*out*/ readonly dkim2!: pulumi.Output<outputs.DNSRecord | undefined>;
-    public readonly domain!: pulumi.Output<string>;
-    public /*out*/ readonly domainId!: pulumi.Output<number>;
-    public readonly ips!: pulumi.Output<string[] | undefined>;
-    public /*out*/ readonly legacy!: pulumi.Output<boolean>;
-    public /*out*/ readonly mailCname!: pulumi.Output<outputs.DNSRecord | undefined>;
-    public readonly region!: pulumi.Output<string | undefined>;
-    public readonly subdomain!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly userId!: pulumi.Output<number>;
-    public /*out*/ readonly username!: pulumi.Output<string>;
-    public /*out*/ readonly valid!: pulumi.Output<boolean>;
+    declare public readonly automaticSecurity: pulumi.Output<boolean | undefined>;
+    declare public readonly customDkimSelector: pulumi.Output<string | undefined>;
+    declare public readonly customSpf: pulumi.Output<boolean | undefined>;
+    declare public readonly default: pulumi.Output<boolean | undefined>;
+    declare public /*out*/ readonly dkim1: pulumi.Output<outputs.DNSRecord | undefined>;
+    declare public /*out*/ readonly dkim2: pulumi.Output<outputs.DNSRecord | undefined>;
+    declare public readonly domain: pulumi.Output<string>;
+    declare public /*out*/ readonly domainId: pulumi.Output<number>;
+    declare public readonly ips: pulumi.Output<string[] | undefined>;
+    declare public /*out*/ readonly legacy: pulumi.Output<boolean>;
+    declare public /*out*/ readonly mailCname: pulumi.Output<outputs.DNSRecord | undefined>;
+    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly subdomain: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly userId: pulumi.Output<number>;
+    declare public /*out*/ readonly username: pulumi.Output<string>;
+    declare public /*out*/ readonly valid: pulumi.Output<boolean>;
 
     /**
      * Create a DomainAuthentication resource with the given unique name, arguments, and options.
@@ -68,17 +68,17 @@ export class DomainAuthentication extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.domain === undefined) && !opts.urn) {
+            if (args?.domain === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domain'");
             }
-            resourceInputs["automaticSecurity"] = args ? args.automaticSecurity : undefined;
-            resourceInputs["customDkimSelector"] = args ? args.customDkimSelector : undefined;
-            resourceInputs["customSpf"] = args ? args.customSpf : undefined;
-            resourceInputs["default"] = args ? args.default : undefined;
-            resourceInputs["domain"] = args ? args.domain : undefined;
-            resourceInputs["ips"] = args ? args.ips : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["subdomain"] = args ? args.subdomain : undefined;
+            resourceInputs["automaticSecurity"] = args?.automaticSecurity;
+            resourceInputs["customDkimSelector"] = args?.customDkimSelector;
+            resourceInputs["customSpf"] = args?.customSpf;
+            resourceInputs["default"] = args?.default;
+            resourceInputs["domain"] = args?.domain;
+            resourceInputs["ips"] = args?.ips;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["subdomain"] = args?.subdomain;
             resourceInputs["dkim1"] = undefined /*out*/;
             resourceInputs["dkim2"] = undefined /*out*/;
             resourceInputs["domainId"] = undefined /*out*/;

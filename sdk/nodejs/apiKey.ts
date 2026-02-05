@@ -38,10 +38,10 @@ export class ApiKey extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApiKey.__pulumiType;
     }
 
-    public /*out*/ readonly apiKey!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly apiKeyId!: pulumi.Output<string>;
-    public readonly name!: pulumi.Output<string>;
-    public readonly scopes!: pulumi.Output<string[] | undefined>;
+    declare public /*out*/ readonly apiKey: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly apiKeyId: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly scopes: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a ApiKey resource with the given unique name, arguments, and options.
@@ -54,11 +54,11 @@ export class ApiKey extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.name === undefined) && !opts.urn) {
+            if (args?.name === undefined && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["scopes"] = args ? args.scopes : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["scopes"] = args?.scopes;
             resourceInputs["apiKey"] = undefined /*out*/;
             resourceInputs["apiKeyId"] = undefined /*out*/;
         } else {

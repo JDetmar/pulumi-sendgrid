@@ -38,8 +38,8 @@ export class GlobalSuppression extends pulumi.CustomResource {
         return obj['__pulumiType'] === GlobalSuppression.__pulumiType;
     }
 
-    public /*out*/ readonly createdAt!: pulumi.Output<number | undefined>;
-    public readonly email!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<number | undefined>;
+    declare public readonly email: pulumi.Output<string>;
 
     /**
      * Create a GlobalSuppression resource with the given unique name, arguments, and options.
@@ -52,10 +52,10 @@ export class GlobalSuppression extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.email === undefined) && !opts.urn) {
+            if (args?.email === undefined && !opts.urn) {
                 throw new Error("Missing required property 'email'");
             }
-            resourceInputs["email"] = args ? args.email : undefined;
+            resourceInputs["email"] = args?.email;
             resourceInputs["createdAt"] = undefined /*out*/;
         } else {
             resourceInputs["createdAt"] = undefined /*out*/;

@@ -38,11 +38,11 @@ export class UnsubscribeGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === UnsubscribeGroup.__pulumiType;
     }
 
-    public readonly description!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly groupId!: pulumi.Output<number>;
-    public readonly isDefault!: pulumi.Output<boolean | undefined>;
-    public readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly unsubscribes!: pulumi.Output<number>;
+    declare public readonly description: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly groupId: pulumi.Output<number>;
+    declare public readonly isDefault: pulumi.Output<boolean | undefined>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public /*out*/ readonly unsubscribes: pulumi.Output<number>;
 
     /**
      * Create a UnsubscribeGroup resource with the given unique name, arguments, and options.
@@ -55,12 +55,12 @@ export class UnsubscribeGroup extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.name === undefined) && !opts.urn) {
+            if (args?.name === undefined && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["isDefault"] = args ? args.isDefault : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["isDefault"] = args?.isDefault;
+            resourceInputs["name"] = args?.name;
             resourceInputs["groupId"] = undefined /*out*/;
             resourceInputs["unsubscribes"] = undefined /*out*/;
         } else {

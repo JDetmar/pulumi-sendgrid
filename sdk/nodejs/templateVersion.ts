@@ -40,18 +40,18 @@ export class TemplateVersion extends pulumi.CustomResource {
         return obj['__pulumiType'] === TemplateVersion.__pulumiType;
     }
 
-    public readonly active!: pulumi.Output<number | undefined>;
-    public readonly editor!: pulumi.Output<string | undefined>;
-    public readonly generatePlainContent!: pulumi.Output<boolean | undefined>;
-    public readonly htmlContent!: pulumi.Output<string | undefined>;
-    public readonly name!: pulumi.Output<string>;
-    public readonly plainContent!: pulumi.Output<string | undefined>;
-    public readonly subject!: pulumi.Output<string | undefined>;
-    public readonly templateId!: pulumi.Output<string>;
-    public readonly testData!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly thumbnailUrl!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly versionId!: pulumi.Output<string>;
+    declare public readonly active: pulumi.Output<number | undefined>;
+    declare public readonly editor: pulumi.Output<string | undefined>;
+    declare public readonly generatePlainContent: pulumi.Output<boolean | undefined>;
+    declare public readonly htmlContent: pulumi.Output<string | undefined>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly plainContent: pulumi.Output<string | undefined>;
+    declare public readonly subject: pulumi.Output<string | undefined>;
+    declare public readonly templateId: pulumi.Output<string>;
+    declare public readonly testData: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly thumbnailUrl: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly versionId: pulumi.Output<string>;
 
     /**
      * Create a TemplateVersion resource with the given unique name, arguments, and options.
@@ -64,21 +64,21 @@ export class TemplateVersion extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.name === undefined) && !opts.urn) {
+            if (args?.name === undefined && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            if ((!args || args.templateId === undefined) && !opts.urn) {
+            if (args?.templateId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'templateId'");
             }
-            resourceInputs["active"] = args ? args.active : undefined;
-            resourceInputs["editor"] = args ? args.editor : undefined;
-            resourceInputs["generatePlainContent"] = args ? args.generatePlainContent : undefined;
-            resourceInputs["htmlContent"] = args ? args.htmlContent : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["plainContent"] = args ? args.plainContent : undefined;
-            resourceInputs["subject"] = args ? args.subject : undefined;
-            resourceInputs["templateId"] = args ? args.templateId : undefined;
-            resourceInputs["testData"] = args ? args.testData : undefined;
+            resourceInputs["active"] = args?.active;
+            resourceInputs["editor"] = args?.editor;
+            resourceInputs["generatePlainContent"] = args?.generatePlainContent;
+            resourceInputs["htmlContent"] = args?.htmlContent;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["plainContent"] = args?.plainContent;
+            resourceInputs["subject"] = args?.subject;
+            resourceInputs["templateId"] = args?.templateId;
+            resourceInputs["testData"] = args?.testData;
             resourceInputs["thumbnailUrl"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["versionId"] = undefined /*out*/;

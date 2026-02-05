@@ -38,20 +38,20 @@ export class VerifiedSender extends pulumi.CustomResource {
         return obj['__pulumiType'] === VerifiedSender.__pulumiType;
     }
 
-    public readonly address!: pulumi.Output<string>;
-    public readonly address2!: pulumi.Output<string | undefined>;
-    public readonly city!: pulumi.Output<string>;
-    public readonly country!: pulumi.Output<string>;
-    public readonly fromEmail!: pulumi.Output<string>;
-    public readonly fromName!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly locked!: pulumi.Output<boolean>;
-    public readonly nickname!: pulumi.Output<string>;
-    public readonly replyTo!: pulumi.Output<string>;
-    public readonly replyToName!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly senderId!: pulumi.Output<number>;
-    public readonly state!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly verified!: pulumi.Output<boolean>;
-    public readonly zip!: pulumi.Output<string | undefined>;
+    declare public readonly address: pulumi.Output<string>;
+    declare public readonly address2: pulumi.Output<string | undefined>;
+    declare public readonly city: pulumi.Output<string>;
+    declare public readonly country: pulumi.Output<string>;
+    declare public readonly fromEmail: pulumi.Output<string>;
+    declare public readonly fromName: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly locked: pulumi.Output<boolean>;
+    declare public readonly nickname: pulumi.Output<string>;
+    declare public readonly replyTo: pulumi.Output<string>;
+    declare public readonly replyToName: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly senderId: pulumi.Output<number>;
+    declare public readonly state: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly verified: pulumi.Output<boolean>;
+    declare public readonly zip: pulumi.Output<string | undefined>;
 
     /**
      * Create a VerifiedSender resource with the given unique name, arguments, and options.
@@ -64,35 +64,35 @@ export class VerifiedSender extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.address === undefined) && !opts.urn) {
+            if (args?.address === undefined && !opts.urn) {
                 throw new Error("Missing required property 'address'");
             }
-            if ((!args || args.city === undefined) && !opts.urn) {
+            if (args?.city === undefined && !opts.urn) {
                 throw new Error("Missing required property 'city'");
             }
-            if ((!args || args.country === undefined) && !opts.urn) {
+            if (args?.country === undefined && !opts.urn) {
                 throw new Error("Missing required property 'country'");
             }
-            if ((!args || args.fromEmail === undefined) && !opts.urn) {
+            if (args?.fromEmail === undefined && !opts.urn) {
                 throw new Error("Missing required property 'fromEmail'");
             }
-            if ((!args || args.nickname === undefined) && !opts.urn) {
+            if (args?.nickname === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nickname'");
             }
-            if ((!args || args.replyTo === undefined) && !opts.urn) {
+            if (args?.replyTo === undefined && !opts.urn) {
                 throw new Error("Missing required property 'replyTo'");
             }
-            resourceInputs["address"] = args ? args.address : undefined;
-            resourceInputs["address2"] = args ? args.address2 : undefined;
-            resourceInputs["city"] = args ? args.city : undefined;
-            resourceInputs["country"] = args ? args.country : undefined;
-            resourceInputs["fromEmail"] = args ? args.fromEmail : undefined;
-            resourceInputs["fromName"] = args ? args.fromName : undefined;
-            resourceInputs["nickname"] = args ? args.nickname : undefined;
-            resourceInputs["replyTo"] = args ? args.replyTo : undefined;
-            resourceInputs["replyToName"] = args ? args.replyToName : undefined;
-            resourceInputs["state"] = args ? args.state : undefined;
-            resourceInputs["zip"] = args ? args.zip : undefined;
+            resourceInputs["address"] = args?.address;
+            resourceInputs["address2"] = args?.address2;
+            resourceInputs["city"] = args?.city;
+            resourceInputs["country"] = args?.country;
+            resourceInputs["fromEmail"] = args?.fromEmail;
+            resourceInputs["fromName"] = args?.fromName;
+            resourceInputs["nickname"] = args?.nickname;
+            resourceInputs["replyTo"] = args?.replyTo;
+            resourceInputs["replyToName"] = args?.replyToName;
+            resourceInputs["state"] = args?.state;
+            resourceInputs["zip"] = args?.zip;
             resourceInputs["locked"] = undefined /*out*/;
             resourceInputs["senderId"] = undefined /*out*/;
             resourceInputs["verified"] = undefined /*out*/;

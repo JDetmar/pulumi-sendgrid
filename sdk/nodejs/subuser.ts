@@ -38,12 +38,12 @@ export class Subuser extends pulumi.CustomResource {
         return obj['__pulumiType'] === Subuser.__pulumiType;
     }
 
-    public readonly disabled!: pulumi.Output<boolean>;
-    public readonly email!: pulumi.Output<string>;
-    public readonly ips!: pulumi.Output<string[] | undefined>;
-    public readonly region!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly userId!: pulumi.Output<number>;
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly disabled: pulumi.Output<boolean>;
+    declare public readonly email: pulumi.Output<string>;
+    declare public readonly ips: pulumi.Output<string[] | undefined>;
+    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly userId: pulumi.Output<number>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a Subuser resource with the given unique name, arguments, and options.
@@ -56,21 +56,21 @@ export class Subuser extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.email === undefined) && !opts.urn) {
+            if (args?.email === undefined && !opts.urn) {
                 throw new Error("Missing required property 'email'");
             }
-            if ((!args || args.password === undefined) && !opts.urn) {
+            if (args?.password === undefined && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["disabled"] = args ? args.disabled : undefined;
-            resourceInputs["email"] = args ? args.email : undefined;
-            resourceInputs["ips"] = args ? args.ips : undefined;
+            resourceInputs["disabled"] = args?.disabled;
+            resourceInputs["email"] = args?.email;
+            resourceInputs["ips"] = args?.ips;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["username"] = args?.username;
             resourceInputs["userId"] = undefined /*out*/;
         } else {
             resourceInputs["disabled"] = undefined /*out*/;

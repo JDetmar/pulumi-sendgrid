@@ -38,21 +38,21 @@ export class EventWebhook extends pulumi.CustomResource {
         return obj['__pulumiType'] === EventWebhook.__pulumiType;
     }
 
-    public readonly bounce!: pulumi.Output<boolean | undefined>;
-    public readonly click!: pulumi.Output<boolean | undefined>;
-    public readonly deferred!: pulumi.Output<boolean | undefined>;
-    public readonly delivered!: pulumi.Output<boolean | undefined>;
-    public readonly dropped!: pulumi.Output<boolean | undefined>;
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
-    public readonly friendlyName!: pulumi.Output<string | undefined>;
-    public readonly groupResubscribe!: pulumi.Output<boolean | undefined>;
-    public readonly groupUnsubscribe!: pulumi.Output<boolean | undefined>;
-    public readonly open!: pulumi.Output<boolean | undefined>;
-    public readonly processed!: pulumi.Output<boolean | undefined>;
-    public readonly spamReport!: pulumi.Output<boolean | undefined>;
-    public readonly unsubscribe!: pulumi.Output<boolean | undefined>;
-    public readonly url!: pulumi.Output<string>;
-    public /*out*/ readonly webhookId!: pulumi.Output<string>;
+    declare public readonly bounce: pulumi.Output<boolean | undefined>;
+    declare public readonly click: pulumi.Output<boolean | undefined>;
+    declare public readonly deferred: pulumi.Output<boolean | undefined>;
+    declare public readonly delivered: pulumi.Output<boolean | undefined>;
+    declare public readonly dropped: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
+    declare public readonly friendlyName: pulumi.Output<string | undefined>;
+    declare public readonly groupResubscribe: pulumi.Output<boolean | undefined>;
+    declare public readonly groupUnsubscribe: pulumi.Output<boolean | undefined>;
+    declare public readonly open: pulumi.Output<boolean | undefined>;
+    declare public readonly processed: pulumi.Output<boolean | undefined>;
+    declare public readonly spamReport: pulumi.Output<boolean | undefined>;
+    declare public readonly unsubscribe: pulumi.Output<boolean | undefined>;
+    declare public readonly url: pulumi.Output<string>;
+    declare public /*out*/ readonly webhookId: pulumi.Output<string>;
 
     /**
      * Create a EventWebhook resource with the given unique name, arguments, and options.
@@ -65,23 +65,23 @@ export class EventWebhook extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.url === undefined) && !opts.urn) {
+            if (args?.url === undefined && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
-            resourceInputs["bounce"] = args ? args.bounce : undefined;
-            resourceInputs["click"] = args ? args.click : undefined;
-            resourceInputs["deferred"] = args ? args.deferred : undefined;
-            resourceInputs["delivered"] = args ? args.delivered : undefined;
-            resourceInputs["dropped"] = args ? args.dropped : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["friendlyName"] = args ? args.friendlyName : undefined;
-            resourceInputs["groupResubscribe"] = args ? args.groupResubscribe : undefined;
-            resourceInputs["groupUnsubscribe"] = args ? args.groupUnsubscribe : undefined;
-            resourceInputs["open"] = args ? args.open : undefined;
-            resourceInputs["processed"] = args ? args.processed : undefined;
-            resourceInputs["spamReport"] = args ? args.spamReport : undefined;
-            resourceInputs["unsubscribe"] = args ? args.unsubscribe : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["bounce"] = args?.bounce;
+            resourceInputs["click"] = args?.click;
+            resourceInputs["deferred"] = args?.deferred;
+            resourceInputs["delivered"] = args?.delivered;
+            resourceInputs["dropped"] = args?.dropped;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["friendlyName"] = args?.friendlyName;
+            resourceInputs["groupResubscribe"] = args?.groupResubscribe;
+            resourceInputs["groupUnsubscribe"] = args?.groupUnsubscribe;
+            resourceInputs["open"] = args?.open;
+            resourceInputs["processed"] = args?.processed;
+            resourceInputs["spamReport"] = args?.spamReport;
+            resourceInputs["unsubscribe"] = args?.unsubscribe;
+            resourceInputs["url"] = args?.url;
             resourceInputs["webhookId"] = undefined /*out*/;
         } else {
             resourceInputs["bounce"] = undefined /*out*/;

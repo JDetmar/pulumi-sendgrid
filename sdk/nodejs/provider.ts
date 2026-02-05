@@ -22,11 +22,11 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * The SendGrid API key for authentication. Can also be set via the SENDGRID_API_KEY environment variable.
      */
-    public readonly apiKey!: pulumi.Output<string | undefined>;
+    declare public readonly apiKey: pulumi.Output<string | undefined>;
     /**
      * The SendGrid API base URL. Defaults to https://api.sendgrid.com. Use https://api.eu.sendgrid.com for EU regional subusers.
      */
-    public readonly baseUrl!: pulumi.Output<string | undefined>;
+    declare public readonly baseUrl: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -40,7 +40,7 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
-            resourceInputs["baseUrl"] = (args ? args.baseUrl : undefined) ?? "https://api.sendgrid.com";
+            resourceInputs["baseUrl"] = (args?.baseUrl) ?? "https://api.sendgrid.com";
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["apiKey"] };

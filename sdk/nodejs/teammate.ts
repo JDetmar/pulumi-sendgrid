@@ -38,14 +38,14 @@ export class Teammate extends pulumi.CustomResource {
         return obj['__pulumiType'] === Teammate.__pulumiType;
     }
 
-    public readonly email!: pulumi.Output<string>;
-    public /*out*/ readonly firstName!: pulumi.Output<string | undefined>;
-    public readonly isAdmin!: pulumi.Output<boolean>;
-    public /*out*/ readonly lastName!: pulumi.Output<string | undefined>;
-    public readonly scopes!: pulumi.Output<string[] | undefined>;
-    public /*out*/ readonly token!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly userType!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly username!: pulumi.Output<string | undefined>;
+    declare public readonly email: pulumi.Output<string>;
+    declare public /*out*/ readonly firstName: pulumi.Output<string | undefined>;
+    declare public readonly isAdmin: pulumi.Output<boolean>;
+    declare public /*out*/ readonly lastName: pulumi.Output<string | undefined>;
+    declare public readonly scopes: pulumi.Output<string[] | undefined>;
+    declare public /*out*/ readonly token: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly userType: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly username: pulumi.Output<string | undefined>;
 
     /**
      * Create a Teammate resource with the given unique name, arguments, and options.
@@ -58,12 +58,12 @@ export class Teammate extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.email === undefined) && !opts.urn) {
+            if (args?.email === undefined && !opts.urn) {
                 throw new Error("Missing required property 'email'");
             }
-            resourceInputs["email"] = args ? args.email : undefined;
-            resourceInputs["isAdmin"] = args ? args.isAdmin : undefined;
-            resourceInputs["scopes"] = args ? args.scopes : undefined;
+            resourceInputs["email"] = args?.email;
+            resourceInputs["isAdmin"] = args?.isAdmin;
+            resourceInputs["scopes"] = args?.scopes;
             resourceInputs["firstName"] = undefined /*out*/;
             resourceInputs["lastName"] = undefined /*out*/;
             resourceInputs["token"] = undefined /*out*/;

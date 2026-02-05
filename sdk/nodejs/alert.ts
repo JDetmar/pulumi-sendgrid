@@ -41,13 +41,13 @@ export class Alert extends pulumi.CustomResource {
         return obj['__pulumiType'] === Alert.__pulumiType;
     }
 
-    public /*out*/ readonly alertId!: pulumi.Output<number>;
-    public /*out*/ readonly createdAt!: pulumi.Output<number>;
-    public readonly emailTo!: pulumi.Output<string>;
-    public readonly frequency!: pulumi.Output<string | undefined>;
-    public readonly percentage!: pulumi.Output<number | undefined>;
-    public readonly type!: pulumi.Output<string>;
-    public /*out*/ readonly updatedAt!: pulumi.Output<number>;
+    declare public /*out*/ readonly alertId: pulumi.Output<number>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<number>;
+    declare public readonly emailTo: pulumi.Output<string>;
+    declare public readonly frequency: pulumi.Output<string | undefined>;
+    declare public readonly percentage: pulumi.Output<number | undefined>;
+    declare public readonly type: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<number>;
 
     /**
      * Create a Alert resource with the given unique name, arguments, and options.
@@ -60,16 +60,16 @@ export class Alert extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if ((!args || args.emailTo === undefined) && !opts.urn) {
+            if (args?.emailTo === undefined && !opts.urn) {
                 throw new Error("Missing required property 'emailTo'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["emailTo"] = args ? args.emailTo : undefined;
-            resourceInputs["frequency"] = args ? args.frequency : undefined;
-            resourceInputs["percentage"] = args ? args.percentage : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["emailTo"] = args?.emailTo;
+            resourceInputs["frequency"] = args?.frequency;
+            resourceInputs["percentage"] = args?.percentage;
+            resourceInputs["type"] = args?.type;
             resourceInputs["alertId"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
