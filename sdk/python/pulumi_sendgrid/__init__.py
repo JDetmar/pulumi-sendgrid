@@ -8,6 +8,8 @@ import typing
 # Export this package's modules as members:
 from .api_key import *
 from .provider import *
+from .template import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -24,7 +26,8 @@ _utilities.register(
   "mod": "index",
   "fqn": "pulumi_sendgrid",
   "classes": {
-   "sendgrid:index:ApiKey": "ApiKey"
+   "sendgrid:index:ApiKey": "ApiKey",
+   "sendgrid:index:Template": "Template"
   }
  }
 ]

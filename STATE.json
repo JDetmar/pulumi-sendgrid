@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "started_at": "2026-02-04T00:00:00Z",
-  "last_updated": "2026-02-04T23:00:00Z",
+  "last_updated": "2026-02-05T06:58:00Z",
   "phase": "implementation",
   "resources": {
     "api_keys": {
@@ -19,10 +19,16 @@
       "notes": "Full CRUD with real Pulumi stack. Drift detection and reconciliation verified."
     },
     "templates": {
-      "status": "implementing",
-      "unit_tests": "pending",
-      "integration_tests": "pending",
-      "drift_tests": "pending"
+      "status": "completed",
+      "unit_tests": "passed",
+      "integration_tests": "passed",
+      "drift_tests": "passed",
+      "files": [
+        "provider/template.go",
+        "provider/template_test.go",
+        "tests/integration/templates_stack/"
+      ],
+      "notes": "Full CRUD for dynamic and legacy templates. Drift detection and reconciliation verified. Supports TemplateVersionSummary for read-only version info."
     },
     "template_versions": {
       "status": "pending",
@@ -85,17 +91,13 @@
       "drift_tests": "pending"
     }
   },
-  "current_task": {
-    "resource": "templates",
-    "step": "implementing",
-    "started_at": "2026-02-04T23:00:00Z"
-  },
+  "current_task": null,
   "errors": [],
   "metrics": {
-    "resources_completed": 1,
-    "resources_in_progress": 1,
+    "resources_completed": 2,
+    "resources_in_progress": 0,
     "resources_total": 12,
-    "tests_passed": 17,
+    "tests_passed": 23,
     "tests_failed": 0
   }
 }

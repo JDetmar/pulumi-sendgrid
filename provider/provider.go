@@ -40,6 +40,7 @@ func Provider() p.Provider {
 		WithNamespace("pulumi").
 		WithResources(
 			infer.Resource(&ApiKey{}),
+			infer.Resource(&Template{}),
 		).
 		WithConfig(infer.Config(&Config{})).
 		WithModuleMap(map[tokens.ModuleName]tokens.ModuleName{

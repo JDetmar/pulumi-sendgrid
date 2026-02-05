@@ -37,6 +37,34 @@
       }
     }
   },
+  "types": {
+    "sendgrid:index:TemplateVersionSummary": {
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "templateId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": [
+        "id",
+        "templateId",
+        "name",
+        "active"
+      ]
+    }
+  },
   "provider": {
     "properties": {
       "apiKey": {
@@ -101,6 +129,46 @@
       },
       "requiredInputs": [
         "name"
+      ]
+    },
+    "sendgrid:index:Template": {
+      "description": "Manages a SendGrid Transactional Template.\n\nTransactional templates are used to create reusable email templates for transactional emails like receipts, password resets, etc.\n\nTemplates can be either 'legacy' (plain text/HTML) or 'dynamic' (supporting handlebars syntax for personalization).\n\n**Note:** Template versions are managed separately via the TemplateVersion resource.",
+      "properties": {
+        "generation": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "templateId": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "versions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/types/sendgrid:index:TemplateVersionSummary"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "generation",
+        "templateId"
+      ],
+      "inputProperties": {
+        "generation": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "requiredInputs": [
+        "name",
+        "generation"
       ]
     }
   }

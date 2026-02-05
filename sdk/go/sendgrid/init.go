@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "sendgrid:index:ApiKey":
 		r = &ApiKey{}
+	case "sendgrid:index:Template":
+		r = &Template{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}

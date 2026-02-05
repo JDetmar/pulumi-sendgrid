@@ -18,6 +18,10 @@
         "config/vars.ts",
         "index.ts",
         "provider.ts",
+        "template.ts",
+        "types/index.ts",
+        "types/input.ts",
+        "types/output.ts",
         "utilities.ts"
     ]
 }
