@@ -474,7 +474,7 @@ func TestSendGridClient_GetPendingTeammates(t *testing.T) {
 		assert.Equal(t, "Bearer test-api-key", r.Header.Get("Authorization"))
 
 		w.WriteHeader(http.StatusOK)
-		_, _ = w.Write([]byte(`[
+		_, _ = w.Write([]byte(`{"result": [
 			{
 				"email": "pending1@example.com",
 				"scopes": ["mail.send"],
@@ -487,23 +487,25 @@ func TestSendGridClient_GetPendingTeammates(t *testing.T) {
 				"is_admin": true,
 				"token": "token-2"
 			}
-		]`))
+		]}`))
 	})
 
 	client := NewSendGridClient("test-api-key", server.URL)
 
-	var result []struct {
-		Email   string   `json:"email"`
-		Scopes  []string `json:"scopes,omitempty"`
-		IsAdmin bool     `json:"is_admin"`
-		Token   string   `json:"token"`
+	var result struct {
+		Result []struct {
+			Email   string   `json:"email"`
+			Scopes  []string `json:"scopes,omitempty"`
+			IsAdmin bool     `json:"is_admin"`
+			Token   string   `json:"token"`
+		} `json:"result"`
 	}
 	err := client.Get(context.Background(), "/v3/teammates/pending", &result)
 
 	require.NoError(t, err)
-	assert.Len(t, result, 2)
-	assert.Equal(t, "pending1@example.com", result[0].Email)
-	assert.Equal(t, "pending2@example.com", result[1].Email)
+	assert.Len(t, result.Result, 2)
+	assert.Equal(t, "pending1@example.com", result.Result[0].Email)
+	assert.Equal(t, "pending2@example.com", result.Result[1].Email)
 }
 
 func TestTeammate_ServerErrors(t *testing.T) {
@@ -542,7 +544,9 @@ func TestTeammate_ServerErrors(t *testing.T) {
 
 		client := NewSendGridClient("test-api-key", server.URL)
 
-		var result []teammateGetResponse
+		var result struct {
+			Result []teammateGetResponse `json:"result"`
+		}
 		err := client.Get(context.Background(), "/v3/teammates", &result)
 
 		require.Error(t, err)

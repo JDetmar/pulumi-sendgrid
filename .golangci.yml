@@ -1,6 +1,13 @@
 version: "2"
 linters:
   enable:
+    # These are default linters in v2 but listed explicitly for clarity:
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck # includes gosimple checks in v2
+    - unused
+    # Additional linters from original config:
     - goconst
     - gosec
     - lll

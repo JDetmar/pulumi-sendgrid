@@ -208,16 +208,20 @@ func (t *Teammate) Read(ctx context.Context, req infer.ReadRequest[TeammateArgs,
 	}
 
 	// If no username, check pending invitations
-	var pendingList []struct {
-		Email   string   `json:"email"`
-		Scopes  []string `json:"scopes,omitempty"`
-		IsAdmin bool     `json:"is_admin"`
-		Token   string   `json:"token"`
+	// The API returns {"result": [...]} not a bare array
+	var pendingWrapper struct {
+		Result []struct {
+			Email   string   `json:"email"`
+			Scopes  []string `json:"scopes,omitempty"`
+			IsAdmin bool     `json:"is_admin"`
+			Token   string   `json:"token"`
+		} `json:"result"`
 	}
 
-	if err := client.Get(ctx, "/v3/teammates/pending", &pendingList); err != nil {
+	if err := client.Get(ctx, "/v3/teammates/pending", &pendingWrapper); err != nil {
 		return infer.ReadResponse[TeammateArgs, TeammateState]{}, fmt.Errorf("failed to read pending teammates: %w", err)
 	}
+	pendingList := pendingWrapper.Result
 
 	// Look for the pending invitation by email
 	for _, pending := range pendingList {
@@ -244,10 +248,14 @@ func (t *Teammate) Read(ctx context.Context, req infer.ReadRequest[TeammateArgs,
 	}
 
 	// Also check active teammates by listing all
-	var teammatesList []teammateGetResponse
-	if err := client.Get(ctx, "/v3/teammates", &teammatesList); err != nil {
+	// The API returns {"result": [...]} not a bare array
+	var teammatesWrapper struct {
+		Result []teammateGetResponse `json:"result"`
+	}
+	if err := client.Get(ctx, "/v3/teammates", &teammatesWrapper); err != nil {
 		return infer.ReadResponse[TeammateArgs, TeammateState]{}, fmt.Errorf("failed to list teammates: %w", err)
 	}
+	teammatesList := teammatesWrapper.Result
 
 	for _, teammate := range teammatesList {
 		if teammate.Email == id {

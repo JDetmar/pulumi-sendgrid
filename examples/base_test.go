@@ -9,7 +9,6 @@ import (
 )
 
 // providerFactory creates a provider server for integration tests.
-// Currently unused but kept for future test implementations.
-var _ = func(_ providers.PulumiTest) (pulumirpc.ResourceProviderServer, error) {
+var providerFactory = func(_ providers.PulumiTest) (pulumirpc.ResourceProviderServer, error) {
 	return goprovider.RawServer("sendgrid", "1.0.0", provider.Provider())(nil)
 }

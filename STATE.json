@@ -79,10 +79,10 @@
       "notes": "Full CRUD for link branding (whitelabel links). Supports domain, subdomain, default, region. Outputs DNS records (ownerCname, brandCname) with host, data, type, valid status. Integration test verified create, refresh, and destroy operations."
     },
     "ip_pools": {
-      "status": "completed",
+      "status": "unit_tests_only",
       "unit_tests": "passed",
-      "integration_tests": "skipped",
-      "drift_tests": "skipped",
+      "integration_tests": "not_implemented",
+      "drift_tests": "not_implemented",
       "files": [
         "provider/ip_pool.go",
         "provider/ip_pool_test.go",
@@ -91,10 +91,10 @@
       "notes": "Full CRUD for IP pools. Supports name (max 64 chars). Outputs poolName and ips list. Uses pool name as resource ID with URL encoding for special characters. Integration test skipped - requires dedicated IP plan (403 access forbidden without it). Unit tests verify all CRUD operations, error handling, and URL encoding."
     },
     "suppressions": {
-      "status": "completed",
+      "status": "unit_tests_only",
       "unit_tests": "passed",
-      "integration_tests": "skipped",
-      "drift_tests": "skipped",
+      "integration_tests": "not_implemented",
+      "drift_tests": "not_implemented",
       "files": [
         "provider/global_suppression.go",
         "provider/global_suppression_test.go"
@@ -102,10 +102,10 @@
       "notes": "Implemented GlobalSuppression resource for managing email addresses in SendGrid's global suppression list. Full CRUD operations: POST /v3/asm/suppressions/global to add, GET /v3/asm/suppressions/global/{email} to read, DELETE /v3/asm/suppressions/global/{email} to remove. Uses email address as resource ID with proper URL encoding. Integration tests skipped - requires live SendGrid API key."
     },
     "webhooks": {
-      "status": "completed",
+      "status": "unit_tests_only",
       "unit_tests": "passed",
-      "integration_tests": "skipped",
-      "drift_tests": "skipped",
+      "integration_tests": "not_implemented",
+      "drift_tests": "not_implemented",
       "files": [
         "provider/event_webhook.go",
         "provider/event_webhook_test.go"
@@ -113,10 +113,10 @@
       "notes": "Implemented EventWebhook resource for managing SendGrid Event Webhooks. Full CRUD operations: POST/GET/PATCH/DELETE /v3/user/webhooks/event/settings/{id}. Supports all event types (bounce, click, deferred, delivered, dropped, open, processed, spam_report, unsubscribe, group_resubscribe, group_unsubscribe), enabled/disabled state, friendly name, and webhook URL. Integration tests skipped - requires live SendGrid API key and webhook endpoint."
     },
     "subusers": {
-      "status": "completed",
+      "status": "unit_tests_only",
       "unit_tests": "passed",
-      "integration_tests": "skipped",
-      "drift_tests": "skipped",
+      "integration_tests": "not_implemented",
+      "drift_tests": "not_implemented",
       "files": [
         "provider/subuser.go",
         "provider/subuser_test.go"
@@ -124,10 +124,10 @@
       "notes": "Implemented Subuser resource for managing SendGrid Subusers. Full CRUD operations: POST /v3/subusers to create, GET /v3/subusers/{username} to read, PATCH /v3/subusers/{username} to update disabled status, DELETE /v3/subusers/{username} to delete. Supports username, email, password, IPs, region, and disabled state. Uses username as resource ID with URL encoding. Integration tests skipped - requires live SendGrid API key and Pro plan for regional subusers."
     },
     "teammates": {
-      "status": "completed",
+      "status": "unit_tests_only",
       "unit_tests": "passed",
-      "integration_tests": "skipped",
-      "drift_tests": "skipped",
+      "integration_tests": "not_implemented",
+      "drift_tests": "not_implemented",
       "files": [
         "provider/teammate.go",
         "provider/teammate_test.go"
@@ -135,10 +135,10 @@
       "notes": "Implemented Teammate resource for managing SendGrid Teammates. Supports inviting teammates via email with configurable permissions/scopes. Full CRUD: POST /v3/teammates to invite, GET /v3/teammates/{username} to read, PATCH /v3/teammates/{username} to update permissions, DELETE /v3/teammates/{username} to delete. Handles pending invitations separately via /v3/teammates/pending endpoint. Integration tests skipped - requires live SendGrid account."
     },
     "alerts": {
-      "status": "completed",
+      "status": "unit_tests_only",
       "unit_tests": "passed",
-      "integration_tests": "skipped",
-      "drift_tests": "skipped",
+      "integration_tests": "not_implemented",
+      "drift_tests": "not_implemented",
       "files": [
         "provider/alert.go",
         "provider/alert_test.go"

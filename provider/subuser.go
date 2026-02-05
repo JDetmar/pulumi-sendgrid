@@ -172,12 +172,9 @@ func (s *Subuser) Create(ctx context.Context, req infer.CreateRequest[SubuserArg
 	// If disabled is requested, update the subuser to disable it
 	if input.Disabled != nil && *input.Disabled {
 		if err := s.setDisabled(ctx, client, input.Username, true); err != nil {
-			// Log warning but don't fail - the subuser was created
-			// The next update/refresh will handle it
-			_ = err // explicitly ignore error
-		} else {
-			state.Disabled = true
+			return infer.CreateResponse[SubuserState]{}, fmt.Errorf("subuser created but failed to disable: %w", err)
 		}
+		state.Disabled = true
 	}
 
 	return infer.CreateResponse[SubuserState]{
@@ -236,8 +233,8 @@ func (s *Subuser) Read(ctx context.Context, req infer.ReadRequest[SubuserArgs, S
 		Ips:      oldState.Ips,
 		Region:   oldState.Region,
 		Disabled: &result.Disabled,
-		// Password is not returned and cannot be read
-		Password: "",
+		// Password is not returned by the API; preserve the old input value to avoid perpetual diffs
+		Password: req.Inputs.Password,
 	}
 
 	return infer.ReadResponse[SubuserArgs, SubuserState]{
