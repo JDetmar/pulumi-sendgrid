@@ -42,11 +42,11 @@ export class Template extends pulumi.CustomResource {
         return obj['__pulumiType'] === Template.__pulumiType;
     }
 
-    declare public readonly generation: pulumi.Output<string>;
-    declare public readonly name: pulumi.Output<string>;
-    declare public /*out*/ readonly templateId: pulumi.Output<string>;
-    declare public /*out*/ readonly updatedAt: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly versions: pulumi.Output<outputs.TemplateVersionSummary[] | undefined>;
+    public readonly generation!: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
+    public /*out*/ readonly templateId!: pulumi.Output<string>;
+    public /*out*/ readonly updatedAt!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly versions!: pulumi.Output<outputs.TemplateVersionSummary[] | undefined>;
 
     /**
      * Create a Template resource with the given unique name, arguments, and options.
@@ -59,14 +59,14 @@ export class Template extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.generation === undefined && !opts.urn) {
+            if ((!args || args.generation === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'generation'");
             }
-            if (args?.name === undefined && !opts.urn) {
+            if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            resourceInputs["generation"] = args?.generation;
-            resourceInputs["name"] = args?.name;
+            resourceInputs["generation"] = args ? args.generation : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["templateId"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["versions"] = undefined /*out*/;

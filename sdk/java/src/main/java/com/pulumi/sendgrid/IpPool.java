@@ -7,7 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
-import com.pulumi.sendgrid.IpPoolArgs;
+import com.pulumi.sendgrid.IPPoolArgs;
 import com.pulumi.sendgrid.Utilities;
 import java.lang.String;
 import java.util.List;
@@ -21,8 +21,8 @@ import javax.annotation.Nullable;
  * Note: Each account can create up to 100 IP pools. IP pools can only be used with IP addresses that have reverse DNS configured.
  * 
  */
-@ResourceType(type="sendgrid:index:IpPool")
-public class IpPool extends com.pulumi.resources.CustomResource {
+@ResourceType(type="sendgrid:index:IPPool")
+public class IPPool extends com.pulumi.resources.CustomResource {
     @Export(name="ips", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> ips;
 
@@ -46,15 +46,15 @@ public class IpPool extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public IpPool(java.lang.String name) {
-        this(name, IpPoolArgs.Empty);
+    public IPPool(java.lang.String name) {
+        this(name, IPPoolArgs.Empty);
     }
     /**
      *
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public IpPool(java.lang.String name, IpPoolArgs args) {
+    public IPPool(java.lang.String name, IPPoolArgs args) {
         this(name, args, null);
     }
     /**
@@ -63,19 +63,19 @@ public class IpPool extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public IpPool(java.lang.String name, IpPoolArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("sendgrid:index:IpPool", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
+    public IPPool(java.lang.String name, IPPoolArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("sendgrid:index:IPPool", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private IpPool(java.lang.String name, Output<java.lang.String> id, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("sendgrid:index:IpPool", name, null, makeResourceOptions(options, id), false);
+    private IPPool(java.lang.String name, Output<java.lang.String> id, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("sendgrid:index:IPPool", name, null, makeResourceOptions(options, id), false);
     }
 
-    private static IpPoolArgs makeArgs(IpPoolArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static IPPoolArgs makeArgs(IPPoolArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }
-        return args == null ? IpPoolArgs.Empty : args;
+        return args == null ? IPPoolArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
@@ -93,7 +93,7 @@ public class IpPool extends com.pulumi.resources.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static IpPool get(java.lang.String name, Output<java.lang.String> id, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        return new IpPool(name, id, options);
+    public static IPPool get(java.lang.String name, Output<java.lang.String> id, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        return new IPPool(name, id, options);
     }
 }

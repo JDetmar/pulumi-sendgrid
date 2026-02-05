@@ -6,11 +6,16 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .alert import *
 from .api_key import *
 from .domain_authentication import *
+from .event_webhook import *
+from .global_suppression import *
 from .ip_pool import *
 from .link_branding import *
 from .provider import *
+from .subuser import *
+from .teammate import *
 from .template import *
 from .template_version import *
 from .unsubscribe_group import *
@@ -32,10 +37,15 @@ _utilities.register(
   "mod": "index",
   "fqn": "pulumi_sendgrid",
   "classes": {
-   "sendgrid:index:ApiKey": "ApiKey",
+   "sendgrid:index:APIKey": "APIKey",
+   "sendgrid:index:Alert": "Alert",
    "sendgrid:index:DomainAuthentication": "DomainAuthentication",
-   "sendgrid:index:IpPool": "IpPool",
+   "sendgrid:index:EventWebhook": "EventWebhook",
+   "sendgrid:index:GlobalSuppression": "GlobalSuppression",
+   "sendgrid:index:IPPool": "IPPool",
    "sendgrid:index:LinkBranding": "LinkBranding",
+   "sendgrid:index:Subuser": "Subuser",
+   "sendgrid:index:Teammate": "Teammate",
    "sendgrid:index:Template": "Template",
    "sendgrid:index:TemplateVersion": "TemplateVersion",
    "sendgrid:index:UnsubscribeGroup": "UnsubscribeGroup",

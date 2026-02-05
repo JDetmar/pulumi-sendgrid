@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "bin",
-        "target": "ES2020",
+        "target": "es2016",
         "module": "commonjs",
         "moduleResolution": "node",
         "declaration": true,
@@ -13,14 +13,19 @@
         "strict": true
     },
     "files": [
-        "apiKey.ts",
+        "alert.ts",
+        "apikey.ts",
         "config/index.ts",
         "config/vars.ts",
         "domainAuthentication.ts",
+        "eventWebhook.ts",
+        "globalSuppression.ts",
         "index.ts",
-        "ipPool.ts",
+        "ippool.ts",
         "linkBranding.ts",
         "provider.ts",
+        "subuser.ts",
+        "teammate.ts",
         "template.ts",
         "templateVersion.ts",
         "types/index.ts",

@@ -40,17 +40,17 @@ export class LinkBranding extends pulumi.CustomResource {
         return obj['__pulumiType'] === LinkBranding.__pulumiType;
     }
 
-    declare public /*out*/ readonly brandCname: pulumi.Output<outputs.LinkBrandingDNSRecord | undefined>;
-    declare public readonly default: pulumi.Output<boolean | undefined>;
-    declare public readonly domain: pulumi.Output<string>;
-    declare public /*out*/ readonly legacy: pulumi.Output<boolean>;
-    declare public /*out*/ readonly linkId: pulumi.Output<number>;
-    declare public /*out*/ readonly ownerCname: pulumi.Output<outputs.LinkBrandingDNSRecord | undefined>;
-    declare public readonly region: pulumi.Output<string | undefined>;
-    declare public readonly subdomain: pulumi.Output<string | undefined>;
-    declare public /*out*/ readonly userId: pulumi.Output<number>;
-    declare public /*out*/ readonly username: pulumi.Output<string>;
-    declare public /*out*/ readonly valid: pulumi.Output<boolean>;
+    public /*out*/ readonly brandCname!: pulumi.Output<outputs.LinkBrandingDNSRecord | undefined>;
+    public readonly default!: pulumi.Output<boolean | undefined>;
+    public readonly domain!: pulumi.Output<string>;
+    public /*out*/ readonly legacy!: pulumi.Output<boolean>;
+    public /*out*/ readonly linkId!: pulumi.Output<number>;
+    public /*out*/ readonly ownerCname!: pulumi.Output<outputs.LinkBrandingDNSRecord | undefined>;
+    public readonly region!: pulumi.Output<string | undefined>;
+    public readonly subdomain!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly userId!: pulumi.Output<number>;
+    public /*out*/ readonly username!: pulumi.Output<string>;
+    public /*out*/ readonly valid!: pulumi.Output<boolean>;
 
     /**
      * Create a LinkBranding resource with the given unique name, arguments, and options.
@@ -63,13 +63,13 @@ export class LinkBranding extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.domain === undefined && !opts.urn) {
+            if ((!args || args.domain === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domain'");
             }
-            resourceInputs["default"] = args?.default;
-            resourceInputs["domain"] = args?.domain;
-            resourceInputs["region"] = args?.region;
-            resourceInputs["subdomain"] = args?.subdomain;
+            resourceInputs["default"] = args ? args.default : undefined;
+            resourceInputs["domain"] = args ? args.domain : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["subdomain"] = args ? args.subdomain : undefined;
             resourceInputs["brandCname"] = undefined /*out*/;
             resourceInputs["legacy"] = undefined /*out*/;
             resourceInputs["linkId"] = undefined /*out*/;

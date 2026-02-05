@@ -17,7 +17,7 @@ import (
 // IP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you might have separate pools for transactional and marketing emails, so that each pool maintains its own reputation.
 //
 // Note: Each account can create up to 100 IP pools. IP pools can only be used with IP addresses that have reverse DNS configured.
-type IpPool struct {
+type IPPool struct {
 	pulumi.CustomResourceState
 
 	Ips      pulumi.StringArrayOutput `pulumi:"ips"`
@@ -25,9 +25,9 @@ type IpPool struct {
 	PoolName pulumi.StringOutput      `pulumi:"poolName"`
 }
 
-// NewIpPool registers a new resource with the given unique name, arguments, and options.
-func NewIpPool(ctx *pulumi.Context,
-	name string, args *IpPoolArgs, opts ...pulumi.ResourceOption) (*IpPool, error) {
+// NewIPPool registers a new resource with the given unique name, arguments, and options.
+func NewIPPool(ctx *pulumi.Context,
+	name string, args *IPPoolArgs, opts ...pulumi.ResourceOption) (*IPPool, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -36,190 +36,190 @@ func NewIpPool(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource IpPool
-	err := ctx.RegisterResource("sendgrid:index:IpPool", name, args, &resource, opts...)
+	var resource IPPool
+	err := ctx.RegisterResource("sendgrid:index:IPPool", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetIpPool gets an existing IpPool resource's state with the given name, ID, and optional
+// GetIPPool gets an existing IPPool resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetIpPool(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *IpPoolState, opts ...pulumi.ResourceOption) (*IpPool, error) {
-	var resource IpPool
-	err := ctx.ReadResource("sendgrid:index:IpPool", name, id, state, &resource, opts...)
+func GetIPPool(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *IPPoolState, opts ...pulumi.ResourceOption) (*IPPool, error) {
+	var resource IPPool
+	err := ctx.ReadResource("sendgrid:index:IPPool", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering IpPool resources.
-type ipPoolState struct {
+// Input properties used for looking up and filtering IPPool resources.
+type ippoolState struct {
 }
 
-type IpPoolState struct {
+type IPPoolState struct {
 }
 
-func (IpPoolState) ElementType() reflect.Type {
-	return reflect.TypeOf((*ipPoolState)(nil)).Elem()
+func (IPPoolState) ElementType() reflect.Type {
+	return reflect.TypeOf((*ippoolState)(nil)).Elem()
 }
 
-type ipPoolArgs struct {
+type ippoolArgs struct {
 	Name string `pulumi:"name"`
 }
 
-// The set of arguments for constructing a IpPool resource.
-type IpPoolArgs struct {
+// The set of arguments for constructing a IPPool resource.
+type IPPoolArgs struct {
 	Name pulumi.StringInput
 }
 
-func (IpPoolArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ipPoolArgs)(nil)).Elem()
+func (IPPoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ippoolArgs)(nil)).Elem()
 }
 
-type IpPoolInput interface {
+type IPPoolInput interface {
 	pulumi.Input
 
-	ToIpPoolOutput() IpPoolOutput
-	ToIpPoolOutputWithContext(ctx context.Context) IpPoolOutput
+	ToIPPoolOutput() IPPoolOutput
+	ToIPPoolOutputWithContext(ctx context.Context) IPPoolOutput
 }
 
-func (*IpPool) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpPool)(nil)).Elem()
+func (*IPPool) ElementType() reflect.Type {
+	return reflect.TypeOf((**IPPool)(nil)).Elem()
 }
 
-func (i *IpPool) ToIpPoolOutput() IpPoolOutput {
-	return i.ToIpPoolOutputWithContext(context.Background())
+func (i *IPPool) ToIPPoolOutput() IPPoolOutput {
+	return i.ToIPPoolOutputWithContext(context.Background())
 }
 
-func (i *IpPool) ToIpPoolOutputWithContext(ctx context.Context) IpPoolOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpPoolOutput)
+func (i *IPPool) ToIPPoolOutputWithContext(ctx context.Context) IPPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IPPoolOutput)
 }
 
-// IpPoolArrayInput is an input type that accepts IpPoolArray and IpPoolArrayOutput values.
-// You can construct a concrete instance of `IpPoolArrayInput` via:
+// IPPoolArrayInput is an input type that accepts IPPoolArray and IPPoolArrayOutput values.
+// You can construct a concrete instance of `IPPoolArrayInput` via:
 //
-//	IpPoolArray{ IpPoolArgs{...} }
-type IpPoolArrayInput interface {
+//	IPPoolArray{ IPPoolArgs{...} }
+type IPPoolArrayInput interface {
 	pulumi.Input
 
-	ToIpPoolArrayOutput() IpPoolArrayOutput
-	ToIpPoolArrayOutputWithContext(context.Context) IpPoolArrayOutput
+	ToIPPoolArrayOutput() IPPoolArrayOutput
+	ToIPPoolArrayOutputWithContext(context.Context) IPPoolArrayOutput
 }
 
-type IpPoolArray []IpPoolInput
+type IPPoolArray []IPPoolInput
 
-func (IpPoolArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*IpPool)(nil)).Elem()
+func (IPPoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*IPPool)(nil)).Elem()
 }
 
-func (i IpPoolArray) ToIpPoolArrayOutput() IpPoolArrayOutput {
-	return i.ToIpPoolArrayOutputWithContext(context.Background())
+func (i IPPoolArray) ToIPPoolArrayOutput() IPPoolArrayOutput {
+	return i.ToIPPoolArrayOutputWithContext(context.Background())
 }
 
-func (i IpPoolArray) ToIpPoolArrayOutputWithContext(ctx context.Context) IpPoolArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpPoolArrayOutput)
+func (i IPPoolArray) ToIPPoolArrayOutputWithContext(ctx context.Context) IPPoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IPPoolArrayOutput)
 }
 
-// IpPoolMapInput is an input type that accepts IpPoolMap and IpPoolMapOutput values.
-// You can construct a concrete instance of `IpPoolMapInput` via:
+// IPPoolMapInput is an input type that accepts IPPoolMap and IPPoolMapOutput values.
+// You can construct a concrete instance of `IPPoolMapInput` via:
 //
-//	IpPoolMap{ "key": IpPoolArgs{...} }
-type IpPoolMapInput interface {
+//	IPPoolMap{ "key": IPPoolArgs{...} }
+type IPPoolMapInput interface {
 	pulumi.Input
 
-	ToIpPoolMapOutput() IpPoolMapOutput
-	ToIpPoolMapOutputWithContext(context.Context) IpPoolMapOutput
+	ToIPPoolMapOutput() IPPoolMapOutput
+	ToIPPoolMapOutputWithContext(context.Context) IPPoolMapOutput
 }
 
-type IpPoolMap map[string]IpPoolInput
+type IPPoolMap map[string]IPPoolInput
 
-func (IpPoolMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*IpPool)(nil)).Elem()
+func (IPPoolMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*IPPool)(nil)).Elem()
 }
 
-func (i IpPoolMap) ToIpPoolMapOutput() IpPoolMapOutput {
-	return i.ToIpPoolMapOutputWithContext(context.Background())
+func (i IPPoolMap) ToIPPoolMapOutput() IPPoolMapOutput {
+	return i.ToIPPoolMapOutputWithContext(context.Background())
 }
 
-func (i IpPoolMap) ToIpPoolMapOutputWithContext(ctx context.Context) IpPoolMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpPoolMapOutput)
+func (i IPPoolMap) ToIPPoolMapOutputWithContext(ctx context.Context) IPPoolMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IPPoolMapOutput)
 }
 
-type IpPoolOutput struct{ *pulumi.OutputState }
+type IPPoolOutput struct{ *pulumi.OutputState }
 
-func (IpPoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpPool)(nil)).Elem()
+func (IPPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IPPool)(nil)).Elem()
 }
 
-func (o IpPoolOutput) ToIpPoolOutput() IpPoolOutput {
+func (o IPPoolOutput) ToIPPoolOutput() IPPoolOutput {
 	return o
 }
 
-func (o IpPoolOutput) ToIpPoolOutputWithContext(ctx context.Context) IpPoolOutput {
+func (o IPPoolOutput) ToIPPoolOutputWithContext(ctx context.Context) IPPoolOutput {
 	return o
 }
 
-func (o IpPoolOutput) Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *IpPool) pulumi.StringArrayOutput { return v.Ips }).(pulumi.StringArrayOutput)
+func (o IPPoolOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IPPool) pulumi.StringArrayOutput { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
-func (o IpPoolOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *IpPool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o IPPoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *IPPool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o IpPoolOutput) PoolName() pulumi.StringOutput {
-	return o.ApplyT(func(v *IpPool) pulumi.StringOutput { return v.PoolName }).(pulumi.StringOutput)
+func (o IPPoolOutput) PoolName() pulumi.StringOutput {
+	return o.ApplyT(func(v *IPPool) pulumi.StringOutput { return v.PoolName }).(pulumi.StringOutput)
 }
 
-type IpPoolArrayOutput struct{ *pulumi.OutputState }
+type IPPoolArrayOutput struct{ *pulumi.OutputState }
 
-func (IpPoolArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*IpPool)(nil)).Elem()
+func (IPPoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*IPPool)(nil)).Elem()
 }
 
-func (o IpPoolArrayOutput) ToIpPoolArrayOutput() IpPoolArrayOutput {
+func (o IPPoolArrayOutput) ToIPPoolArrayOutput() IPPoolArrayOutput {
 	return o
 }
 
-func (o IpPoolArrayOutput) ToIpPoolArrayOutputWithContext(ctx context.Context) IpPoolArrayOutput {
+func (o IPPoolArrayOutput) ToIPPoolArrayOutputWithContext(ctx context.Context) IPPoolArrayOutput {
 	return o
 }
 
-func (o IpPoolArrayOutput) Index(i pulumi.IntInput) IpPoolOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpPool {
-		return vs[0].([]*IpPool)[vs[1].(int)]
-	}).(IpPoolOutput)
+func (o IPPoolArrayOutput) Index(i pulumi.IntInput) IPPoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IPPool {
+		return vs[0].([]*IPPool)[vs[1].(int)]
+	}).(IPPoolOutput)
 }
 
-type IpPoolMapOutput struct{ *pulumi.OutputState }
+type IPPoolMapOutput struct{ *pulumi.OutputState }
 
-func (IpPoolMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*IpPool)(nil)).Elem()
+func (IPPoolMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*IPPool)(nil)).Elem()
 }
 
-func (o IpPoolMapOutput) ToIpPoolMapOutput() IpPoolMapOutput {
+func (o IPPoolMapOutput) ToIPPoolMapOutput() IPPoolMapOutput {
 	return o
 }
 
-func (o IpPoolMapOutput) ToIpPoolMapOutputWithContext(ctx context.Context) IpPoolMapOutput {
+func (o IPPoolMapOutput) ToIPPoolMapOutputWithContext(ctx context.Context) IPPoolMapOutput {
 	return o
 }
 
-func (o IpPoolMapOutput) MapIndex(k pulumi.StringInput) IpPoolOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IpPool {
-		return vs[0].(map[string]*IpPool)[vs[1].(string)]
-	}).(IpPoolOutput)
+func (o IPPoolMapOutput) MapIndex(k pulumi.StringInput) IPPoolOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IPPool {
+		return vs[0].(map[string]*IPPool)[vs[1].(string)]
+	}).(IPPoolOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*IpPoolInput)(nil)).Elem(), &IpPool{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IpPoolArrayInput)(nil)).Elem(), IpPoolArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*IpPoolMapInput)(nil)).Elem(), IpPoolMap{})
-	pulumi.RegisterOutputType(IpPoolOutput{})
-	pulumi.RegisterOutputType(IpPoolArrayOutput{})
-	pulumi.RegisterOutputType(IpPoolMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IPPoolInput)(nil)).Elem(), &IPPool{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IPPoolArrayInput)(nil)).Elem(), IPPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IPPoolMapInput)(nil)).Elem(), IPPoolMap{})
+	pulumi.RegisterOutputType(IPPoolOutput{})
+	pulumi.RegisterOutputType(IPPoolArrayOutput{})
+	pulumi.RegisterOutputType(IPPoolMapOutput{})
 }

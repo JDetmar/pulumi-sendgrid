@@ -14,15 +14,15 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
-__all__ = ['ApiKeyArgs', 'ApiKey']
+__all__ = ['APIKeyArgs', 'APIKey']
 
 @pulumi.input_type
-class ApiKeyArgs:
+class APIKeyArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
-        The set of arguments for constructing a ApiKey resource.
+        The set of arguments for constructing a APIKey resource.
         """
         pulumi.set(__self__, "name", name)
         if scopes is not None:
@@ -47,8 +47,8 @@ class ApiKeyArgs:
         pulumi.set(self, "scopes", value)
 
 
-@pulumi.type_token("sendgrid:index:ApiKey")
-class ApiKey(pulumi.CustomResource):
+@pulumi.type_token("sendgrid:index:APIKey")
+class APIKey(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -70,7 +70,7 @@ class ApiKey(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ApiKeyArgs,
+                 args: APIKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a SendGrid API Key.
@@ -80,12 +80,12 @@ class ApiKey(pulumi.CustomResource):
         **Note:** The actual API key value is only returned on creation and cannot be retrieved again. Make sure to store it securely.
 
         :param str resource_name: The name of the resource.
-        :param ApiKeyArgs args: The arguments to use to populate this resource's properties.
+        :param APIKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(ApiKeyArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(APIKeyArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -103,7 +103,7 @@ class ApiKey(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = ApiKeyArgs.__new__(ApiKeyArgs)
+            __props__ = APIKeyArgs.__new__(APIKeyArgs)
 
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
@@ -113,8 +113,8 @@ class ApiKey(pulumi.CustomResource):
             __props__.__dict__["api_key_id"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
-        super(ApiKey, __self__).__init__(
-            'sendgrid:index:ApiKey',
+        super(APIKey, __self__).__init__(
+            'sendgrid:index:APIKey',
             resource_name,
             __props__,
             opts)
@@ -122,9 +122,9 @@ class ApiKey(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'ApiKey':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'APIKey':
         """
-        Get an existing ApiKey resource's state with the given name, id, and optional extra
+        Get an existing APIKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -133,13 +133,13 @@ class ApiKey(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = ApiKeyArgs.__new__(ApiKeyArgs)
+        __props__ = APIKeyArgs.__new__(APIKeyArgs)
 
         __props__.__dict__["api_key"] = None
         __props__.__dict__["api_key_id"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["scopes"] = None
-        return ApiKey(resource_name, opts=opts, __props__=__props__)
+        return APIKey(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="apiKey")

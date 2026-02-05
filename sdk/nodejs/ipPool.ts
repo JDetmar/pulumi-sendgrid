@@ -11,52 +11,52 @@ import * as utilities from "./utilities";
  *
  * Note: Each account can create up to 100 IP pools. IP pools can only be used with IP addresses that have reverse DNS configured.
  */
-export class IpPool extends pulumi.CustomResource {
+export class IPPool extends pulumi.CustomResource {
     /**
-     * Get an existing IpPool resource's state with the given name, ID, and optional extra
+     * Get an existing IPPool resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): IpPool {
-        return new IpPool(name, undefined as any, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, opts?: pulumi.CustomResourceOptions): IPPool {
+        return new IPPool(name, undefined as any, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'sendgrid:index:IpPool';
+    public static readonly __pulumiType = 'sendgrid:index:IPPool';
 
     /**
-     * Returns true if the given object is an instance of IpPool.  This is designed to work even
+     * Returns true if the given object is an instance of IPPool.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is IpPool {
+    public static isInstance(obj: any): obj is IPPool {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === IpPool.__pulumiType;
+        return obj['__pulumiType'] === IPPool.__pulumiType;
     }
 
-    declare public /*out*/ readonly ips: pulumi.Output<string[]>;
-    declare public readonly name: pulumi.Output<string>;
-    declare public /*out*/ readonly poolName: pulumi.Output<string>;
+    public /*out*/ readonly ips!: pulumi.Output<string[]>;
+    public readonly name!: pulumi.Output<string>;
+    public /*out*/ readonly poolName!: pulumi.Output<string>;
 
     /**
-     * Create a IpPool resource with the given unique name, arguments, and options.
+     * Create a IPPool resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: IpPoolArgs, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: IPPoolArgs, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
-            if (args?.name === undefined && !opts.urn) {
+            if ((!args || args.name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            resourceInputs["name"] = args?.name;
+            resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["ips"] = undefined /*out*/;
             resourceInputs["poolName"] = undefined /*out*/;
         } else {
@@ -65,13 +65,13 @@ export class IpPool extends pulumi.CustomResource {
             resourceInputs["poolName"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(IpPool.__pulumiType, name, resourceInputs, opts);
+        super(IPPool.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * The set of arguments for constructing a IpPool resource.
+ * The set of arguments for constructing a IPPool resource.
  */
-export interface IpPoolArgs {
+export interface IPPoolArgs {
     name: pulumi.Input<string>;
 }

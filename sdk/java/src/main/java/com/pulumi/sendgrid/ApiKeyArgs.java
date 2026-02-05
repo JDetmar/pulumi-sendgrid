@@ -13,9 +13,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
+public final class APIKeyArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final ApiKeyArgs Empty = new ApiKeyArgs();
+    public static final APIKeyArgs Empty = new APIKeyArgs();
 
     @Import(name="name", required=true)
     private Output<String> name;
@@ -31,9 +31,9 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.scopes);
     }
 
-    private ApiKeyArgs() {}
+    private APIKeyArgs() {}
 
-    private ApiKeyArgs(ApiKeyArgs $) {
+    private APIKeyArgs(APIKeyArgs $) {
         this.name = $.name;
         this.scopes = $.scopes;
     }
@@ -41,19 +41,19 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(ApiKeyArgs defaults) {
+    public static Builder builder(APIKeyArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private ApiKeyArgs $;
+        private APIKeyArgs $;
 
         public Builder() {
-            $ = new ApiKeyArgs();
+            $ = new APIKeyArgs();
         }
 
-        public Builder(ApiKeyArgs defaults) {
-            $ = new ApiKeyArgs(Objects.requireNonNull(defaults));
+        public Builder(APIKeyArgs defaults) {
+            $ = new APIKeyArgs(Objects.requireNonNull(defaults));
         }
 
         public Builder name(Output<String> name) {
@@ -78,9 +78,9 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
             return scopes(List.of(scopes));
         }
 
-        public ApiKeyArgs build() {
+        public APIKeyArgs build() {
             if ($.name == null) {
-                throw new MissingRequiredPropertyException("ApiKeyArgs", "name");
+                throw new MissingRequiredPropertyException("APIKeyArgs", "name");
             }
             return $;
         }
