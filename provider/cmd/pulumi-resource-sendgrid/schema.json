@@ -192,12 +192,12 @@
     "sendgrid:index:ApiKey": {
       "description": "Manages a SendGrid API Key.\n\nAPI keys are used to authenticate access to SendGrid services. You can create keys with specific scopes to limit their permissions.\n\n**Note:** The actual API key value is only returned on creation and cannot be retrieved again. Make sure to store it securely.",
       "properties": {
-        "apiKey": {
-          "type": "string",
-          "secret": true
-        },
         "apiKeyId": {
           "type": "string"
+        },
+        "apiKeyValue": {
+          "type": "string",
+          "secret": true
         },
         "name": {
           "type": "string"

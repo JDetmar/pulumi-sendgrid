@@ -109,9 +109,9 @@ class ApiKey(pulumi.CustomResource):
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["scopes"] = scopes
-            __props__.__dict__["api_key"] = None
             __props__.__dict__["api_key_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKey"])
+            __props__.__dict__["api_key_value"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKeyValue"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(ApiKey, __self__).__init__(
             'sendgrid:index:ApiKey',
@@ -135,21 +135,21 @@ class ApiKey(pulumi.CustomResource):
 
         __props__ = ApiKeyArgs.__new__(ApiKeyArgs)
 
-        __props__.__dict__["api_key"] = None
         __props__.__dict__["api_key_id"] = None
+        __props__.__dict__["api_key_value"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["scopes"] = None
         return ApiKey(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
-    @pulumi.getter(name="apiKey")
-    def api_key(self) -> pulumi.Output[Optional[_builtins.str]]:
-        return pulumi.get(self, "api_key")
-
-    @_builtins.property
     @pulumi.getter(name="apiKeyId")
     def api_key_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "api_key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="apiKeyValue")
+    def api_key_value(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "api_key_value")
 
     @_builtins.property
     @pulumi.getter

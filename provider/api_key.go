@@ -47,10 +47,10 @@ type ApiKeyState struct { //nolint:revive // name matches Pulumi resource token
 	// APIKeyID is the unique identifier for this API key
 	APIKeyID string `pulumi:"apiKeyId"`
 
-	// APIKey is the actual API key value. This is only returned on creation
+	// APIKeyValue is the actual API key value. This is only returned on creation
 	// and cannot be retrieved again, so it's marked as a secret and optional.
 	// After creation, subsequent reads/updates won't have access to this value.
-	APIKey string `pulumi:"apiKey,optional" provider:"secret"`
+	APIKeyValue string `pulumi:"apiKeyValue,optional" provider:"secret"`
 }
 
 // Annotate provides descriptions and default values for the ApiKey resource.
@@ -70,9 +70,9 @@ func (a *ApiKey) Create(ctx context.Context, req infer.CreateRequest[ApiKeyArgs]
 	// During preview, return placeholder state
 	if preview {
 		state := ApiKeyState{
-			ApiKeyArgs: input,
-			APIKeyID:   "[computed]",
-			APIKey:     "[computed]",
+			ApiKeyArgs:  input,
+			APIKeyID:    "[computed]",
+			APIKeyValue: "[computed]",
 		}
 		return infer.CreateResponse[ApiKeyState]{
 			ID:     "[preview]",
@@ -111,8 +111,8 @@ func (a *ApiKey) Create(ctx context.Context, req infer.CreateRequest[ApiKeyArgs]
 			Name:   result.Name,
 			Scopes: result.Scopes,
 		},
-		APIKeyID: result.APIKeyID,
-		APIKey:   result.APIKey,
+		APIKeyID:    result.APIKeyID,
+		APIKeyValue: result.APIKey,
 	}
 
 	return infer.CreateResponse[ApiKeyState]{
@@ -156,7 +156,7 @@ func (a *ApiKey) Read(ctx context.Context, req infer.ReadRequest[ApiKeyArgs, Api
 		},
 		APIKeyID: result.APIKeyID,
 		// Preserve the API key from old state since it can't be retrieved
-		APIKey: oldState.APIKey,
+		APIKeyValue: oldState.APIKeyValue,
 	}
 
 	inputs := ApiKeyArgs{
@@ -181,9 +181,9 @@ func (a *ApiKey) Update(ctx context.Context, req infer.UpdateRequest[ApiKeyArgs,
 	// During preview, return expected state
 	if preview {
 		state := ApiKeyState{
-			ApiKeyArgs: input,
-			APIKeyID:   oldState.APIKeyID,
-			APIKey:     oldState.APIKey,
+			ApiKeyArgs:  input,
+			APIKeyID:    oldState.APIKeyID,
+			APIKeyValue: oldState.APIKeyValue,
 		}
 		return infer.UpdateResponse[ApiKeyState]{Output: state}, nil
 	}
@@ -222,7 +222,7 @@ func (a *ApiKey) Update(ctx context.Context, req infer.UpdateRequest[ApiKeyArgs,
 		},
 		APIKeyID: result.APIKeyID,
 		// Preserve the API key from old state since it can't be retrieved
-		APIKey: oldState.APIKey,
+		APIKeyValue: oldState.APIKeyValue,
 	}
 
 	return infer.UpdateResponse[ApiKeyState]{Output: state}, nil

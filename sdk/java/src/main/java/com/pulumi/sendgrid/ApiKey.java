@@ -24,17 +24,17 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="sendgrid:index:ApiKey")
 public class ApiKey extends com.pulumi.resources.CustomResource {
-    @Export(name="apiKey", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> apiKey;
-
-    public Output<Optional<String>> apiKey() {
-        return Codegen.optional(this.apiKey);
-    }
     @Export(name="apiKeyId", refs={String.class}, tree="[0]")
     private Output<String> apiKeyId;
 
     public Output<String> apiKeyId() {
         return this.apiKeyId;
+    }
+    @Export(name="apiKeyValue", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> apiKeyValue;
+
+    public Output<Optional<String>> apiKeyValue() {
+        return Codegen.optional(this.apiKeyValue);
     }
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
@@ -89,7 +89,7 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "apiKey"
+                "apiKeyValue"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
