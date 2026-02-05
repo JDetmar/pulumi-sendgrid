@@ -16,8 +16,8 @@ namespace Pulumi.Sendgrid
     /// 
     /// **Note:** The actual API key value is only returned on creation and cannot be retrieved again. Make sure to store it securely.
     /// </summary>
-    [SendgridResourceType("sendgrid:index:APIKey")]
-    public partial class APIKey : global::Pulumi.CustomResource
+    [SendgridResourceType("sendgrid:index:ApiKey")]
+    public partial class ApiKey : global::Pulumi.CustomResource
     {
         [Output("apiKey")]
         public Output<string?> ApiKey { get; private set; } = null!;
@@ -33,19 +33,19 @@ namespace Pulumi.Sendgrid
 
 
         /// <summary>
-        /// Create a APIKey resource with the given unique name, arguments, and options.
+        /// Create a ApiKey resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public APIKey(string name, APIKeyArgs args, CustomResourceOptions? options = null)
-            : base("sendgrid:index:APIKey", name, args ?? new APIKeyArgs(), MakeResourceOptions(options, ""))
+        public ApiKey(string name, ApiKeyArgs args, CustomResourceOptions? options = null)
+            : base("sendgrid:index:ApiKey", name, args ?? new ApiKeyArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private APIKey(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("sendgrid:index:APIKey", name, null, MakeResourceOptions(options, id))
+        private ApiKey(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("sendgrid:index:ApiKey", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -65,20 +65,20 @@ namespace Pulumi.Sendgrid
             return merged;
         }
         /// <summary>
-        /// Get an existing APIKey resource's state with the given name, ID, and optional extra
+        /// Get an existing ApiKey resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static APIKey Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static ApiKey Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new APIKey(name, id, options);
+            return new ApiKey(name, id, options);
         }
     }
 
-    public sealed class APIKeyArgs : global::Pulumi.ResourceArgs
+    public sealed class ApiKeyArgs : global::Pulumi.ResourceArgs
     {
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -91,9 +91,9 @@ namespace Pulumi.Sendgrid
             set => _scopes = value;
         }
 
-        public APIKeyArgs()
+        public ApiKeyArgs()
         {
         }
-        public static new APIKeyArgs Empty => new APIKeyArgs();
+        public static new ApiKeyArgs Empty => new ApiKeyArgs();
     }
 }

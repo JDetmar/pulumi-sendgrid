@@ -21,18 +21,18 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "sendgrid:index:APIKey":
-		r = &APIKey{}
 	case "sendgrid:index:Alert":
 		r = &Alert{}
+	case "sendgrid:index:ApiKey":
+		r = &ApiKey{}
 	case "sendgrid:index:DomainAuthentication":
 		r = &DomainAuthentication{}
 	case "sendgrid:index:EventWebhook":
 		r = &EventWebhook{}
 	case "sendgrid:index:GlobalSuppression":
 		r = &GlobalSuppression{}
-	case "sendgrid:index:IPPool":
-		r = &IPPool{}
+	case "sendgrid:index:IpPool":
+		r = &IpPool{}
 	case "sendgrid:index:LinkBranding":
 		r = &LinkBranding{}
 	case "sendgrid:index:Subuser":

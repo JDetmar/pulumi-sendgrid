@@ -22,23 +22,23 @@ import (
 	"github.com/pulumi/pulumi-go-provider/infer"
 )
 
-// IPPool is the controller for the SendGrid IP Pool resource.
+// IpPool is the controller for the SendGrid IP Pool resource.
 //
 // This resource manages SendGrid IP Pools, which allow you to group
 // your dedicated IP addresses. For example, you could have a pool
 // for transactional emails and another for marketing emails.
-type IPPool struct{}
+type IpPool struct{} //nolint:revive // name matches Pulumi resource token
 
-// IPPoolArgs are the inputs to the IPPool resource.
-type IPPoolArgs struct {
+// IpPoolArgs are the inputs to the IpPool resource.
+type IpPoolArgs struct { //nolint:revive // name matches Pulumi resource token
 	// Name is the name of the IP pool (required, max 64 chars)
 	Name string `pulumi:"name"`
 }
 
-// IPPoolState is the state of the IPPool resource.
-type IPPoolState struct {
+// IpPoolState is the state of the IpPool resource.
+type IpPoolState struct { //nolint:revive // name matches Pulumi resource token
 	// Embed the input args in the output state
-	IPPoolArgs
+	IpPoolArgs
 
 	// PoolName is the name of the IP pool (returned by API)
 	PoolName string `pulumi:"poolName"`
@@ -47,8 +47,8 @@ type IPPoolState struct {
 	Ips []string `pulumi:"ips"`
 }
 
-// Annotate provides descriptions for the IPPool resource.
-func (p *IPPool) Annotate(annotator infer.Annotator) {
+// Annotate provides descriptions for the IpPool resource.
+func (p *IpPool) Annotate(annotator infer.Annotator) {
 	annotator.Describe(&p, "Manages a SendGrid IP Pool.\n\n"+
 		"IP Pools allow you to group your dedicated SendGrid IP addresses together. "+
 		"For example, you might have separate pools for transactional and marketing emails, "+
@@ -64,14 +64,14 @@ type ipPoolAPIResponse struct {
 	Ips      []string `json:"ips"`
 }
 
-// toState converts an API response to IPPoolState
-func (r *ipPoolAPIResponse) toState() IPPoolState {
+// toState converts an API response to IpPoolState
+func (r *ipPoolAPIResponse) toState() IpPoolState {
 	name := r.PoolName
 	if name == "" {
 		name = r.Name
 	}
-	return IPPoolState{
-		IPPoolArgs: IPPoolArgs{
+	return IpPoolState{
+		IpPoolArgs: IpPoolArgs{
 			Name: name,
 		},
 		PoolName: name,
@@ -80,18 +80,18 @@ func (r *ipPoolAPIResponse) toState() IPPoolState {
 }
 
 // Create creates a new SendGrid IP Pool.
-func (p *IPPool) Create(ctx context.Context, req infer.CreateRequest[IPPoolArgs]) (infer.CreateResponse[IPPoolState], error) {
+func (p *IpPool) Create(ctx context.Context, req infer.CreateRequest[IpPoolArgs]) (infer.CreateResponse[IpPoolState], error) {
 	input := req.Inputs
 	preview := req.DryRun
 
 	// During preview, return placeholder state
 	if preview {
-		state := IPPoolState{
-			IPPoolArgs: input,
+		state := IpPoolState{
+			IpPoolArgs: input,
 			PoolName:   input.Name,
 			Ips:        []string{},
 		}
-		return infer.CreateResponse[IPPoolState]{
+		return infer.CreateResponse[IpPoolState]{
 			ID:     "[preview]",
 			Output: state,
 		}, nil
@@ -100,7 +100,7 @@ func (p *IPPool) Create(ctx context.Context, req infer.CreateRequest[IPPoolArgs]
 	// Get the SendGrid client from context
 	client := infer.GetConfig[Config](ctx).client
 	if client == nil {
-		return infer.CreateResponse[IPPoolState]{}, fmt.Errorf("SendGrid client not configured - ensure apiKey is set in provider configuration")
+		return infer.CreateResponse[IpPoolState]{}, fmt.Errorf("SendGrid client not configured - ensure apiKey is set in provider configuration")
 	}
 
 	// Build the request body
@@ -111,26 +111,26 @@ func (p *IPPool) Create(ctx context.Context, req infer.CreateRequest[IPPoolArgs]
 	// Make the API call
 	var result ipPoolAPIResponse
 	if err := client.Post(ctx, "/v3/ips/pools", reqBody, &result); err != nil {
-		return infer.CreateResponse[IPPoolState]{}, fmt.Errorf("failed to create IP pool: %w", err)
+		return infer.CreateResponse[IpPoolState]{}, fmt.Errorf("failed to create IP pool: %w", err)
 	}
 
 	state := result.toState()
 
 	// Use pool_name as the ID (URL encoded for safety)
-	return infer.CreateResponse[IPPoolState]{
+	return infer.CreateResponse[IpPoolState]{
 		ID:     state.PoolName,
 		Output: state,
 	}, nil
 }
 
 // Read retrieves the current state of a SendGrid IP Pool.
-func (p *IPPool) Read(ctx context.Context, req infer.ReadRequest[IPPoolArgs, IPPoolState]) (infer.ReadResponse[IPPoolArgs, IPPoolState], error) {
+func (p *IpPool) Read(ctx context.Context, req infer.ReadRequest[IpPoolArgs, IpPoolState]) (infer.ReadResponse[IpPoolArgs, IpPoolState], error) {
 	id := req.ID
 
 	// Get the SendGrid client from context
 	client := infer.GetConfig[Config](ctx).client
 	if client == nil {
-		return infer.ReadResponse[IPPoolArgs, IPPoolState]{}, fmt.Errorf("SendGrid client not configured")
+		return infer.ReadResponse[IpPoolArgs, IpPoolState]{}, fmt.Errorf("SendGrid client not configured")
 	}
 
 	// URL encode the pool name for the path
@@ -142,15 +142,15 @@ func (p *IPPool) Read(ctx context.Context, req infer.ReadRequest[IPPoolArgs, IPP
 		// Check if the resource was deleted out-of-band
 		if sgErr, ok := err.(*SendGridError); ok && sgErr.IsNotFound() {
 			// Return empty response to indicate resource no longer exists
-			return infer.ReadResponse[IPPoolArgs, IPPoolState]{}, nil
+			return infer.ReadResponse[IpPoolArgs, IpPoolState]{}, nil
 		}
-		return infer.ReadResponse[IPPoolArgs, IPPoolState]{}, fmt.Errorf("failed to read IP pool: %w", err)
+		return infer.ReadResponse[IpPoolArgs, IpPoolState]{}, fmt.Errorf("failed to read IP pool: %w", err)
 	}
 
 	state := result.toState()
-	inputs := state.IPPoolArgs
+	inputs := state.IpPoolArgs
 
-	return infer.ReadResponse[IPPoolArgs, IPPoolState]{
+	return infer.ReadResponse[IpPoolArgs, IpPoolState]{
 		ID:     id,
 		Inputs: inputs,
 		State:  state,
@@ -158,7 +158,7 @@ func (p *IPPool) Read(ctx context.Context, req infer.ReadRequest[IPPoolArgs, IPP
 }
 
 // Update updates an existing SendGrid IP Pool.
-func (p *IPPool) Update(ctx context.Context, req infer.UpdateRequest[IPPoolArgs, IPPoolState]) (infer.UpdateResponse[IPPoolState], error) {
+func (p *IpPool) Update(ctx context.Context, req infer.UpdateRequest[IpPoolArgs, IpPoolState]) (infer.UpdateResponse[IpPoolState], error) {
 	id := req.ID
 	input := req.Inputs
 	oldState := req.State
@@ -166,18 +166,18 @@ func (p *IPPool) Update(ctx context.Context, req infer.UpdateRequest[IPPoolArgs,
 
 	// During preview, return expected state
 	if preview {
-		state := IPPoolState{
-			IPPoolArgs: input,
+		state := IpPoolState{
+			IpPoolArgs: input,
 			PoolName:   input.Name,
 			Ips:        oldState.Ips,
 		}
-		return infer.UpdateResponse[IPPoolState]{Output: state}, nil
+		return infer.UpdateResponse[IpPoolState]{Output: state}, nil
 	}
 
 	// Get the SendGrid client from context
 	client := infer.GetConfig[Config](ctx).client
 	if client == nil {
-		return infer.UpdateResponse[IPPoolState]{}, fmt.Errorf("SendGrid client not configured")
+		return infer.UpdateResponse[IpPoolState]{}, fmt.Errorf("SendGrid client not configured")
 	}
 
 	// URL encode the pool name for the path
@@ -191,16 +191,16 @@ func (p *IPPool) Update(ctx context.Context, req infer.UpdateRequest[IPPoolArgs,
 	// Make the API call (PUT to update pool name)
 	var result ipPoolAPIResponse
 	if err := client.Put(ctx, fmt.Sprintf("/v3/ips/pools/%s", encodedName), reqBody, &result); err != nil {
-		return infer.UpdateResponse[IPPoolState]{}, fmt.Errorf("failed to update IP pool: %w", err)
+		return infer.UpdateResponse[IpPoolState]{}, fmt.Errorf("failed to update IP pool: %w", err)
 	}
 
 	state := result.toState()
 
-	return infer.UpdateResponse[IPPoolState]{Output: state}, nil
+	return infer.UpdateResponse[IpPoolState]{Output: state}, nil
 }
 
 // Delete removes a SendGrid IP Pool.
-func (p *IPPool) Delete(ctx context.Context, req infer.DeleteRequest[IPPoolState]) (infer.DeleteResponse, error) {
+func (p *IpPool) Delete(ctx context.Context, req infer.DeleteRequest[IpPoolState]) (infer.DeleteResponse, error) {
 	id := req.ID
 
 	// Get the SendGrid client from context

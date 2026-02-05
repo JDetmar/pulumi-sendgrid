@@ -16,8 +16,8 @@ namespace Pulumi.Sendgrid
     /// 
     /// Note: Each account can create up to 100 IP pools. IP pools can only be used with IP addresses that have reverse DNS configured.
     /// </summary>
-    [SendgridResourceType("sendgrid:index:IPPool")]
-    public partial class IPPool : global::Pulumi.CustomResource
+    [SendgridResourceType("sendgrid:index:IpPool")]
+    public partial class IpPool : global::Pulumi.CustomResource
     {
         [Output("ips")]
         public Output<ImmutableArray<string>> Ips { get; private set; } = null!;
@@ -30,19 +30,19 @@ namespace Pulumi.Sendgrid
 
 
         /// <summary>
-        /// Create a IPPool resource with the given unique name, arguments, and options.
+        /// Create a IpPool resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public IPPool(string name, IPPoolArgs args, CustomResourceOptions? options = null)
-            : base("sendgrid:index:IPPool", name, args ?? new IPPoolArgs(), MakeResourceOptions(options, ""))
+        public IpPool(string name, IpPoolArgs args, CustomResourceOptions? options = null)
+            : base("sendgrid:index:IpPool", name, args ?? new IpPoolArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private IPPool(string name, Input<string> id, CustomResourceOptions? options = null)
-            : base("sendgrid:index:IPPool", name, null, MakeResourceOptions(options, id))
+        private IpPool(string name, Input<string> id, CustomResourceOptions? options = null)
+            : base("sendgrid:index:IpPool", name, null, MakeResourceOptions(options, id))
         {
         }
 
@@ -58,27 +58,27 @@ namespace Pulumi.Sendgrid
             return merged;
         }
         /// <summary>
-        /// Get an existing IPPool resource's state with the given name, ID, and optional extra
+        /// Get an existing IpPool resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resulting resource.</param>
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static IPPool Get(string name, Input<string> id, CustomResourceOptions? options = null)
+        public static IpPool Get(string name, Input<string> id, CustomResourceOptions? options = null)
         {
-            return new IPPool(name, id, options);
+            return new IpPool(name, id, options);
         }
     }
 
-    public sealed class IPPoolArgs : global::Pulumi.ResourceArgs
+    public sealed class IpPoolArgs : global::Pulumi.ResourceArgs
     {
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        public IPPoolArgs()
+        public IpPoolArgs()
         {
         }
-        public static new IPPoolArgs Empty => new IPPoolArgs();
+        public static new IpPoolArgs Empty => new IpPoolArgs();
     }
 }

@@ -39,13 +39,13 @@ func Provider() p.Provider {
 		WithHomepage("https://www.pulumi.com").
 		WithNamespace("pulumi").
 		WithResources(
-			infer.Resource(&APIKey{}),
+			infer.Resource(&ApiKey{}),
 			infer.Resource(&Template{}),
 			infer.Resource(&TemplateVersion{}),
 			infer.Resource(&VerifiedSender{}),
 			infer.Resource(&DomainAuthentication{}),
 			infer.Resource(&LinkBranding{}),
-			infer.Resource(&IPPool{}),
+			infer.Resource(&IpPool{}),
 			infer.Resource(&UnsubscribeGroup{}),
 			infer.Resource(&GlobalSuppression{}),
 			infer.Resource(&EventWebhook{}),

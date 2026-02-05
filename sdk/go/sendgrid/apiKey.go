@@ -17,7 +17,7 @@ import (
 // API keys are used to authenticate access to SendGrid services. You can create keys with specific scopes to limit their permissions.
 //
 // **Note:** The actual API key value is only returned on creation and cannot be retrieved again. Make sure to store it securely.
-type APIKey struct {
+type ApiKey struct {
 	pulumi.CustomResourceState
 
 	ApiKey   pulumi.StringPtrOutput   `pulumi:"apiKey"`
@@ -26,9 +26,9 @@ type APIKey struct {
 	Scopes   pulumi.StringArrayOutput `pulumi:"scopes"`
 }
 
-// NewAPIKey registers a new resource with the given unique name, arguments, and options.
-func NewAPIKey(ctx *pulumi.Context,
-	name string, args *APIKeyArgs, opts ...pulumi.ResourceOption) (*APIKey, error) {
+// NewApiKey registers a new resource with the given unique name, arguments, and options.
+func NewApiKey(ctx *pulumi.Context,
+	name string, args *ApiKeyArgs, opts ...pulumi.ResourceOption) (*ApiKey, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -41,196 +41,196 @@ func NewAPIKey(ctx *pulumi.Context,
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource APIKey
-	err := ctx.RegisterResource("sendgrid:index:APIKey", name, args, &resource, opts...)
+	var resource ApiKey
+	err := ctx.RegisterResource("sendgrid:index:ApiKey", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetAPIKey gets an existing APIKey resource's state with the given name, ID, and optional
+// GetApiKey gets an existing ApiKey resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetAPIKey(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *APIKeyState, opts ...pulumi.ResourceOption) (*APIKey, error) {
-	var resource APIKey
-	err := ctx.ReadResource("sendgrid:index:APIKey", name, id, state, &resource, opts...)
+func GetApiKey(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *ApiKeyState, opts ...pulumi.ResourceOption) (*ApiKey, error) {
+	var resource ApiKey
+	err := ctx.ReadResource("sendgrid:index:ApiKey", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering APIKey resources.
-type apikeyState struct {
+// Input properties used for looking up and filtering ApiKey resources.
+type apiKeyState struct {
 }
 
-type APIKeyState struct {
+type ApiKeyState struct {
 }
 
-func (APIKeyState) ElementType() reflect.Type {
-	return reflect.TypeOf((*apikeyState)(nil)).Elem()
+func (ApiKeyState) ElementType() reflect.Type {
+	return reflect.TypeOf((*apiKeyState)(nil)).Elem()
 }
 
-type apikeyArgs struct {
+type apiKeyArgs struct {
 	Name   string   `pulumi:"name"`
 	Scopes []string `pulumi:"scopes"`
 }
 
-// The set of arguments for constructing a APIKey resource.
-type APIKeyArgs struct {
+// The set of arguments for constructing a ApiKey resource.
+type ApiKeyArgs struct {
 	Name   pulumi.StringInput
 	Scopes pulumi.StringArrayInput
 }
 
-func (APIKeyArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*apikeyArgs)(nil)).Elem()
+func (ApiKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*apiKeyArgs)(nil)).Elem()
 }
 
-type APIKeyInput interface {
+type ApiKeyInput interface {
 	pulumi.Input
 
-	ToAPIKeyOutput() APIKeyOutput
-	ToAPIKeyOutputWithContext(ctx context.Context) APIKeyOutput
+	ToApiKeyOutput() ApiKeyOutput
+	ToApiKeyOutputWithContext(ctx context.Context) ApiKeyOutput
 }
 
-func (*APIKey) ElementType() reflect.Type {
-	return reflect.TypeOf((**APIKey)(nil)).Elem()
+func (*ApiKey) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiKey)(nil)).Elem()
 }
 
-func (i *APIKey) ToAPIKeyOutput() APIKeyOutput {
-	return i.ToAPIKeyOutputWithContext(context.Background())
+func (i *ApiKey) ToApiKeyOutput() ApiKeyOutput {
+	return i.ToApiKeyOutputWithContext(context.Background())
 }
 
-func (i *APIKey) ToAPIKeyOutputWithContext(ctx context.Context) APIKeyOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(APIKeyOutput)
+func (i *ApiKey) ToApiKeyOutputWithContext(ctx context.Context) ApiKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiKeyOutput)
 }
 
-// APIKeyArrayInput is an input type that accepts APIKeyArray and APIKeyArrayOutput values.
-// You can construct a concrete instance of `APIKeyArrayInput` via:
+// ApiKeyArrayInput is an input type that accepts ApiKeyArray and ApiKeyArrayOutput values.
+// You can construct a concrete instance of `ApiKeyArrayInput` via:
 //
-//	APIKeyArray{ APIKeyArgs{...} }
-type APIKeyArrayInput interface {
+//	ApiKeyArray{ ApiKeyArgs{...} }
+type ApiKeyArrayInput interface {
 	pulumi.Input
 
-	ToAPIKeyArrayOutput() APIKeyArrayOutput
-	ToAPIKeyArrayOutputWithContext(context.Context) APIKeyArrayOutput
+	ToApiKeyArrayOutput() ApiKeyArrayOutput
+	ToApiKeyArrayOutputWithContext(context.Context) ApiKeyArrayOutput
 }
 
-type APIKeyArray []APIKeyInput
+type ApiKeyArray []ApiKeyInput
 
-func (APIKeyArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*APIKey)(nil)).Elem()
+func (ApiKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*ApiKey)(nil)).Elem()
 }
 
-func (i APIKeyArray) ToAPIKeyArrayOutput() APIKeyArrayOutput {
-	return i.ToAPIKeyArrayOutputWithContext(context.Background())
+func (i ApiKeyArray) ToApiKeyArrayOutput() ApiKeyArrayOutput {
+	return i.ToApiKeyArrayOutputWithContext(context.Background())
 }
 
-func (i APIKeyArray) ToAPIKeyArrayOutputWithContext(ctx context.Context) APIKeyArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(APIKeyArrayOutput)
+func (i ApiKeyArray) ToApiKeyArrayOutputWithContext(ctx context.Context) ApiKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiKeyArrayOutput)
 }
 
-// APIKeyMapInput is an input type that accepts APIKeyMap and APIKeyMapOutput values.
-// You can construct a concrete instance of `APIKeyMapInput` via:
+// ApiKeyMapInput is an input type that accepts ApiKeyMap and ApiKeyMapOutput values.
+// You can construct a concrete instance of `ApiKeyMapInput` via:
 //
-//	APIKeyMap{ "key": APIKeyArgs{...} }
-type APIKeyMapInput interface {
+//	ApiKeyMap{ "key": ApiKeyArgs{...} }
+type ApiKeyMapInput interface {
 	pulumi.Input
 
-	ToAPIKeyMapOutput() APIKeyMapOutput
-	ToAPIKeyMapOutputWithContext(context.Context) APIKeyMapOutput
+	ToApiKeyMapOutput() ApiKeyMapOutput
+	ToApiKeyMapOutputWithContext(context.Context) ApiKeyMapOutput
 }
 
-type APIKeyMap map[string]APIKeyInput
+type ApiKeyMap map[string]ApiKeyInput
 
-func (APIKeyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*APIKey)(nil)).Elem()
+func (ApiKeyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*ApiKey)(nil)).Elem()
 }
 
-func (i APIKeyMap) ToAPIKeyMapOutput() APIKeyMapOutput {
-	return i.ToAPIKeyMapOutputWithContext(context.Background())
+func (i ApiKeyMap) ToApiKeyMapOutput() ApiKeyMapOutput {
+	return i.ToApiKeyMapOutputWithContext(context.Background())
 }
 
-func (i APIKeyMap) ToAPIKeyMapOutputWithContext(ctx context.Context) APIKeyMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(APIKeyMapOutput)
+func (i ApiKeyMap) ToApiKeyMapOutputWithContext(ctx context.Context) ApiKeyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiKeyMapOutput)
 }
 
-type APIKeyOutput struct{ *pulumi.OutputState }
+type ApiKeyOutput struct{ *pulumi.OutputState }
 
-func (APIKeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**APIKey)(nil)).Elem()
+func (ApiKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ApiKey)(nil)).Elem()
 }
 
-func (o APIKeyOutput) ToAPIKeyOutput() APIKeyOutput {
+func (o ApiKeyOutput) ToApiKeyOutput() ApiKeyOutput {
 	return o
 }
 
-func (o APIKeyOutput) ToAPIKeyOutputWithContext(ctx context.Context) APIKeyOutput {
+func (o ApiKeyOutput) ToApiKeyOutputWithContext(ctx context.Context) ApiKeyOutput {
 	return o
 }
 
-func (o APIKeyOutput) ApiKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *APIKey) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
+func (o ApiKeyOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiKey) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
 }
 
-func (o APIKeyOutput) ApiKeyId() pulumi.StringOutput {
-	return o.ApplyT(func(v *APIKey) pulumi.StringOutput { return v.ApiKeyId }).(pulumi.StringOutput)
+func (o ApiKeyOutput) ApiKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApiKey) pulumi.StringOutput { return v.ApiKeyId }).(pulumi.StringOutput)
 }
 
-func (o APIKeyOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *APIKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o ApiKeyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApiKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o APIKeyOutput) Scopes() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *APIKey) pulumi.StringArrayOutput { return v.Scopes }).(pulumi.StringArrayOutput)
+func (o ApiKeyOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ApiKey) pulumi.StringArrayOutput { return v.Scopes }).(pulumi.StringArrayOutput)
 }
 
-type APIKeyArrayOutput struct{ *pulumi.OutputState }
+type ApiKeyArrayOutput struct{ *pulumi.OutputState }
 
-func (APIKeyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*APIKey)(nil)).Elem()
+func (ApiKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*ApiKey)(nil)).Elem()
 }
 
-func (o APIKeyArrayOutput) ToAPIKeyArrayOutput() APIKeyArrayOutput {
+func (o ApiKeyArrayOutput) ToApiKeyArrayOutput() ApiKeyArrayOutput {
 	return o
 }
 
-func (o APIKeyArrayOutput) ToAPIKeyArrayOutputWithContext(ctx context.Context) APIKeyArrayOutput {
+func (o ApiKeyArrayOutput) ToApiKeyArrayOutputWithContext(ctx context.Context) ApiKeyArrayOutput {
 	return o
 }
 
-func (o APIKeyArrayOutput) Index(i pulumi.IntInput) APIKeyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *APIKey {
-		return vs[0].([]*APIKey)[vs[1].(int)]
-	}).(APIKeyOutput)
+func (o ApiKeyArrayOutput) Index(i pulumi.IntInput) ApiKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApiKey {
+		return vs[0].([]*ApiKey)[vs[1].(int)]
+	}).(ApiKeyOutput)
 }
 
-type APIKeyMapOutput struct{ *pulumi.OutputState }
+type ApiKeyMapOutput struct{ *pulumi.OutputState }
 
-func (APIKeyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*APIKey)(nil)).Elem()
+func (ApiKeyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*ApiKey)(nil)).Elem()
 }
 
-func (o APIKeyMapOutput) ToAPIKeyMapOutput() APIKeyMapOutput {
+func (o ApiKeyMapOutput) ToApiKeyMapOutput() ApiKeyMapOutput {
 	return o
 }
 
-func (o APIKeyMapOutput) ToAPIKeyMapOutputWithContext(ctx context.Context) APIKeyMapOutput {
+func (o ApiKeyMapOutput) ToApiKeyMapOutputWithContext(ctx context.Context) ApiKeyMapOutput {
 	return o
 }
 
-func (o APIKeyMapOutput) MapIndex(k pulumi.StringInput) APIKeyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *APIKey {
-		return vs[0].(map[string]*APIKey)[vs[1].(string)]
-	}).(APIKeyOutput)
+func (o ApiKeyMapOutput) MapIndex(k pulumi.StringInput) ApiKeyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ApiKey {
+		return vs[0].(map[string]*ApiKey)[vs[1].(string)]
+	}).(ApiKeyOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*APIKeyInput)(nil)).Elem(), &APIKey{})
-	pulumi.RegisterInputType(reflect.TypeOf((*APIKeyArrayInput)(nil)).Elem(), APIKeyArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*APIKeyMapInput)(nil)).Elem(), APIKeyMap{})
-	pulumi.RegisterOutputType(APIKeyOutput{})
-	pulumi.RegisterOutputType(APIKeyArrayOutput{})
-	pulumi.RegisterOutputType(APIKeyMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiKeyInput)(nil)).Elem(), &ApiKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiKeyArrayInput)(nil)).Elem(), ApiKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiKeyMapInput)(nil)).Elem(), ApiKeyMap{})
+	pulumi.RegisterOutputType(ApiKeyOutput{})
+	pulumi.RegisterOutputType(ApiKeyArrayOutput{})
+	pulumi.RegisterOutputType(ApiKeyMapOutput{})
 }

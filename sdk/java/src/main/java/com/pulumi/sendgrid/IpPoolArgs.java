@@ -10,9 +10,9 @@ import java.lang.String;
 import java.util.Objects;
 
 
-public final class IPPoolArgs extends com.pulumi.resources.ResourceArgs {
+public final class IpPoolArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final IPPoolArgs Empty = new IPPoolArgs();
+    public static final IpPoolArgs Empty = new IpPoolArgs();
 
     @Import(name="name", required=true)
     private Output<String> name;
@@ -21,28 +21,28 @@ public final class IPPoolArgs extends com.pulumi.resources.ResourceArgs {
         return this.name;
     }
 
-    private IPPoolArgs() {}
+    private IpPoolArgs() {}
 
-    private IPPoolArgs(IPPoolArgs $) {
+    private IpPoolArgs(IpPoolArgs $) {
         this.name = $.name;
     }
 
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(IPPoolArgs defaults) {
+    public static Builder builder(IpPoolArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private IPPoolArgs $;
+        private IpPoolArgs $;
 
         public Builder() {
-            $ = new IPPoolArgs();
+            $ = new IpPoolArgs();
         }
 
-        public Builder(IPPoolArgs defaults) {
-            $ = new IPPoolArgs(Objects.requireNonNull(defaults));
+        public Builder(IpPoolArgs defaults) {
+            $ = new IpPoolArgs(Objects.requireNonNull(defaults));
         }
 
         public Builder name(Output<String> name) {
@@ -54,9 +54,9 @@ public final class IPPoolArgs extends com.pulumi.resources.ResourceArgs {
             return name(Output.of(name));
         }
 
-        public IPPoolArgs build() {
+        public IpPoolArgs build() {
             if ($.name == null) {
-                throw new MissingRequiredPropertyException("IPPoolArgs", "name");
+                throw new MissingRequiredPropertyException("IpPoolArgs", "name");
             }
             return $;
         }

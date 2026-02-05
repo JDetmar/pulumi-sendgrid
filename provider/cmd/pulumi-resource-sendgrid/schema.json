@@ -142,46 +142,6 @@
     }
   },
   "resources": {
-    "sendgrid:index:APIKey": {
-      "description": "Manages a SendGrid API Key.\n\nAPI keys are used to authenticate access to SendGrid services. You can create keys with specific scopes to limit their permissions.\n\n**Note:** The actual API key value is only returned on creation and cannot be retrieved again. Make sure to store it securely.",
-      "properties": {
-        "apiKey": {
-          "type": "string",
-          "secret": true
-        },
-        "apiKeyId": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "scopes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "type": "object",
-      "required": [
-        "apiKeyId",
-        "name"
-      ],
-      "inputProperties": {
-        "name": {
-          "type": "string"
-        },
-        "scopes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "requiredInputs": [
-        "name"
-      ]
-    },
     "sendgrid:index:Alert": {
       "description": "Manages a SendGrid Alert.\n\nAlerts notify you via email about important account events. Two types are available:\n\n1. **usage_limit**: Notifies when your email usage reaches a specified percentage of your plan limit.\n2. **stats_notification**: Sends periodic email statistics (daily, weekly, or monthly).\n\nYou can create multiple alerts of the same type with different email recipients.",
       "properties": {
@@ -232,6 +192,46 @@
       "requiredInputs": [
         "emailTo",
         "type"
+      ]
+    },
+    "sendgrid:index:ApiKey": {
+      "description": "Manages a SendGrid API Key.\n\nAPI keys are used to authenticate access to SendGrid services. You can create keys with specific scopes to limit their permissions.\n\n**Note:** The actual API key value is only returned on creation and cannot be retrieved again. Make sure to store it securely.",
+      "properties": {
+        "apiKey": {
+          "type": "string",
+          "secret": true
+        },
+        "apiKeyId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "type": "object",
+      "required": [
+        "apiKeyId",
+        "name"
+      ],
+      "inputProperties": {
+        "name": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "requiredInputs": [
+        "name"
       ]
     },
     "sendgrid:index:DomainAuthentication": {
@@ -456,7 +456,7 @@
         "email"
       ]
     },
-    "sendgrid:index:IPPool": {
+    "sendgrid:index:IpPool": {
       "description": "Manages a SendGrid IP Pool.\n\nIP Pools allow you to group your dedicated SendGrid IP addresses together. For example, you might have separate pools for transactional and marketing emails, so that each pool maintains its own reputation.\n\nNote: Each account can create up to 100 IP pools. IP pools can only be used with IP addresses that have reverse DNS configured.",
       "properties": {
         "ips": {

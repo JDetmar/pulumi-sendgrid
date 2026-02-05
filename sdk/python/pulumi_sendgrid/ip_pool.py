@@ -14,14 +14,14 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
-__all__ = ['IPPoolArgs', 'IPPool']
+__all__ = ['IpPoolArgs', 'IpPool']
 
 @pulumi.input_type
-class IPPoolArgs:
+class IpPoolArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str]):
         """
-        The set of arguments for constructing a IPPool resource.
+        The set of arguments for constructing a IpPool resource.
         """
         pulumi.set(__self__, "name", name)
 
@@ -35,8 +35,8 @@ class IPPoolArgs:
         pulumi.set(self, "name", value)
 
 
-@pulumi.type_token("sendgrid:index:IPPool")
-class IPPool(pulumi.CustomResource):
+@pulumi.type_token("sendgrid:index:IpPool")
+class IpPool(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -57,7 +57,7 @@ class IPPool(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: IPPoolArgs,
+                 args: IpPoolArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a SendGrid IP Pool.
@@ -67,12 +67,12 @@ class IPPool(pulumi.CustomResource):
         Note: Each account can create up to 100 IP pools. IP pools can only be used with IP addresses that have reverse DNS configured.
 
         :param str resource_name: The name of the resource.
-        :param IPPoolArgs args: The arguments to use to populate this resource's properties.
+        :param IpPoolArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(IPPoolArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(IpPoolArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -89,15 +89,15 @@ class IPPool(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = IPPoolArgs.__new__(IPPoolArgs)
+            __props__ = IpPoolArgs.__new__(IpPoolArgs)
 
             if name is None and not opts.urn:
                 raise TypeError("Missing required property 'name'")
             __props__.__dict__["name"] = name
             __props__.__dict__["ips"] = None
             __props__.__dict__["pool_name"] = None
-        super(IPPool, __self__).__init__(
-            'sendgrid:index:IPPool',
+        super(IpPool, __self__).__init__(
+            'sendgrid:index:IpPool',
             resource_name,
             __props__,
             opts)
@@ -105,9 +105,9 @@ class IPPool(pulumi.CustomResource):
     @staticmethod
     def get(resource_name: str,
             id: pulumi.Input[str],
-            opts: Optional[pulumi.ResourceOptions] = None) -> 'IPPool':
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'IpPool':
         """
-        Get an existing IPPool resource's state with the given name, id, and optional extra
+        Get an existing IpPool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -116,12 +116,12 @@ class IPPool(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = IPPoolArgs.__new__(IPPoolArgs)
+        __props__ = IpPoolArgs.__new__(IpPoolArgs)
 
         __props__.__dict__["ips"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["pool_name"] = None
-        return IPPool(resource_name, opts=opts, __props__=__props__)
+        return IpPool(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter

@@ -7,7 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
-import com.pulumi.sendgrid.APIKeyArgs;
+import com.pulumi.sendgrid.ApiKeyArgs;
 import com.pulumi.sendgrid.Utilities;
 import java.lang.String;
 import java.util.List;
@@ -22,8 +22,8 @@ import javax.annotation.Nullable;
  * **Note:** The actual API key value is only returned on creation and cannot be retrieved again. Make sure to store it securely.
  * 
  */
-@ResourceType(type="sendgrid:index:APIKey")
-public class APIKey extends com.pulumi.resources.CustomResource {
+@ResourceType(type="sendgrid:index:ApiKey")
+public class ApiKey extends com.pulumi.resources.CustomResource {
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
@@ -53,15 +53,15 @@ public class APIKey extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public APIKey(java.lang.String name) {
-        this(name, APIKeyArgs.Empty);
+    public ApiKey(java.lang.String name) {
+        this(name, ApiKeyArgs.Empty);
     }
     /**
      *
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public APIKey(java.lang.String name, APIKeyArgs args) {
+    public ApiKey(java.lang.String name, ApiKeyArgs args) {
         this(name, args, null);
     }
     /**
@@ -70,19 +70,19 @@ public class APIKey extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public APIKey(java.lang.String name, APIKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("sendgrid:index:APIKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
+    public ApiKey(java.lang.String name, ApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("sendgrid:index:ApiKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private APIKey(java.lang.String name, Output<java.lang.String> id, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("sendgrid:index:APIKey", name, null, makeResourceOptions(options, id), false);
+    private ApiKey(java.lang.String name, Output<java.lang.String> id, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("sendgrid:index:ApiKey", name, null, makeResourceOptions(options, id), false);
     }
 
-    private static APIKeyArgs makeArgs(APIKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static ApiKeyArgs makeArgs(ApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }
-        return args == null ? APIKeyArgs.Empty : args;
+        return args == null ? ApiKeyArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
@@ -103,7 +103,7 @@ public class APIKey extends com.pulumi.resources.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static APIKey get(java.lang.String name, Output<java.lang.String> id, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        return new APIKey(name, id, options);
+    public static ApiKey get(java.lang.String name, Output<java.lang.String> id, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        return new ApiKey(name, id, options);
     }
 }

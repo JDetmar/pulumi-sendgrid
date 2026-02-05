@@ -10,10 +10,10 @@ export type Alert = import("./alert").Alert;
 export const Alert: typeof import("./alert").Alert = null as any;
 utilities.lazyLoad(exports, ["Alert"], () => require("./alert"));
 
-export { APIKeyArgs } from "./apikey";
-export type APIKey = import("./apikey").APIKey;
-export const APIKey: typeof import("./apikey").APIKey = null as any;
-utilities.lazyLoad(exports, ["APIKey"], () => require("./apikey"));
+export { ApiKeyArgs } from "./apiKey";
+export type ApiKey = import("./apiKey").ApiKey;
+export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
+utilities.lazyLoad(exports, ["ApiKey"], () => require("./apiKey"));
 
 export { DomainAuthenticationArgs } from "./domainAuthentication";
 export type DomainAuthentication = import("./domainAuthentication").DomainAuthentication;
@@ -30,10 +30,10 @@ export type GlobalSuppression = import("./globalSuppression").GlobalSuppression;
 export const GlobalSuppression: typeof import("./globalSuppression").GlobalSuppression = null as any;
 utilities.lazyLoad(exports, ["GlobalSuppression"], () => require("./globalSuppression"));
 
-export { IPPoolArgs } from "./ippool";
-export type IPPool = import("./ippool").IPPool;
-export const IPPool: typeof import("./ippool").IPPool = null as any;
-utilities.lazyLoad(exports, ["IPPool"], () => require("./ippool"));
+export { IpPoolArgs } from "./ipPool";
+export type IpPool = import("./ipPool").IpPool;
+export const IpPool: typeof import("./ipPool").IpPool = null as any;
+utilities.lazyLoad(exports, ["IpPool"], () => require("./ipPool"));
 
 export { LinkBrandingArgs } from "./linkBranding";
 export type LinkBranding = import("./linkBranding").LinkBranding;
@@ -89,18 +89,18 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "sendgrid:index:APIKey":
-                return new APIKey(name, <any>undefined, { urn })
             case "sendgrid:index:Alert":
                 return new Alert(name, <any>undefined, { urn })
+            case "sendgrid:index:ApiKey":
+                return new ApiKey(name, <any>undefined, { urn })
             case "sendgrid:index:DomainAuthentication":
                 return new DomainAuthentication(name, <any>undefined, { urn })
             case "sendgrid:index:EventWebhook":
                 return new EventWebhook(name, <any>undefined, { urn })
             case "sendgrid:index:GlobalSuppression":
                 return new GlobalSuppression(name, <any>undefined, { urn })
-            case "sendgrid:index:IPPool":
-                return new IPPool(name, <any>undefined, { urn })
+            case "sendgrid:index:IpPool":
+                return new IpPool(name, <any>undefined, { urn })
             case "sendgrid:index:LinkBranding":
                 return new LinkBranding(name, <any>undefined, { urn })
             case "sendgrid:index:Subuser":

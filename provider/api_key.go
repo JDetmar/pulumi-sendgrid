@@ -21,14 +21,14 @@ import (
 	"github.com/pulumi/pulumi-go-provider/infer"
 )
 
-// APIKey is the controller for the SendGrid API Key resource.
+// ApiKey is the controller for the SendGrid API Key resource.
 //
 // This resource manages SendGrid API Keys, which are used to authenticate
 // access to SendGrid services.
-type APIKey struct{}
+type ApiKey struct{} //nolint:revive // name matches Pulumi resource token
 
-// APIKeyArgs are the inputs to the APIKey resource.
-type APIKeyArgs struct {
+// ApiKeyArgs are the inputs to the ApiKey resource.
+type ApiKeyArgs struct { //nolint:revive // name matches Pulumi resource token
 	// Name is the name of the API key (required)
 	Name string `pulumi:"name"`
 
@@ -39,10 +39,10 @@ type APIKeyArgs struct {
 	Scopes []string `pulumi:"scopes,optional"`
 }
 
-// APIKeyState is the state of the APIKey resource.
-type APIKeyState struct {
+// ApiKeyState is the state of the ApiKey resource.
+type ApiKeyState struct { //nolint:revive // name matches Pulumi resource token
 	// Embed the input args in the output state
-	APIKeyArgs
+	ApiKeyArgs
 
 	// APIKeyID is the unique identifier for this API key
 	APIKeyID string `pulumi:"apiKeyId"`
@@ -53,8 +53,8 @@ type APIKeyState struct {
 	APIKey string `pulumi:"apiKey,optional" provider:"secret"`
 }
 
-// Annotate provides descriptions and default values for the APIKey resource.
-func (a *APIKey) Annotate(annotator infer.Annotator) {
+// Annotate provides descriptions and default values for the ApiKey resource.
+func (a *ApiKey) Annotate(annotator infer.Annotator) {
 	annotator.Describe(&a, "Manages a SendGrid API Key.\n\n"+
 		"API keys are used to authenticate access to SendGrid services. "+
 		"You can create keys with specific scopes to limit their permissions.\n\n"+
@@ -63,18 +63,18 @@ func (a *APIKey) Annotate(annotator infer.Annotator) {
 }
 
 // Create creates a new SendGrid API Key.
-func (a *APIKey) Create(ctx context.Context, req infer.CreateRequest[APIKeyArgs]) (infer.CreateResponse[APIKeyState], error) {
+func (a *ApiKey) Create(ctx context.Context, req infer.CreateRequest[ApiKeyArgs]) (infer.CreateResponse[ApiKeyState], error) {
 	input := req.Inputs
 	preview := req.DryRun
 
 	// During preview, return placeholder state
 	if preview {
-		state := APIKeyState{
-			APIKeyArgs: input,
+		state := ApiKeyState{
+			ApiKeyArgs: input,
 			APIKeyID:   "[computed]",
 			APIKey:     "[computed]",
 		}
-		return infer.CreateResponse[APIKeyState]{
+		return infer.CreateResponse[ApiKeyState]{
 			ID:     "[preview]",
 			Output: state,
 		}, nil
@@ -83,7 +83,7 @@ func (a *APIKey) Create(ctx context.Context, req infer.CreateRequest[APIKeyArgs]
 	// Get the SendGrid client from context
 	client := infer.GetConfig[Config](ctx).client
 	if client == nil {
-		return infer.CreateResponse[APIKeyState]{}, fmt.Errorf("SendGrid client not configured - ensure apiKey is set in provider configuration")
+		return infer.CreateResponse[ApiKeyState]{}, fmt.Errorf("SendGrid client not configured - ensure apiKey is set in provider configuration")
 	}
 
 	// Build the request body
@@ -103,11 +103,11 @@ func (a *APIKey) Create(ctx context.Context, req infer.CreateRequest[APIKeyArgs]
 	}
 
 	if err := client.Post(ctx, "/v3/api_keys", reqBody, &result); err != nil {
-		return infer.CreateResponse[APIKeyState]{}, fmt.Errorf("failed to create API key: %w", err)
+		return infer.CreateResponse[ApiKeyState]{}, fmt.Errorf("failed to create API key: %w", err)
 	}
 
-	state := APIKeyState{
-		APIKeyArgs: APIKeyArgs{
+	state := ApiKeyState{
+		ApiKeyArgs: ApiKeyArgs{
 			Name:   result.Name,
 			Scopes: result.Scopes,
 		},
@@ -115,21 +115,21 @@ func (a *APIKey) Create(ctx context.Context, req infer.CreateRequest[APIKeyArgs]
 		APIKey:   result.APIKey,
 	}
 
-	return infer.CreateResponse[APIKeyState]{
+	return infer.CreateResponse[ApiKeyState]{
 		ID:     result.APIKeyID,
 		Output: state,
 	}, nil
 }
 
 // Read retrieves the current state of a SendGrid API Key.
-func (a *APIKey) Read(ctx context.Context, req infer.ReadRequest[APIKeyArgs, APIKeyState]) (infer.ReadResponse[APIKeyArgs, APIKeyState], error) {
+func (a *ApiKey) Read(ctx context.Context, req infer.ReadRequest[ApiKeyArgs, ApiKeyState]) (infer.ReadResponse[ApiKeyArgs, ApiKeyState], error) {
 	id := req.ID
 	oldState := req.State
 
 	// Get the SendGrid client from context
 	client := infer.GetConfig[Config](ctx).client
 	if client == nil {
-		return infer.ReadResponse[APIKeyArgs, APIKeyState]{}, fmt.Errorf("SendGrid client not configured")
+		return infer.ReadResponse[ApiKeyArgs, ApiKeyState]{}, fmt.Errorf("SendGrid client not configured")
 	}
 
 	// Make the API call to get the API key details
@@ -143,14 +143,14 @@ func (a *APIKey) Read(ctx context.Context, req infer.ReadRequest[APIKeyArgs, API
 		// Check if the resource was deleted out-of-band
 		if sgErr, ok := err.(*SendGridError); ok && sgErr.IsNotFound() {
 			// Return empty response to indicate resource no longer exists
-			return infer.ReadResponse[APIKeyArgs, APIKeyState]{}, nil
+			return infer.ReadResponse[ApiKeyArgs, ApiKeyState]{}, nil
 		}
-		return infer.ReadResponse[APIKeyArgs, APIKeyState]{}, fmt.Errorf("failed to read API key: %w", err)
+		return infer.ReadResponse[ApiKeyArgs, ApiKeyState]{}, fmt.Errorf("failed to read API key: %w", err)
 	}
 
 	// Update state with values from API
-	state := APIKeyState{
-		APIKeyArgs: APIKeyArgs{
+	state := ApiKeyState{
+		ApiKeyArgs: ApiKeyArgs{
 			Name:   result.Name,
 			Scopes: result.Scopes,
 		},
@@ -159,12 +159,12 @@ func (a *APIKey) Read(ctx context.Context, req infer.ReadRequest[APIKeyArgs, API
 		APIKey: oldState.APIKey,
 	}
 
-	inputs := APIKeyArgs{
+	inputs := ApiKeyArgs{
 		Name:   result.Name,
 		Scopes: result.Scopes,
 	}
 
-	return infer.ReadResponse[APIKeyArgs, APIKeyState]{
+	return infer.ReadResponse[ApiKeyArgs, ApiKeyState]{
 		ID:     id,
 		Inputs: inputs,
 		State:  state,
@@ -172,7 +172,7 @@ func (a *APIKey) Read(ctx context.Context, req infer.ReadRequest[APIKeyArgs, API
 }
 
 // Update updates an existing SendGrid API Key.
-func (a *APIKey) Update(ctx context.Context, req infer.UpdateRequest[APIKeyArgs, APIKeyState]) (infer.UpdateResponse[APIKeyState], error) {
+func (a *ApiKey) Update(ctx context.Context, req infer.UpdateRequest[ApiKeyArgs, ApiKeyState]) (infer.UpdateResponse[ApiKeyState], error) {
 	id := req.ID
 	input := req.Inputs
 	oldState := req.State
@@ -180,18 +180,18 @@ func (a *APIKey) Update(ctx context.Context, req infer.UpdateRequest[APIKeyArgs,
 
 	// During preview, return expected state
 	if preview {
-		state := APIKeyState{
-			APIKeyArgs: input,
+		state := ApiKeyState{
+			ApiKeyArgs: input,
 			APIKeyID:   oldState.APIKeyID,
 			APIKey:     oldState.APIKey,
 		}
-		return infer.UpdateResponse[APIKeyState]{Output: state}, nil
+		return infer.UpdateResponse[ApiKeyState]{Output: state}, nil
 	}
 
 	// Get the SendGrid client from context
 	client := infer.GetConfig[Config](ctx).client
 	if client == nil {
-		return infer.UpdateResponse[APIKeyState]{}, fmt.Errorf("SendGrid client not configured")
+		return infer.UpdateResponse[ApiKeyState]{}, fmt.Errorf("SendGrid client not configured")
 	}
 
 	// Use PUT to update both name and scopes
@@ -212,11 +212,11 @@ func (a *APIKey) Update(ctx context.Context, req infer.UpdateRequest[APIKeyArgs,
 	}
 
 	if err := client.Put(ctx, fmt.Sprintf("/v3/api_keys/%s", id), reqBody, &result); err != nil {
-		return infer.UpdateResponse[APIKeyState]{}, fmt.Errorf("failed to update API key: %w", err)
+		return infer.UpdateResponse[ApiKeyState]{}, fmt.Errorf("failed to update API key: %w", err)
 	}
 
-	state := APIKeyState{
-		APIKeyArgs: APIKeyArgs{
+	state := ApiKeyState{
+		ApiKeyArgs: ApiKeyArgs{
 			Name:   result.Name,
 			Scopes: result.Scopes,
 		},
@@ -225,11 +225,11 @@ func (a *APIKey) Update(ctx context.Context, req infer.UpdateRequest[APIKeyArgs,
 		APIKey: oldState.APIKey,
 	}
 
-	return infer.UpdateResponse[APIKeyState]{Output: state}, nil
+	return infer.UpdateResponse[ApiKeyState]{Output: state}, nil
 }
 
 // Delete removes a SendGrid API Key.
-func (a *APIKey) Delete(ctx context.Context, req infer.DeleteRequest[APIKeyState]) (infer.DeleteResponse, error) {
+func (a *ApiKey) Delete(ctx context.Context, req infer.DeleteRequest[ApiKeyState]) (infer.DeleteResponse, error) {
 	id := req.ID
 
 	// Get the SendGrid client from context
