@@ -102,10 +102,15 @@
       "notes": "Implemented GlobalSuppression resource for managing email addresses in SendGrid's global suppression list. Full CRUD operations: POST /v3/asm/suppressions/global to add, GET /v3/asm/suppressions/global/{email} to read, DELETE /v3/asm/suppressions/global/{email} to remove. Uses email address as resource ID with proper URL encoding. Integration tests skipped - requires live SendGrid API key."
     },
     "webhooks": {
-      "status": "pending",
-      "unit_tests": "pending",
-      "integration_tests": "pending",
-      "drift_tests": "pending"
+      "status": "completed",
+      "unit_tests": "passed",
+      "integration_tests": "skipped",
+      "drift_tests": "skipped",
+      "files": [
+        "provider/event_webhook.go",
+        "provider/event_webhook_test.go"
+      ],
+      "notes": "Implemented EventWebhook resource for managing SendGrid Event Webhooks. Full CRUD operations: POST/GET/PATCH/DELETE /v3/user/webhooks/event/settings/{id}. Supports all event types (bounce, click, deferred, delivered, dropped, open, processed, spam_report, unsubscribe, group_resubscribe, group_unsubscribe), enabled/disabled state, friendly name, and webhook URL. Integration tests skipped - requires live SendGrid API key and webhook endpoint."
     },
     "subusers": {
       "status": "pending",
@@ -129,10 +134,10 @@
   "current_task": null,
   "errors": [],
   "metrics": {
-    "resources_completed": 8,
+    "resources_completed": 9,
     "resources_in_progress": 0,
     "resources_total": 12,
-    "tests_passed": 81,
+    "tests_passed": 99,
     "tests_failed": 0
   }
 }

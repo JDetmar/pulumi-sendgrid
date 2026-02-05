@@ -48,6 +48,7 @@ func Provider() p.Provider {
 			infer.Resource(&IpPool{}),
 			infer.Resource(&UnsubscribeGroup{}),
 			infer.Resource(&GlobalSuppression{}),
+			infer.Resource(&EventWebhook{}),
 		).
 		WithConfig(infer.Config(&Config{})).
 		WithModuleMap(map[tokens.ModuleName]tokens.ModuleName{
