@@ -582,7 +582,7 @@ func TestEventWebhook_ServerErrors(t *testing.T) {
 	t.Run("500 internal server error", func(t *testing.T) {
 		t.Parallel()
 
-		server := mockSendGridServer(t, func(w http.ResponseWriter, r *http.Request) {
+		server := mockSendGridServer(t, func(w http.ResponseWriter, _ *http.Request) {
 			w.WriteHeader(http.StatusInternalServerError)
 			_, _ = w.Write([]byte(`{"errors": [{"message": "internal server error"}]}`))
 		})
@@ -604,7 +604,7 @@ func TestEventWebhook_ServerErrors(t *testing.T) {
 	t.Run("403 forbidden", func(t *testing.T) {
 		t.Parallel()
 
-		server := mockSendGridServer(t, func(w http.ResponseWriter, r *http.Request) {
+		server := mockSendGridServer(t, func(w http.ResponseWriter, _ *http.Request) {
 			w.WriteHeader(http.StatusForbidden)
 			_, _ = w.Write([]byte(`{"errors": [{"message": "access forbidden"}]}`))
 		})

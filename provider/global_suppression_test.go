@@ -311,7 +311,7 @@ func TestGlobalSuppression_ServerErrors(t *testing.T) {
 	t.Run("500 internal server error on create", func(t *testing.T) {
 		t.Parallel()
 
-		server := mockSendGridServer(t, func(w http.ResponseWriter, r *http.Request) {
+		server := mockSendGridServer(t, func(w http.ResponseWriter, _ *http.Request) {
 			w.WriteHeader(http.StatusInternalServerError)
 			_, _ = w.Write([]byte(`{"errors": [{"message": "internal server error"}]}`))
 		})
@@ -336,7 +336,7 @@ func TestGlobalSuppression_ServerErrors(t *testing.T) {
 	t.Run("403 forbidden - no permission", func(t *testing.T) {
 		t.Parallel()
 
-		server := mockSendGridServer(t, func(w http.ResponseWriter, r *http.Request) {
+		server := mockSendGridServer(t, func(w http.ResponseWriter, _ *http.Request) {
 			w.WriteHeader(http.StatusForbidden)
 			_, _ = w.Write([]byte(`{"errors": [{"message": "access forbidden"}]}`))
 		})
@@ -361,7 +361,7 @@ func TestGlobalSuppression_ServerErrors(t *testing.T) {
 	t.Run("500 error on read", func(t *testing.T) {
 		t.Parallel()
 
-		server := mockSendGridServer(t, func(w http.ResponseWriter, r *http.Request) {
+		server := mockSendGridServer(t, func(w http.ResponseWriter, _ *http.Request) {
 			w.WriteHeader(http.StatusInternalServerError)
 			_, _ = w.Write([]byte(`{"errors": [{"message": "internal server error"}]}`))
 		})
@@ -422,7 +422,7 @@ func TestGlobalSuppression_MultipleEmails(t *testing.T) {
 	// might contain multiple emails (e.g., if batch adding)
 	t.Parallel()
 
-	server := mockSendGridServer(t, func(w http.ResponseWriter, r *http.Request) {
+	server := mockSendGridServer(t, func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusCreated)
 		_, _ = w.Write([]byte(`{
 			"recipient_emails": ["one@example.com", "two@example.com", "test@example.com"]

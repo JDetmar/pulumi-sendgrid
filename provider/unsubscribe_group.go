@@ -46,8 +46,8 @@ type UnsubscribeGroupState struct {
 	// Embed the input args in the output state
 	UnsubscribeGroupArgs
 
-	// GroupId is the ID assigned by SendGrid (returned from API)
-	GroupId int `pulumi:"groupId"`
+	// GroupID is the ID assigned by SendGrid (returned from API)
+	GroupID int `pulumi:"groupId"`
 
 	// Unsubscribes is the count of emails that have been unsubscribed from this group
 	Unsubscribes int `pulumi:"unsubscribes"`
@@ -88,7 +88,7 @@ func (r *unsubscribeGroupAPIResponse) toState() UnsubscribeGroupState {
 			Description: description,
 			IsDefault:   &isDefault,
 		},
-		GroupId:      r.ID,
+		GroupID:      r.ID,
 		Unsubscribes: r.Unsubscribes,
 	}
 }
@@ -106,7 +106,7 @@ func (g *UnsubscribeGroup) Create(ctx context.Context, req infer.CreateRequest[U
 		}
 		state := UnsubscribeGroupState{
 			UnsubscribeGroupArgs: input,
-			GroupId:              0,
+			GroupID:              0,
 			Unsubscribes:         0,
 		}
 		if state.IsDefault == nil {
@@ -192,7 +192,7 @@ func (g *UnsubscribeGroup) Update(ctx context.Context, req infer.UpdateRequest[U
 	if preview {
 		state := UnsubscribeGroupState{
 			UnsubscribeGroupArgs: input,
-			GroupId:              oldState.GroupId,
+			GroupID:              oldState.GroupID,
 			Unsubscribes:         oldState.Unsubscribes,
 		}
 		return infer.UpdateResponse[UnsubscribeGroupState]{Output: state}, nil

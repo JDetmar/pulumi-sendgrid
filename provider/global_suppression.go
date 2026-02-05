@@ -180,7 +180,7 @@ func (g *GlobalSuppression) Read(ctx context.Context, req infer.ReadRequest[Glob
 
 // Update is not supported for global suppressions since there's only one field (email).
 // Changing the email would require deleting and recreating.
-func (g *GlobalSuppression) Update(ctx context.Context, req infer.UpdateRequest[GlobalSuppressionArgs, GlobalSuppressionState]) (infer.UpdateResponse[GlobalSuppressionState], error) {
+func (g *GlobalSuppression) Update(_ context.Context, _ infer.UpdateRequest[GlobalSuppressionArgs, GlobalSuppressionState]) (infer.UpdateResponse[GlobalSuppressionState], error) {
 	// Global suppressions don't support updates - if the email changes, it's a replace
 	// The Pulumi SDK handles this by checking for "replaceOnChanges" behavior
 	return infer.UpdateResponse[GlobalSuppressionState]{}, fmt.Errorf("global suppressions cannot be updated - email changes require replacement")

@@ -174,6 +174,7 @@ func (s *Subuser) Create(ctx context.Context, req infer.CreateRequest[SubuserArg
 		if err := s.setDisabled(ctx, client, input.Username, true); err != nil {
 			// Log warning but don't fail - the subuser was created
 			// The next update/refresh will handle it
+			_ = err // explicitly ignore error
 		} else {
 			state.Disabled = true
 		}

@@ -16,6 +16,9 @@ linters:
   - revive
   - unconvert
   - unused
+  settings:
+    lll:
+      line-length: 220
 
 formatters:
   enable:

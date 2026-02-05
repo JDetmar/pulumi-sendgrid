@@ -101,7 +101,7 @@ func (c *SendGridClient) doRequest(ctx context.Context, method, path string, bod
 	if err != nil {
 		return fmt.Errorf("failed to execute request: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {

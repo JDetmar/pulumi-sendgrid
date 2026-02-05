@@ -436,7 +436,7 @@ func TestUnsubscribeGroupAPIResponse_ToState(t *testing.T) {
 		assert.Equal(t, "Marketing emails", *state.Description)
 		assert.NotNil(t, state.IsDefault)
 		assert.False(t, *state.IsDefault)
-		assert.Equal(t, 123, state.GroupId)
+		assert.Equal(t, 123, state.GroupID)
 		assert.Equal(t, 42, state.Unsubscribes)
 	})
 
@@ -457,7 +457,7 @@ func TestUnsubscribeGroupAPIResponse_ToState(t *testing.T) {
 		assert.Nil(t, state.Description)
 		assert.NotNil(t, state.IsDefault)
 		assert.True(t, *state.IsDefault)
-		assert.Equal(t, 456, state.GroupId)
+		assert.Equal(t, 456, state.GroupID)
 		assert.Equal(t, 0, state.Unsubscribes)
 	})
 
@@ -485,7 +485,7 @@ func TestUnsubscribeGroup_ServerErrors(t *testing.T) {
 	t.Run("500 internal server error", func(t *testing.T) {
 		t.Parallel()
 
-		server := mockSendGridServer(t, func(w http.ResponseWriter, r *http.Request) {
+		server := mockSendGridServer(t, func(w http.ResponseWriter, _ *http.Request) {
 			w.WriteHeader(http.StatusInternalServerError)
 			_, _ = w.Write([]byte(`{"errors": [{"message": "internal server error"}]}`))
 		})
@@ -504,7 +504,7 @@ func TestUnsubscribeGroup_ServerErrors(t *testing.T) {
 	t.Run("403 forbidden - no permission", func(t *testing.T) {
 		t.Parallel()
 
-		server := mockSendGridServer(t, func(w http.ResponseWriter, r *http.Request) {
+		server := mockSendGridServer(t, func(w http.ResponseWriter, _ *http.Request) {
 			w.WriteHeader(http.StatusForbidden)
 			_, _ = w.Write([]byte(`{"errors": [{"message": "access forbidden"}]}`))
 		})
