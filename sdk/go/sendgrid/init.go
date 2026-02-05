@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ApiKey{}
 	case "sendgrid:index:Template":
 		r = &Template{}
+	case "sendgrid:index:TemplateVersion":
+		r = &TemplateVersion{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}

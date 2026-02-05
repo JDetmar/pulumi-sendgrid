@@ -9,6 +9,7 @@ import typing
 from .api_key import *
 from .provider import *
 from .template import *
+from .template_version import *
 from . import outputs
 
 # Make subpackages available:
@@ -27,7 +28,8 @@ _utilities.register(
   "fqn": "pulumi_sendgrid",
   "classes": {
    "sendgrid:index:ApiKey": "ApiKey",
-   "sendgrid:index:Template": "Template"
+   "sendgrid:index:Template": "Template",
+   "sendgrid:index:TemplateVersion": "TemplateVersion"
   }
  }
 ]

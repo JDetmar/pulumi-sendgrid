@@ -41,6 +41,7 @@ func Provider() p.Provider {
 		WithResources(
 			infer.Resource(&ApiKey{}),
 			infer.Resource(&Template{}),
+			infer.Resource(&TemplateVersion{}),
 		).
 		WithConfig(infer.Config(&Config{})).
 		WithModuleMap(map[tokens.ModuleName]tokens.ModuleName{

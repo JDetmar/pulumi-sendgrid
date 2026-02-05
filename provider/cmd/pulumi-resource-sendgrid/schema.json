@@ -170,6 +170,85 @@
         "name",
         "generation"
       ]
+    },
+    "sendgrid:index:TemplateVersion": {
+      "description": "Manages a SendGrid Template Version.\n\nTemplate versions contain the actual content of transactional emails, including the subject line, HTML content, and plain text content.\n\nEach template can have multiple versions, but only one can be active at a time. The active version is used when sending emails through the template.\n\n**Note:** Dynamic templates support handlebars syntax for personalization.",
+      "properties": {
+        "active": {
+          "type": "integer"
+        },
+        "editor": {
+          "type": "string"
+        },
+        "generatePlainContent": {
+          "type": "boolean"
+        },
+        "htmlContent": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "plainContent": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "templateId": {
+          "type": "string"
+        },
+        "testData": {
+          "type": "string"
+        },
+        "thumbnailUrl": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "versionId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "templateId",
+        "name",
+        "versionId"
+      ],
+      "inputProperties": {
+        "active": {
+          "type": "integer"
+        },
+        "editor": {
+          "type": "string"
+        },
+        "generatePlainContent": {
+          "type": "boolean"
+        },
+        "htmlContent": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "plainContent": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "templateId": {
+          "type": "string"
+        },
+        "testData": {
+          "type": "string"
+        }
+      },
+      "requiredInputs": [
+        "templateId",
+        "name"
+      ]
     }
   }
 }

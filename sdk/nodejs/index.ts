@@ -20,6 +20,11 @@ export type Template = import("./template").Template;
 export const Template: typeof import("./template").Template = null as any;
 utilities.lazyLoad(exports, ["Template"], () => require("./template"));
 
+export { TemplateVersionArgs } from "./templateVersion";
+export type TemplateVersion = import("./templateVersion").TemplateVersion;
+export const TemplateVersion: typeof import("./templateVersion").TemplateVersion = null as any;
+utilities.lazyLoad(exports, ["TemplateVersion"], () => require("./templateVersion"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -38,6 +43,8 @@ const _module = {
                 return new ApiKey(name, <any>undefined, { urn })
             case "sendgrid:index:Template":
                 return new Template(name, <any>undefined, { urn })
+            case "sendgrid:index:TemplateVersion":
+                return new TemplateVersion(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }

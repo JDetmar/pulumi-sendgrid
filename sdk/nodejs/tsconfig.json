@@ -19,6 +19,7 @@
         "index.ts",
         "provider.ts",
         "template.ts",
+        "templateVersion.ts",
         "types/index.ts",
         "types/input.ts",
         "types/output.ts",
