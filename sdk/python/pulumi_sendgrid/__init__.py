@@ -13,6 +13,7 @@ from .link_branding import *
 from .provider import *
 from .template import *
 from .template_version import *
+from .unsubscribe_group import *
 from .verified_sender import *
 from . import outputs
 
@@ -37,6 +38,7 @@ _utilities.register(
    "sendgrid:index:LinkBranding": "LinkBranding",
    "sendgrid:index:Template": "Template",
    "sendgrid:index:TemplateVersion": "TemplateVersion",
+   "sendgrid:index:UnsubscribeGroup": "UnsubscribeGroup",
    "sendgrid:index:VerifiedSender": "VerifiedSender"
   }
  }

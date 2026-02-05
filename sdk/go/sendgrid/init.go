@@ -33,6 +33,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Template{}
 	case "sendgrid:index:TemplateVersion":
 		r = &TemplateVersion{}
+	case "sendgrid:index:UnsubscribeGroup":
+		r = &UnsubscribeGroup{}
 	case "sendgrid:index:VerifiedSender":
 		r = &VerifiedSender{}
 	default:

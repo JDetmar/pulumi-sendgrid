@@ -40,6 +40,11 @@ export type TemplateVersion = import("./templateVersion").TemplateVersion;
 export const TemplateVersion: typeof import("./templateVersion").TemplateVersion = null as any;
 utilities.lazyLoad(exports, ["TemplateVersion"], () => require("./templateVersion"));
 
+export { UnsubscribeGroupArgs } from "./unsubscribeGroup";
+export type UnsubscribeGroup = import("./unsubscribeGroup").UnsubscribeGroup;
+export const UnsubscribeGroup: typeof import("./unsubscribeGroup").UnsubscribeGroup = null as any;
+utilities.lazyLoad(exports, ["UnsubscribeGroup"], () => require("./unsubscribeGroup"));
+
 export { VerifiedSenderArgs } from "./verifiedSender";
 export type VerifiedSender = import("./verifiedSender").VerifiedSender;
 export const VerifiedSender: typeof import("./verifiedSender").VerifiedSender = null as any;
@@ -71,6 +76,8 @@ const _module = {
                 return new Template(name, <any>undefined, { urn })
             case "sendgrid:index:TemplateVersion":
                 return new TemplateVersion(name, <any>undefined, { urn })
+            case "sendgrid:index:UnsubscribeGroup":
+                return new UnsubscribeGroup(name, <any>undefined, { urn })
             case "sendgrid:index:VerifiedSender":
                 return new VerifiedSender(name, <any>undefined, { urn })
             default:

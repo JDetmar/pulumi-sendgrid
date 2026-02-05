@@ -46,6 +46,7 @@ func Provider() p.Provider {
 			infer.Resource(&DomainAuthentication{}),
 			infer.Resource(&LinkBranding{}),
 			infer.Resource(&IpPool{}),
+			infer.Resource(&UnsubscribeGroup{}),
 		).
 		WithConfig(infer.Config(&Config{})).
 		WithModuleMap(map[tokens.ModuleName]tokens.ModuleName{

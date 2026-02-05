@@ -485,6 +485,45 @@
         "name"
       ]
     },
+    "sendgrid:index:UnsubscribeGroup": {
+      "description": "Manages a SendGrid Unsubscribe Group (Advanced Suppression Management).\n\nUnsubscribe groups allow recipients to opt out of specific types of emails while still receiving others. For example, you might have separate groups for marketing, newsletters, and product updates, allowing users to choose which types of emails they want to receive.\n\nWhen a recipient unsubscribes from a group, they will no longer receive emails that are associated with that group.",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "groupId": {
+          "type": "integer"
+        },
+        "isDefault": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "unsubscribes": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "groupId",
+        "unsubscribes"
+      ],
+      "inputProperties": {
+        "description": {
+          "type": "string"
+        },
+        "isDefault": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "requiredInputs": [
+        "name"
+      ]
+    },
     "sendgrid:index:VerifiedSender": {
       "description": "Manages a SendGrid Verified Sender.\n\nVerified Senders are sender identities that have been verified for sending email. After creation, SendGrid will send a verification email to the from_email address. The sender must click the verification link to complete the verification process.\n\n**Note:** The `verified` status will be `false` until the verification email is confirmed.",
       "properties": {
