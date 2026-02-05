@@ -1,0 +1,88 @@
+{
+  "version": "1.0.0",
+  "started_at": "2026-02-04T00:00:00Z",
+  "last_updated": "2026-02-04T00:00:00Z",
+  "phase": "implementation",
+  "resources": {
+    "api_keys": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "templates": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "template_versions": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "verified_senders": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "domain_authentication": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "link_branding": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "ip_pools": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "suppressions": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "webhooks": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "subusers": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "teammates": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    },
+    "alerts": {
+      "status": "pending",
+      "unit_tests": "pending",
+      "integration_tests": "pending",
+      "drift_tests": "pending"
+    }
+  },
+  "current_task": null,
+  "errors": [],
+  "metrics": {
+    "resources_completed": 0,
+    "resources_total": 12,
+    "tests_passed": 0,
+    "tests_failed": 0
+  }
+}
