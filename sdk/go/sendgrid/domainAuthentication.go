@@ -126,56 +126,6 @@ func (i *DomainAuthentication) ToDomainAuthenticationOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(DomainAuthenticationOutput)
 }
 
-// DomainAuthenticationArrayInput is an input type that accepts DomainAuthenticationArray and DomainAuthenticationArrayOutput values.
-// You can construct a concrete instance of `DomainAuthenticationArrayInput` via:
-//
-//	DomainAuthenticationArray{ DomainAuthenticationArgs{...} }
-type DomainAuthenticationArrayInput interface {
-	pulumi.Input
-
-	ToDomainAuthenticationArrayOutput() DomainAuthenticationArrayOutput
-	ToDomainAuthenticationArrayOutputWithContext(context.Context) DomainAuthenticationArrayOutput
-}
-
-type DomainAuthenticationArray []DomainAuthenticationInput
-
-func (DomainAuthenticationArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DomainAuthentication)(nil)).Elem()
-}
-
-func (i DomainAuthenticationArray) ToDomainAuthenticationArrayOutput() DomainAuthenticationArrayOutput {
-	return i.ToDomainAuthenticationArrayOutputWithContext(context.Background())
-}
-
-func (i DomainAuthenticationArray) ToDomainAuthenticationArrayOutputWithContext(ctx context.Context) DomainAuthenticationArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DomainAuthenticationArrayOutput)
-}
-
-// DomainAuthenticationMapInput is an input type that accepts DomainAuthenticationMap and DomainAuthenticationMapOutput values.
-// You can construct a concrete instance of `DomainAuthenticationMapInput` via:
-//
-//	DomainAuthenticationMap{ "key": DomainAuthenticationArgs{...} }
-type DomainAuthenticationMapInput interface {
-	pulumi.Input
-
-	ToDomainAuthenticationMapOutput() DomainAuthenticationMapOutput
-	ToDomainAuthenticationMapOutputWithContext(context.Context) DomainAuthenticationMapOutput
-}
-
-type DomainAuthenticationMap map[string]DomainAuthenticationInput
-
-func (DomainAuthenticationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DomainAuthentication)(nil)).Elem()
-}
-
-func (i DomainAuthenticationMap) ToDomainAuthenticationMapOutput() DomainAuthenticationMapOutput {
-	return i.ToDomainAuthenticationMapOutputWithContext(context.Background())
-}
-
-func (i DomainAuthenticationMap) ToDomainAuthenticationMapOutputWithContext(ctx context.Context) DomainAuthenticationMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DomainAuthenticationMapOutput)
-}
-
 type DomainAuthenticationOutput struct{ *pulumi.OutputState }
 
 func (DomainAuthenticationOutput) ElementType() reflect.Type {
@@ -254,51 +204,7 @@ func (o DomainAuthenticationOutput) Valid() pulumi.BoolOutput {
 	return o.ApplyT(func(v *DomainAuthentication) pulumi.BoolOutput { return v.Valid }).(pulumi.BoolOutput)
 }
 
-type DomainAuthenticationArrayOutput struct{ *pulumi.OutputState }
-
-func (DomainAuthenticationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DomainAuthentication)(nil)).Elem()
-}
-
-func (o DomainAuthenticationArrayOutput) ToDomainAuthenticationArrayOutput() DomainAuthenticationArrayOutput {
-	return o
-}
-
-func (o DomainAuthenticationArrayOutput) ToDomainAuthenticationArrayOutputWithContext(ctx context.Context) DomainAuthenticationArrayOutput {
-	return o
-}
-
-func (o DomainAuthenticationArrayOutput) Index(i pulumi.IntInput) DomainAuthenticationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DomainAuthentication {
-		return vs[0].([]*DomainAuthentication)[vs[1].(int)]
-	}).(DomainAuthenticationOutput)
-}
-
-type DomainAuthenticationMapOutput struct{ *pulumi.OutputState }
-
-func (DomainAuthenticationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DomainAuthentication)(nil)).Elem()
-}
-
-func (o DomainAuthenticationMapOutput) ToDomainAuthenticationMapOutput() DomainAuthenticationMapOutput {
-	return o
-}
-
-func (o DomainAuthenticationMapOutput) ToDomainAuthenticationMapOutputWithContext(ctx context.Context) DomainAuthenticationMapOutput {
-	return o
-}
-
-func (o DomainAuthenticationMapOutput) MapIndex(k pulumi.StringInput) DomainAuthenticationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DomainAuthentication {
-		return vs[0].(map[string]*DomainAuthentication)[vs[1].(string)]
-	}).(DomainAuthenticationOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainAuthenticationInput)(nil)).Elem(), &DomainAuthentication{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DomainAuthenticationArrayInput)(nil)).Elem(), DomainAuthenticationArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DomainAuthenticationMapInput)(nil)).Elem(), DomainAuthenticationMap{})
 	pulumi.RegisterOutputType(DomainAuthenticationOutput{})
-	pulumi.RegisterOutputType(DomainAuthenticationArrayOutput{})
-	pulumi.RegisterOutputType(DomainAuthenticationMapOutput{})
 }

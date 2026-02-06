@@ -98,56 +98,6 @@ func (i *GlobalSuppression) ToGlobalSuppressionOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(GlobalSuppressionOutput)
 }
 
-// GlobalSuppressionArrayInput is an input type that accepts GlobalSuppressionArray and GlobalSuppressionArrayOutput values.
-// You can construct a concrete instance of `GlobalSuppressionArrayInput` via:
-//
-//	GlobalSuppressionArray{ GlobalSuppressionArgs{...} }
-type GlobalSuppressionArrayInput interface {
-	pulumi.Input
-
-	ToGlobalSuppressionArrayOutput() GlobalSuppressionArrayOutput
-	ToGlobalSuppressionArrayOutputWithContext(context.Context) GlobalSuppressionArrayOutput
-}
-
-type GlobalSuppressionArray []GlobalSuppressionInput
-
-func (GlobalSuppressionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*GlobalSuppression)(nil)).Elem()
-}
-
-func (i GlobalSuppressionArray) ToGlobalSuppressionArrayOutput() GlobalSuppressionArrayOutput {
-	return i.ToGlobalSuppressionArrayOutputWithContext(context.Background())
-}
-
-func (i GlobalSuppressionArray) ToGlobalSuppressionArrayOutputWithContext(ctx context.Context) GlobalSuppressionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GlobalSuppressionArrayOutput)
-}
-
-// GlobalSuppressionMapInput is an input type that accepts GlobalSuppressionMap and GlobalSuppressionMapOutput values.
-// You can construct a concrete instance of `GlobalSuppressionMapInput` via:
-//
-//	GlobalSuppressionMap{ "key": GlobalSuppressionArgs{...} }
-type GlobalSuppressionMapInput interface {
-	pulumi.Input
-
-	ToGlobalSuppressionMapOutput() GlobalSuppressionMapOutput
-	ToGlobalSuppressionMapOutputWithContext(context.Context) GlobalSuppressionMapOutput
-}
-
-type GlobalSuppressionMap map[string]GlobalSuppressionInput
-
-func (GlobalSuppressionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*GlobalSuppression)(nil)).Elem()
-}
-
-func (i GlobalSuppressionMap) ToGlobalSuppressionMapOutput() GlobalSuppressionMapOutput {
-	return i.ToGlobalSuppressionMapOutputWithContext(context.Background())
-}
-
-func (i GlobalSuppressionMap) ToGlobalSuppressionMapOutputWithContext(ctx context.Context) GlobalSuppressionMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GlobalSuppressionMapOutput)
-}
-
 type GlobalSuppressionOutput struct{ *pulumi.OutputState }
 
 func (GlobalSuppressionOutput) ElementType() reflect.Type {
@@ -170,51 +120,7 @@ func (o GlobalSuppressionOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *GlobalSuppression) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
 }
 
-type GlobalSuppressionArrayOutput struct{ *pulumi.OutputState }
-
-func (GlobalSuppressionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*GlobalSuppression)(nil)).Elem()
-}
-
-func (o GlobalSuppressionArrayOutput) ToGlobalSuppressionArrayOutput() GlobalSuppressionArrayOutput {
-	return o
-}
-
-func (o GlobalSuppressionArrayOutput) ToGlobalSuppressionArrayOutputWithContext(ctx context.Context) GlobalSuppressionArrayOutput {
-	return o
-}
-
-func (o GlobalSuppressionArrayOutput) Index(i pulumi.IntInput) GlobalSuppressionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GlobalSuppression {
-		return vs[0].([]*GlobalSuppression)[vs[1].(int)]
-	}).(GlobalSuppressionOutput)
-}
-
-type GlobalSuppressionMapOutput struct{ *pulumi.OutputState }
-
-func (GlobalSuppressionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*GlobalSuppression)(nil)).Elem()
-}
-
-func (o GlobalSuppressionMapOutput) ToGlobalSuppressionMapOutput() GlobalSuppressionMapOutput {
-	return o
-}
-
-func (o GlobalSuppressionMapOutput) ToGlobalSuppressionMapOutputWithContext(ctx context.Context) GlobalSuppressionMapOutput {
-	return o
-}
-
-func (o GlobalSuppressionMapOutput) MapIndex(k pulumi.StringInput) GlobalSuppressionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *GlobalSuppression {
-		return vs[0].(map[string]*GlobalSuppression)[vs[1].(string)]
-	}).(GlobalSuppressionOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalSuppressionInput)(nil)).Elem(), &GlobalSuppression{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GlobalSuppressionArrayInput)(nil)).Elem(), GlobalSuppressionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GlobalSuppressionMapInput)(nil)).Elem(), GlobalSuppressionMap{})
 	pulumi.RegisterOutputType(GlobalSuppressionOutput{})
-	pulumi.RegisterOutputType(GlobalSuppressionArrayOutput{})
-	pulumi.RegisterOutputType(GlobalSuppressionMapOutput{})
 }

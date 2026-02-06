@@ -105,56 +105,6 @@ func (i *UnsubscribeGroup) ToUnsubscribeGroupOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(UnsubscribeGroupOutput)
 }
 
-// UnsubscribeGroupArrayInput is an input type that accepts UnsubscribeGroupArray and UnsubscribeGroupArrayOutput values.
-// You can construct a concrete instance of `UnsubscribeGroupArrayInput` via:
-//
-//	UnsubscribeGroupArray{ UnsubscribeGroupArgs{...} }
-type UnsubscribeGroupArrayInput interface {
-	pulumi.Input
-
-	ToUnsubscribeGroupArrayOutput() UnsubscribeGroupArrayOutput
-	ToUnsubscribeGroupArrayOutputWithContext(context.Context) UnsubscribeGroupArrayOutput
-}
-
-type UnsubscribeGroupArray []UnsubscribeGroupInput
-
-func (UnsubscribeGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*UnsubscribeGroup)(nil)).Elem()
-}
-
-func (i UnsubscribeGroupArray) ToUnsubscribeGroupArrayOutput() UnsubscribeGroupArrayOutput {
-	return i.ToUnsubscribeGroupArrayOutputWithContext(context.Background())
-}
-
-func (i UnsubscribeGroupArray) ToUnsubscribeGroupArrayOutputWithContext(ctx context.Context) UnsubscribeGroupArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UnsubscribeGroupArrayOutput)
-}
-
-// UnsubscribeGroupMapInput is an input type that accepts UnsubscribeGroupMap and UnsubscribeGroupMapOutput values.
-// You can construct a concrete instance of `UnsubscribeGroupMapInput` via:
-//
-//	UnsubscribeGroupMap{ "key": UnsubscribeGroupArgs{...} }
-type UnsubscribeGroupMapInput interface {
-	pulumi.Input
-
-	ToUnsubscribeGroupMapOutput() UnsubscribeGroupMapOutput
-	ToUnsubscribeGroupMapOutputWithContext(context.Context) UnsubscribeGroupMapOutput
-}
-
-type UnsubscribeGroupMap map[string]UnsubscribeGroupInput
-
-func (UnsubscribeGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*UnsubscribeGroup)(nil)).Elem()
-}
-
-func (i UnsubscribeGroupMap) ToUnsubscribeGroupMapOutput() UnsubscribeGroupMapOutput {
-	return i.ToUnsubscribeGroupMapOutputWithContext(context.Background())
-}
-
-func (i UnsubscribeGroupMap) ToUnsubscribeGroupMapOutputWithContext(ctx context.Context) UnsubscribeGroupMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UnsubscribeGroupMapOutput)
-}
-
 type UnsubscribeGroupOutput struct{ *pulumi.OutputState }
 
 func (UnsubscribeGroupOutput) ElementType() reflect.Type {
@@ -189,51 +139,7 @@ func (o UnsubscribeGroupOutput) Unsubscribes() pulumi.IntOutput {
 	return o.ApplyT(func(v *UnsubscribeGroup) pulumi.IntOutput { return v.Unsubscribes }).(pulumi.IntOutput)
 }
 
-type UnsubscribeGroupArrayOutput struct{ *pulumi.OutputState }
-
-func (UnsubscribeGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*UnsubscribeGroup)(nil)).Elem()
-}
-
-func (o UnsubscribeGroupArrayOutput) ToUnsubscribeGroupArrayOutput() UnsubscribeGroupArrayOutput {
-	return o
-}
-
-func (o UnsubscribeGroupArrayOutput) ToUnsubscribeGroupArrayOutputWithContext(ctx context.Context) UnsubscribeGroupArrayOutput {
-	return o
-}
-
-func (o UnsubscribeGroupArrayOutput) Index(i pulumi.IntInput) UnsubscribeGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UnsubscribeGroup {
-		return vs[0].([]*UnsubscribeGroup)[vs[1].(int)]
-	}).(UnsubscribeGroupOutput)
-}
-
-type UnsubscribeGroupMapOutput struct{ *pulumi.OutputState }
-
-func (UnsubscribeGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*UnsubscribeGroup)(nil)).Elem()
-}
-
-func (o UnsubscribeGroupMapOutput) ToUnsubscribeGroupMapOutput() UnsubscribeGroupMapOutput {
-	return o
-}
-
-func (o UnsubscribeGroupMapOutput) ToUnsubscribeGroupMapOutputWithContext(ctx context.Context) UnsubscribeGroupMapOutput {
-	return o
-}
-
-func (o UnsubscribeGroupMapOutput) MapIndex(k pulumi.StringInput) UnsubscribeGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UnsubscribeGroup {
-		return vs[0].(map[string]*UnsubscribeGroup)[vs[1].(string)]
-	}).(UnsubscribeGroupOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UnsubscribeGroupInput)(nil)).Elem(), &UnsubscribeGroup{})
-	pulumi.RegisterInputType(reflect.TypeOf((*UnsubscribeGroupArrayInput)(nil)).Elem(), UnsubscribeGroupArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*UnsubscribeGroupMapInput)(nil)).Elem(), UnsubscribeGroupMap{})
 	pulumi.RegisterOutputType(UnsubscribeGroupOutput{})
-	pulumi.RegisterOutputType(UnsubscribeGroupArrayOutput{})
-	pulumi.RegisterOutputType(UnsubscribeGroupMapOutput{})
 }

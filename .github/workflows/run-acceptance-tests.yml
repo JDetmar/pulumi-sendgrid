@@ -40,7 +40,6 @@ jobs:
     name: prerequisites
     permissions:
       contents: read # For checkout.
-      id-token: write # For ESC secrets.
       pull-requests: write # For schema check comment.
     steps:
       - name: Checkout Repo

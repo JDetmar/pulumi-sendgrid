@@ -129,56 +129,6 @@ func (i *TemplateVersion) ToTemplateVersionOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(TemplateVersionOutput)
 }
 
-// TemplateVersionArrayInput is an input type that accepts TemplateVersionArray and TemplateVersionArrayOutput values.
-// You can construct a concrete instance of `TemplateVersionArrayInput` via:
-//
-//	TemplateVersionArray{ TemplateVersionArgs{...} }
-type TemplateVersionArrayInput interface {
-	pulumi.Input
-
-	ToTemplateVersionArrayOutput() TemplateVersionArrayOutput
-	ToTemplateVersionArrayOutputWithContext(context.Context) TemplateVersionArrayOutput
-}
-
-type TemplateVersionArray []TemplateVersionInput
-
-func (TemplateVersionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*TemplateVersion)(nil)).Elem()
-}
-
-func (i TemplateVersionArray) ToTemplateVersionArrayOutput() TemplateVersionArrayOutput {
-	return i.ToTemplateVersionArrayOutputWithContext(context.Background())
-}
-
-func (i TemplateVersionArray) ToTemplateVersionArrayOutputWithContext(ctx context.Context) TemplateVersionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TemplateVersionArrayOutput)
-}
-
-// TemplateVersionMapInput is an input type that accepts TemplateVersionMap and TemplateVersionMapOutput values.
-// You can construct a concrete instance of `TemplateVersionMapInput` via:
-//
-//	TemplateVersionMap{ "key": TemplateVersionArgs{...} }
-type TemplateVersionMapInput interface {
-	pulumi.Input
-
-	ToTemplateVersionMapOutput() TemplateVersionMapOutput
-	ToTemplateVersionMapOutputWithContext(context.Context) TemplateVersionMapOutput
-}
-
-type TemplateVersionMap map[string]TemplateVersionInput
-
-func (TemplateVersionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*TemplateVersion)(nil)).Elem()
-}
-
-func (i TemplateVersionMap) ToTemplateVersionMapOutput() TemplateVersionMapOutput {
-	return i.ToTemplateVersionMapOutputWithContext(context.Background())
-}
-
-func (i TemplateVersionMap) ToTemplateVersionMapOutputWithContext(ctx context.Context) TemplateVersionMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(TemplateVersionMapOutput)
-}
-
 type TemplateVersionOutput struct{ *pulumi.OutputState }
 
 func (TemplateVersionOutput) ElementType() reflect.Type {
@@ -241,51 +191,7 @@ func (o TemplateVersionOutput) VersionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemplateVersion) pulumi.StringOutput { return v.VersionId }).(pulumi.StringOutput)
 }
 
-type TemplateVersionArrayOutput struct{ *pulumi.OutputState }
-
-func (TemplateVersionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*TemplateVersion)(nil)).Elem()
-}
-
-func (o TemplateVersionArrayOutput) ToTemplateVersionArrayOutput() TemplateVersionArrayOutput {
-	return o
-}
-
-func (o TemplateVersionArrayOutput) ToTemplateVersionArrayOutputWithContext(ctx context.Context) TemplateVersionArrayOutput {
-	return o
-}
-
-func (o TemplateVersionArrayOutput) Index(i pulumi.IntInput) TemplateVersionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TemplateVersion {
-		return vs[0].([]*TemplateVersion)[vs[1].(int)]
-	}).(TemplateVersionOutput)
-}
-
-type TemplateVersionMapOutput struct{ *pulumi.OutputState }
-
-func (TemplateVersionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*TemplateVersion)(nil)).Elem()
-}
-
-func (o TemplateVersionMapOutput) ToTemplateVersionMapOutput() TemplateVersionMapOutput {
-	return o
-}
-
-func (o TemplateVersionMapOutput) ToTemplateVersionMapOutputWithContext(ctx context.Context) TemplateVersionMapOutput {
-	return o
-}
-
-func (o TemplateVersionMapOutput) MapIndex(k pulumi.StringInput) TemplateVersionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *TemplateVersion {
-		return vs[0].(map[string]*TemplateVersion)[vs[1].(string)]
-	}).(TemplateVersionOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TemplateVersionInput)(nil)).Elem(), &TemplateVersion{})
-	pulumi.RegisterInputType(reflect.TypeOf((*TemplateVersionArrayInput)(nil)).Elem(), TemplateVersionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*TemplateVersionMapInput)(nil)).Elem(), TemplateVersionMap{})
 	pulumi.RegisterOutputType(TemplateVersionOutput{})
-	pulumi.RegisterOutputType(TemplateVersionArrayOutput{})
-	pulumi.RegisterOutputType(TemplateVersionMapOutput{})
 }
