@@ -20,10 +20,10 @@ import (
 type ApiKey struct {
 	pulumi.CustomResourceState
 
-	ApiKey   pulumi.StringPtrOutput   `pulumi:"apiKey"`
-	ApiKeyId pulumi.StringOutput      `pulumi:"apiKeyId"`
-	Name     pulumi.StringOutput      `pulumi:"name"`
-	Scopes   pulumi.StringArrayOutput `pulumi:"scopes"`
+	ApiKeyId    pulumi.StringOutput      `pulumi:"apiKeyId"`
+	ApiKeyValue pulumi.StringPtrOutput   `pulumi:"apiKeyValue"`
+	Name        pulumi.StringOutput      `pulumi:"name"`
+	Scopes      pulumi.StringArrayOutput `pulumi:"scopes"`
 }
 
 // NewApiKey registers a new resource with the given unique name, arguments, and options.
@@ -37,7 +37,7 @@ func NewApiKey(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Name'")
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
-		"apiKey",
+		"apiKeyValue",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -170,12 +170,12 @@ func (o ApiKeyOutput) ToApiKeyOutputWithContext(ctx context.Context) ApiKeyOutpu
 	return o
 }
 
-func (o ApiKeyOutput) ApiKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ApiKey) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
-}
-
 func (o ApiKeyOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApiKey) pulumi.StringOutput { return v.ApiKeyId }).(pulumi.StringOutput)
+}
+
+func (o ApiKeyOutput) ApiKeyValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApiKey) pulumi.StringPtrOutput { return v.ApiKeyValue }).(pulumi.StringPtrOutput)
 }
 
 func (o ApiKeyOutput) Name() pulumi.StringOutput {

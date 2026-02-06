@@ -177,7 +177,7 @@ func TestSendGridClient_CreateTemplateVersion(t *testing.T) {
 				TemplateID           string `json:"template_id"`
 				Name                 string `json:"name"`
 				Subject              string `json:"subject"`
-				HtmlContent          string `json:"html_content"`
+				HTMLContent          string `json:"html_content"`
 				PlainContent         string `json:"plain_content"`
 				Active               int    `json:"active"`
 				Editor               string `json:"editor"`
@@ -287,7 +287,7 @@ func TestSendGridClient_GetTemplateVersion(t *testing.T) {
 				TemplateID           string `json:"template_id"`
 				Name                 string `json:"name"`
 				Subject              string `json:"subject"`
-				HtmlContent          string `json:"html_content"`
+				HTMLContent          string `json:"html_content"`
 				PlainContent         string `json:"plain_content"`
 				Active               int    `json:"active"`
 				Editor               string `json:"editor"`
@@ -408,7 +408,7 @@ func TestSendGridClient_UpdateTemplateVersion(t *testing.T) {
 				TemplateID           string `json:"template_id"`
 				Name                 string `json:"name"`
 				Subject              string `json:"subject"`
-				HtmlContent          string `json:"html_content"`
+				HTMLContent          string `json:"html_content"`
 				PlainContent         string `json:"plain_content"`
 				Active               int    `json:"active"`
 				Editor               string `json:"editor"`
@@ -512,7 +512,7 @@ func TestBuildTemplateVersionState(t *testing.T) {
 		TemplateID           string `json:"template_id"`
 		Name                 string `json:"name"`
 		Subject              string `json:"subject"`
-		HtmlContent          string `json:"html_content"`
+		HTMLContent          string `json:"html_content"`
 		PlainContent         string `json:"plain_content"`
 		Active               int    `json:"active"`
 		Editor               string `json:"editor"`
@@ -525,7 +525,7 @@ func TestBuildTemplateVersionState(t *testing.T) {
 		TemplateID:           "d-template-456",
 		Name:                 "Test Version",
 		Subject:              "Hello {{name}}",
-		HtmlContent:          "<h1>Hello</h1>",
+		HTMLContent:          "<h1>Hello</h1>",
 		PlainContent:         "Hello",
 		Active:               1,
 		Editor:               "code",
@@ -542,8 +542,8 @@ func TestBuildTemplateVersionState(t *testing.T) {
 	assert.Equal(t, "Test Version", state.Name)
 	assert.NotNil(t, state.Subject)
 	assert.Equal(t, "Hello {{name}}", *state.Subject)
-	assert.NotNil(t, state.HtmlContent)
-	assert.Equal(t, "<h1>Hello</h1>", *state.HtmlContent)
+	assert.NotNil(t, state.HTMLContent)
+	assert.Equal(t, "<h1>Hello</h1>", *state.HTMLContent)
 	assert.NotNil(t, state.PlainContent)
 	assert.Equal(t, "Hello", *state.PlainContent)
 	assert.NotNil(t, state.Active)
@@ -566,7 +566,7 @@ func TestBuildTemplateVersionState_EmptyFields(t *testing.T) {
 		TemplateID           string `json:"template_id"`
 		Name                 string `json:"name"`
 		Subject              string `json:"subject"`
-		HtmlContent          string `json:"html_content"`
+		HTMLContent          string `json:"html_content"`
 		PlainContent         string `json:"plain_content"`
 		Active               int    `json:"active"`
 		Editor               string `json:"editor"`
@@ -579,7 +579,7 @@ func TestBuildTemplateVersionState_EmptyFields(t *testing.T) {
 		TemplateID:           "d-template-456",
 		Name:                 "Test Version",
 		Subject:              "",
-		HtmlContent:          "",
+		HTMLContent:          "",
 		PlainContent:         "",
 		Active:               0,
 		Editor:               "",
@@ -595,7 +595,7 @@ func TestBuildTemplateVersionState_EmptyFields(t *testing.T) {
 	assert.Equal(t, "d-template-456", state.TemplateID)
 	assert.Equal(t, "Test Version", state.Name)
 	assert.Nil(t, state.Subject)
-	assert.Nil(t, state.HtmlContent)
+	assert.Nil(t, state.HTMLContent)
 	assert.Nil(t, state.PlainContent)
 	assert.NotNil(t, state.Active)
 	assert.Equal(t, 0, *state.Active)

@@ -48,8 +48,8 @@ type TemplateVersionArgs struct {
 	// Subject is the subject line of the email (required for dynamic templates)
 	Subject *string `pulumi:"subject,optional"`
 
-	// HtmlContent is the HTML content of the email
-	HtmlContent *string `pulumi:"htmlContent,optional"`
+	// HTMLContent is the HTML content of the email
+	HTMLContent *string `pulumi:"htmlContent,optional"`
 
 	// PlainContent is the plain text content of the email
 	PlainContent *string `pulumi:"plainContent,optional"`
@@ -124,8 +124,8 @@ func (tv *TemplateVersion) Create(ctx context.Context, req infer.CreateRequest[T
 	if input.Subject != nil {
 		reqBody["subject"] = *input.Subject
 	}
-	if input.HtmlContent != nil {
-		reqBody["html_content"] = *input.HtmlContent
+	if input.HTMLContent != nil {
+		reqBody["html_content"] = *input.HTMLContent
 	}
 	if input.PlainContent != nil {
 		reqBody["plain_content"] = *input.PlainContent
@@ -149,7 +149,7 @@ func (tv *TemplateVersion) Create(ctx context.Context, req infer.CreateRequest[T
 		TemplateID           string `json:"template_id"`
 		Name                 string `json:"name"`
 		Subject              string `json:"subject"`
-		HtmlContent          string `json:"html_content"`
+		HTMLContent          string `json:"html_content"`
 		PlainContent         string `json:"plain_content"`
 		Active               int    `json:"active"`
 		Editor               string `json:"editor"`
@@ -190,7 +190,7 @@ func (tv *TemplateVersion) Read(ctx context.Context, req infer.ReadRequest[Templ
 		TemplateID           string `json:"template_id"`
 		Name                 string `json:"name"`
 		Subject              string `json:"subject"`
-		HtmlContent          string `json:"html_content"`
+		HTMLContent          string `json:"html_content"`
 		PlainContent         string `json:"plain_content"`
 		Active               int    `json:"active"`
 		Editor               string `json:"editor"`
@@ -217,15 +217,15 @@ func (tv *TemplateVersion) Read(ctx context.Context, req infer.ReadRequest[Templ
 
 	// Build inputs from state
 	inputs := TemplateVersionArgs{
-		TemplateID: state.TemplateID,
-		Name:       state.Name,
-		Subject:    state.Subject,
-		HtmlContent: state.HtmlContent,
-		PlainContent: state.PlainContent,
-		Active:     state.Active,
-		Editor:     state.Editor,
+		TemplateID:           state.TemplateID,
+		Name:                 state.Name,
+		Subject:              state.Subject,
+		HTMLContent:          state.HTMLContent,
+		PlainContent:         state.PlainContent,
+		Active:               state.Active,
+		Editor:               state.Editor,
 		GeneratePlainContent: state.GeneratePlainContent,
-		TestData:   state.TestData,
+		TestData:             state.TestData,
 	}
 
 	return infer.ReadResponse[TemplateVersionArgs, TemplateVersionState]{
@@ -266,8 +266,8 @@ func (tv *TemplateVersion) Update(ctx context.Context, req infer.UpdateRequest[T
 	if input.Subject != nil {
 		reqBody["subject"] = *input.Subject
 	}
-	if input.HtmlContent != nil {
-		reqBody["html_content"] = *input.HtmlContent
+	if input.HTMLContent != nil {
+		reqBody["html_content"] = *input.HTMLContent
 	}
 	if input.PlainContent != nil {
 		reqBody["plain_content"] = *input.PlainContent
@@ -287,7 +287,7 @@ func (tv *TemplateVersion) Update(ctx context.Context, req infer.UpdateRequest[T
 		TemplateID           string `json:"template_id"`
 		Name                 string `json:"name"`
 		Subject              string `json:"subject"`
-		HtmlContent          string `json:"html_content"`
+		HTMLContent          string `json:"html_content"`
 		PlainContent         string `json:"plain_content"`
 		Active               int    `json:"active"`
 		Editor               string `json:"editor"`
@@ -338,7 +338,7 @@ func buildTemplateVersionState(result struct {
 	TemplateID           string `json:"template_id"`
 	Name                 string `json:"name"`
 	Subject              string `json:"subject"`
-	HtmlContent          string `json:"html_content"`
+	HTMLContent          string `json:"html_content"`
 	PlainContent         string `json:"plain_content"`
 	Active               int    `json:"active"`
 	Editor               string `json:"editor"`
@@ -352,8 +352,8 @@ func buildTemplateVersionState(result struct {
 	if result.Subject != "" {
 		subject = &result.Subject
 	}
-	if result.HtmlContent != "" {
-		htmlContent = &result.HtmlContent
+	if result.HTMLContent != "" {
+		htmlContent = &result.HTMLContent
 	}
 	if result.PlainContent != "" {
 		plainContent = &result.PlainContent
@@ -375,15 +375,14 @@ func buildTemplateVersionState(result struct {
 	}
 
 	// Convert generatePlainContent
-	var generatePlainContent *bool
-	generatePlainContent = &result.GeneratePlainContent
+	var generatePlainContent = &result.GeneratePlainContent
 
 	return TemplateVersionState{
 		TemplateVersionArgs: TemplateVersionArgs{
 			TemplateID:           result.TemplateID,
 			Name:                 result.Name,
 			Subject:              subject,
-			HtmlContent:          htmlContent,
+			HTMLContent:          htmlContent,
 			PlainContent:         plainContent,
 			Active:               active,
 			Editor:               editor,

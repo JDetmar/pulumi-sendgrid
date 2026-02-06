@@ -34,7 +34,7 @@ func mockSendGridServer(t *testing.T, handler http.HandlerFunc) *httptest.Server
 	return server
 }
 
-func TestSendGridClient_CreateApiKey(t *testing.T) {
+func TestSendGridClient_CreateAPIKey(t *testing.T) {
 	t.Parallel()
 
 	tests := []struct {
@@ -139,8 +139,8 @@ func TestSendGridClient_CreateApiKey(t *testing.T) {
 			}
 
 			var result struct {
-				ApiKey   string   `json:"api_key"`
-				ApiKeyID string   `json:"api_key_id"`
+				APIKey   string   `json:"api_key"`
+				APIKeyID string   `json:"api_key_id"`
 				Name     string   `json:"name"`
 				Scopes   []string `json:"scopes"`
 			}
@@ -152,15 +152,15 @@ func TestSendGridClient_CreateApiKey(t *testing.T) {
 				assert.Contains(t, err.Error(), tt.errorContains)
 			} else {
 				require.NoError(t, err)
-				assert.NotEmpty(t, result.ApiKey)
-				assert.NotEmpty(t, result.ApiKeyID)
+				assert.NotEmpty(t, result.APIKey)
+				assert.NotEmpty(t, result.APIKeyID)
 				assert.Equal(t, tt.requestName, result.Name)
 			}
 		})
 	}
 }
 
-func TestSendGridClient_GetApiKey(t *testing.T) {
+func TestSendGridClient_GetAPIKey(t *testing.T) {
 	t.Parallel()
 
 	tests := []struct {
@@ -210,7 +210,7 @@ func TestSendGridClient_GetApiKey(t *testing.T) {
 			client := NewSendGridClient("test-api-key", server.URL)
 
 			var result struct {
-				ApiKeyID string   `json:"api_key_id"`
+				APIKeyID string   `json:"api_key_id"`
 				Name     string   `json:"name"`
 				Scopes   []string `json:"scopes"`
 			}
@@ -226,13 +226,13 @@ func TestSendGridClient_GetApiKey(t *testing.T) {
 				}
 			} else {
 				require.NoError(t, err)
-				assert.Equal(t, tt.apiKeyID, result.ApiKeyID)
+				assert.Equal(t, tt.apiKeyID, result.APIKeyID)
 			}
 		})
 	}
 }
 
-func TestSendGridClient_UpdateApiKey(t *testing.T) {
+func TestSendGridClient_UpdateAPIKey(t *testing.T) {
 	t.Parallel()
 
 	tests := []struct {
@@ -297,7 +297,7 @@ func TestSendGridClient_UpdateApiKey(t *testing.T) {
 			}
 
 			var result struct {
-				ApiKeyID string   `json:"api_key_id"`
+				APIKeyID string   `json:"api_key_id"`
 				Name     string   `json:"name"`
 				Scopes   []string `json:"scopes"`
 			}
@@ -314,7 +314,7 @@ func TestSendGridClient_UpdateApiKey(t *testing.T) {
 	}
 }
 
-func TestSendGridClient_DeleteApiKey(t *testing.T) {
+func TestSendGridClient_DeleteAPIKey(t *testing.T) {
 	t.Parallel()
 
 	tests := []struct {

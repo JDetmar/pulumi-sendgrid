@@ -37,8 +37,8 @@ import (
 	sendgrid "github.com/JDetmar/pulumi-sendgrid/provider"
 )
 
-// skipIfNoApiKey skips the test if SENDGRID_API_KEY is not set
-func skipIfNoApiKey(t *testing.T) string {
+// skipIfNoAPIKey skips the test if SENDGRID_API_KEY is not set
+func skipIfNoAPIKey(t *testing.T) string {
 	apiKey := os.Getenv("SENDGRID_API_KEY")
 	if apiKey == "" {
 		t.Skip("SENDGRID_API_KEY environment variable not set, skipping integration test")
@@ -87,7 +87,7 @@ func sendGridAPIGet(apiKey, path string) (map[string]interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -116,7 +116,7 @@ func newArrayValue(values ...string) property.Value {
 
 // TestApiKeyIntegration_FullLifecycle tests the full CRUD lifecycle of an API key
 func TestApiKeyIntegration_FullLifecycle(t *testing.T) {
-	apiKey := skipIfNoApiKey(t)
+	apiKey := skipIfNoAPIKey(t)
 	prov := configuredProvider(t, apiKey)
 
 	testKeyName := fmt.Sprintf("pulumi-integration-test-%d", time.Now().Unix())
@@ -285,7 +285,7 @@ func TestApiKeyIntegration_FullLifecycle(t *testing.T) {
 
 // TestApiKeyIntegration_Preview tests that preview (dry run) doesn't create resources
 func TestApiKeyIntegration_Preview(t *testing.T) {
-	apiKey := skipIfNoApiKey(t)
+	apiKey := skipIfNoAPIKey(t)
 	prov := configuredProvider(t, apiKey)
 
 	testKeyName := fmt.Sprintf("pulumi-preview-test-%d", time.Now().Unix())
@@ -304,8 +304,8 @@ func TestApiKeyIntegration_Preview(t *testing.T) {
 	// Preview should return placeholder values
 	assert.Equal(t, "[preview]", createResp.ID)
 	// The apiKeyId might be returned as a computed value or a placeholder string
-	apiKeyIdVal := createResp.Properties.Get("apiKeyId")
-	assert.True(t, apiKeyIdVal.IsComputed() || apiKeyIdVal.AsString() == "[computed]",
+	apiKeyIDVal := createResp.Properties.Get("apiKeyId")
+	assert.True(t, apiKeyIDVal.IsComputed() || apiKeyIDVal.AsString() == "[computed]",
 		"Preview should return computed or placeholder apiKeyId")
 	t.Logf("Preview returned placeholder ID as expected")
 
@@ -325,7 +325,7 @@ func TestApiKeyIntegration_Preview(t *testing.T) {
 
 // TestApiKeyIntegration_ReadNotFound tests that reading a non-existent key returns empty
 func TestApiKeyIntegration_ReadNotFound(t *testing.T) {
-	apiKey := skipIfNoApiKey(t)
+	apiKey := skipIfNoAPIKey(t)
 	prov := configuredProvider(t, apiKey)
 
 	readResp, err := prov.Read(p.ReadRequest{

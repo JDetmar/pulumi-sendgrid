@@ -39,6 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     name: prerequisites
     permissions:
+      contents: read # For checkout.
       id-token: write # For ESC secrets.
       pull-requests: write # For schema check comment.
     steps:
@@ -109,6 +110,7 @@ jobs:
             sdk/python/pyproject.toml
             sdk/python/setup.py
             sdk/java/build.gradle
+            schema-check.txt
 
       - name: Tar provider binaries
         run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-gen-${{ env.PROVIDER }}
@@ -184,6 +186,7 @@ jobs:
             sdk/python/pyproject.toml
             sdk/python/setup.py
             sdk/java/build.gradle
+            schema-check.txt
 
       - name: Tar SDK folder
         run: tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }} .

@@ -19,11 +19,11 @@ namespace Pulumi.Sendgrid
     [SendgridResourceType("sendgrid:index:ApiKey")]
     public partial class ApiKey : global::Pulumi.CustomResource
     {
-        [Output("apiKey")]
-        public Output<string?> ApiKey { get; private set; } = null!;
-
         [Output("apiKeyId")]
         public Output<string> ApiKeyId { get; private set; } = null!;
+
+        [Output("apiKeyValue")]
+        public Output<string?> ApiKeyValue { get; private set; } = null!;
 
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -56,7 +56,7 @@ namespace Pulumi.Sendgrid
                 Version = Utilities.Version,
                 AdditionalSecretOutputs =
                 {
-                    "apiKey",
+                    "apiKeyValue",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);

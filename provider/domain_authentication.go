@@ -111,18 +111,18 @@ func (d *DomainAuthentication) Annotate(annotator infer.Annotator) {
 
 // domainAuthAPIResponse represents the SendGrid API response structure
 type domainAuthAPIResponse struct {
-	ID                 int                    `json:"id"`
-	UserID             int                    `json:"user_id"`
-	Domain             string                 `json:"domain"`
-	Subdomain          string                 `json:"subdomain"`
-	Username           string                 `json:"username"`
-	Ips                []string               `json:"ips"`
-	CustomSpf          bool                   `json:"custom_spf"`
-	Default            bool                   `json:"default"`
-	AutomaticSecurity  bool                   `json:"automatic_security"`
-	Valid              bool                   `json:"valid"`
-	Legacy             bool                   `json:"legacy"`
-	DNS                domainAuthDNSResponse  `json:"dns"`
+	ID                int                   `json:"id"`
+	UserID            int                   `json:"user_id"`
+	Domain            string                `json:"domain"`
+	Subdomain         string                `json:"subdomain"`
+	Username          string                `json:"username"`
+	Ips               []string              `json:"ips"`
+	CustomSpf         bool                  `json:"custom_spf"`
+	Default           bool                  `json:"default"`
+	AutomaticSecurity bool                  `json:"automatic_security"`
+	Valid             bool                  `json:"valid"`
+	Legacy            bool                  `json:"legacy"`
+	DNS               domainAuthDNSResponse `json:"dns"`
 }
 
 type domainAuthDNSResponse struct {

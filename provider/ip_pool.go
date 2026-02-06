@@ -27,16 +27,16 @@ import (
 // This resource manages SendGrid IP Pools, which allow you to group
 // your dedicated IP addresses. For example, you could have a pool
 // for transactional emails and another for marketing emails.
-type IpPool struct{}
+type IpPool struct{} //nolint:revive // name matches Pulumi resource token
 
 // IpPoolArgs are the inputs to the IpPool resource.
-type IpPoolArgs struct {
+type IpPoolArgs struct { //nolint:revive // name matches Pulumi resource token
 	// Name is the name of the IP pool (required, max 64 chars)
 	Name string `pulumi:"name"`
 }
 
 // IpPoolState is the state of the IpPool resource.
-type IpPoolState struct {
+type IpPoolState struct { //nolint:revive // name matches Pulumi resource token
 	// Embed the input args in the output state
 	IpPoolArgs
 

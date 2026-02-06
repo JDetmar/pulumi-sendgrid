@@ -25,10 +25,10 @@ import (
 //
 // This resource manages SendGrid API Keys, which are used to authenticate
 // access to SendGrid services.
-type ApiKey struct{}
+type ApiKey struct{} //nolint:revive // name matches Pulumi resource token
 
 // ApiKeyArgs are the inputs to the ApiKey resource.
-type ApiKeyArgs struct {
+type ApiKeyArgs struct { //nolint:revive // name matches Pulumi resource token
 	// Name is the name of the API key (required)
 	Name string `pulumi:"name"`
 
@@ -40,17 +40,17 @@ type ApiKeyArgs struct {
 }
 
 // ApiKeyState is the state of the ApiKey resource.
-type ApiKeyState struct {
+type ApiKeyState struct { //nolint:revive // name matches Pulumi resource token
 	// Embed the input args in the output state
 	ApiKeyArgs
 
-	// ApiKeyID is the unique identifier for this API key
-	ApiKeyID string `pulumi:"apiKeyId"`
+	// APIKeyID is the unique identifier for this API key
+	APIKeyID string `pulumi:"apiKeyId"`
 
-	// ApiKey is the actual API key value. This is only returned on creation
+	// APIKeyValue is the actual API key value. This is only returned on creation
 	// and cannot be retrieved again, so it's marked as a secret and optional.
 	// After creation, subsequent reads/updates won't have access to this value.
-	ApiKey string `pulumi:"apiKey,optional" provider:"secret"`
+	APIKeyValue string `pulumi:"apiKeyValue,optional" provider:"secret"`
 }
 
 // Annotate provides descriptions and default values for the ApiKey resource.
@@ -70,9 +70,9 @@ func (a *ApiKey) Create(ctx context.Context, req infer.CreateRequest[ApiKeyArgs]
 	// During preview, return placeholder state
 	if preview {
 		state := ApiKeyState{
-			ApiKeyArgs: input,
-			ApiKeyID:   "[computed]",
-			ApiKey:     "[computed]",
+			ApiKeyArgs:  input,
+			APIKeyID:    "[computed]",
+			APIKeyValue: "[computed]",
 		}
 		return infer.CreateResponse[ApiKeyState]{
 			ID:     "[preview]",
@@ -96,8 +96,8 @@ func (a *ApiKey) Create(ctx context.Context, req infer.CreateRequest[ApiKeyArgs]
 
 	// Make the API call
 	var result struct {
-		ApiKey   string   `json:"api_key"`
-		ApiKeyID string   `json:"api_key_id"`
+		APIKey   string   `json:"api_key"`
+		APIKeyID string   `json:"api_key_id"`
 		Name     string   `json:"name"`
 		Scopes   []string `json:"scopes"`
 	}
@@ -111,12 +111,12 @@ func (a *ApiKey) Create(ctx context.Context, req infer.CreateRequest[ApiKeyArgs]
 			Name:   result.Name,
 			Scopes: result.Scopes,
 		},
-		ApiKeyID: result.ApiKeyID,
-		ApiKey:   result.ApiKey,
+		APIKeyID:    result.APIKeyID,
+		APIKeyValue: result.APIKey,
 	}
 
 	return infer.CreateResponse[ApiKeyState]{
-		ID:     result.ApiKeyID,
+		ID:     result.APIKeyID,
 		Output: state,
 	}, nil
 }
@@ -134,7 +134,7 @@ func (a *ApiKey) Read(ctx context.Context, req infer.ReadRequest[ApiKeyArgs, Api
 
 	// Make the API call to get the API key details
 	var result struct {
-		ApiKeyID string   `json:"api_key_id"`
+		APIKeyID string   `json:"api_key_id"`
 		Name     string   `json:"name"`
 		Scopes   []string `json:"scopes"`
 	}
@@ -154,9 +154,9 @@ func (a *ApiKey) Read(ctx context.Context, req infer.ReadRequest[ApiKeyArgs, Api
 			Name:   result.Name,
 			Scopes: result.Scopes,
 		},
-		ApiKeyID: result.ApiKeyID,
+		APIKeyID: result.APIKeyID,
 		// Preserve the API key from old state since it can't be retrieved
-		ApiKey: oldState.ApiKey,
+		APIKeyValue: oldState.APIKeyValue,
 	}
 
 	inputs := ApiKeyArgs{
@@ -181,9 +181,9 @@ func (a *ApiKey) Update(ctx context.Context, req infer.UpdateRequest[ApiKeyArgs,
 	// During preview, return expected state
 	if preview {
 		state := ApiKeyState{
-			ApiKeyArgs: input,
-			ApiKeyID:   oldState.ApiKeyID,
-			ApiKey:     oldState.ApiKey,
+			ApiKeyArgs:  input,
+			APIKeyID:    oldState.APIKeyID,
+			APIKeyValue: oldState.APIKeyValue,
 		}
 		return infer.UpdateResponse[ApiKeyState]{Output: state}, nil
 	}
@@ -206,7 +206,7 @@ func (a *ApiKey) Update(ctx context.Context, req infer.UpdateRequest[ApiKeyArgs,
 	}
 
 	var result struct {
-		ApiKeyID string   `json:"api_key_id"`
+		APIKeyID string   `json:"api_key_id"`
 		Name     string   `json:"name"`
 		Scopes   []string `json:"scopes"`
 	}
@@ -220,9 +220,9 @@ func (a *ApiKey) Update(ctx context.Context, req infer.UpdateRequest[ApiKeyArgs,
 			Name:   result.Name,
 			Scopes: result.Scopes,
 		},
-		ApiKeyID: result.ApiKeyID,
+		APIKeyID: result.APIKeyID,
 		// Preserve the API key from old state since it can't be retrieved
-		ApiKey: oldState.ApiKey,
+		APIKeyValue: oldState.APIKeyValue,
 	}
 
 	return infer.UpdateResponse[ApiKeyState]{Output: state}, nil

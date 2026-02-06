@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AlertArgs } from "./alert";
+export type Alert = import("./alert").Alert;
+export const Alert: typeof import("./alert").Alert = null as any;
+utilities.lazyLoad(exports, ["Alert"], () => require("./alert"));
+
 export { ApiKeyArgs } from "./apiKey";
 export type ApiKey = import("./apiKey").ApiKey;
 export const ApiKey: typeof import("./apiKey").ApiKey = null as any;
@@ -14,6 +19,16 @@ export { DomainAuthenticationArgs } from "./domainAuthentication";
 export type DomainAuthentication = import("./domainAuthentication").DomainAuthentication;
 export const DomainAuthentication: typeof import("./domainAuthentication").DomainAuthentication = null as any;
 utilities.lazyLoad(exports, ["DomainAuthentication"], () => require("./domainAuthentication"));
+
+export { EventWebhookArgs } from "./eventWebhook";
+export type EventWebhook = import("./eventWebhook").EventWebhook;
+export const EventWebhook: typeof import("./eventWebhook").EventWebhook = null as any;
+utilities.lazyLoad(exports, ["EventWebhook"], () => require("./eventWebhook"));
+
+export { GlobalSuppressionArgs } from "./globalSuppression";
+export type GlobalSuppression = import("./globalSuppression").GlobalSuppression;
+export const GlobalSuppression: typeof import("./globalSuppression").GlobalSuppression = null as any;
+utilities.lazyLoad(exports, ["GlobalSuppression"], () => require("./globalSuppression"));
 
 export { IpPoolArgs } from "./ipPool";
 export type IpPool = import("./ipPool").IpPool;
@@ -29,6 +44,16 @@ export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { SubuserArgs } from "./subuser";
+export type Subuser = import("./subuser").Subuser;
+export const Subuser: typeof import("./subuser").Subuser = null as any;
+utilities.lazyLoad(exports, ["Subuser"], () => require("./subuser"));
+
+export { TeammateArgs } from "./teammate";
+export type Teammate = import("./teammate").Teammate;
+export const Teammate: typeof import("./teammate").Teammate = null as any;
+utilities.lazyLoad(exports, ["Teammate"], () => require("./teammate"));
 
 export { TemplateArgs } from "./template";
 export type Template = import("./template").Template;
@@ -64,14 +89,24 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "sendgrid:index:Alert":
+                return new Alert(name, <any>undefined, { urn })
             case "sendgrid:index:ApiKey":
                 return new ApiKey(name, <any>undefined, { urn })
             case "sendgrid:index:DomainAuthentication":
                 return new DomainAuthentication(name, <any>undefined, { urn })
+            case "sendgrid:index:EventWebhook":
+                return new EventWebhook(name, <any>undefined, { urn })
+            case "sendgrid:index:GlobalSuppression":
+                return new GlobalSuppression(name, <any>undefined, { urn })
             case "sendgrid:index:IpPool":
                 return new IpPool(name, <any>undefined, { urn })
             case "sendgrid:index:LinkBranding":
                 return new LinkBranding(name, <any>undefined, { urn })
+            case "sendgrid:index:Subuser":
+                return new Subuser(name, <any>undefined, { urn })
+            case "sendgrid:index:Teammate":
+                return new Teammate(name, <any>undefined, { urn })
             case "sendgrid:index:Template":
                 return new Template(name, <any>undefined, { urn })
             case "sendgrid:index:TemplateVersion":

@@ -38,8 +38,8 @@ export class ApiKey extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApiKey.__pulumiType;
     }
 
-    declare public /*out*/ readonly apiKey: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly apiKeyId: pulumi.Output<string>;
+    declare public /*out*/ readonly apiKeyValue: pulumi.Output<string | undefined>;
     declare public readonly name: pulumi.Output<string>;
     declare public readonly scopes: pulumi.Output<string[] | undefined>;
 
@@ -59,16 +59,16 @@ export class ApiKey extends pulumi.CustomResource {
             }
             resourceInputs["name"] = args?.name;
             resourceInputs["scopes"] = args?.scopes;
-            resourceInputs["apiKey"] = undefined /*out*/;
             resourceInputs["apiKeyId"] = undefined /*out*/;
+            resourceInputs["apiKeyValue"] = undefined /*out*/;
         } else {
-            resourceInputs["apiKey"] = undefined /*out*/;
             resourceInputs["apiKeyId"] = undefined /*out*/;
+            resourceInputs["apiKeyValue"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["scopes"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["apiKey"] };
+        const secretOpts = { additionalSecretOutputs: ["apiKeyValue"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(ApiKey.__pulumiType, name, resourceInputs, opts);
     }
