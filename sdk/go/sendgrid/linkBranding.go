@@ -113,6 +113,56 @@ func (i *LinkBranding) ToLinkBrandingOutputWithContext(ctx context.Context) Link
 	return pulumi.ToOutputWithContext(ctx, i).(LinkBrandingOutput)
 }
 
+// LinkBrandingArrayInput is an input type that accepts LinkBrandingArray and LinkBrandingArrayOutput values.
+// You can construct a concrete instance of `LinkBrandingArrayInput` via:
+//
+//	LinkBrandingArray{ LinkBrandingArgs{...} }
+type LinkBrandingArrayInput interface {
+	pulumi.Input
+
+	ToLinkBrandingArrayOutput() LinkBrandingArrayOutput
+	ToLinkBrandingArrayOutputWithContext(context.Context) LinkBrandingArrayOutput
+}
+
+type LinkBrandingArray []LinkBrandingInput
+
+func (LinkBrandingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LinkBranding)(nil)).Elem()
+}
+
+func (i LinkBrandingArray) ToLinkBrandingArrayOutput() LinkBrandingArrayOutput {
+	return i.ToLinkBrandingArrayOutputWithContext(context.Background())
+}
+
+func (i LinkBrandingArray) ToLinkBrandingArrayOutputWithContext(ctx context.Context) LinkBrandingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkBrandingArrayOutput)
+}
+
+// LinkBrandingMapInput is an input type that accepts LinkBrandingMap and LinkBrandingMapOutput values.
+// You can construct a concrete instance of `LinkBrandingMapInput` via:
+//
+//	LinkBrandingMap{ "key": LinkBrandingArgs{...} }
+type LinkBrandingMapInput interface {
+	pulumi.Input
+
+	ToLinkBrandingMapOutput() LinkBrandingMapOutput
+	ToLinkBrandingMapOutputWithContext(context.Context) LinkBrandingMapOutput
+}
+
+type LinkBrandingMap map[string]LinkBrandingInput
+
+func (LinkBrandingMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LinkBranding)(nil)).Elem()
+}
+
+func (i LinkBrandingMap) ToLinkBrandingMapOutput() LinkBrandingMapOutput {
+	return i.ToLinkBrandingMapOutputWithContext(context.Background())
+}
+
+func (i LinkBrandingMap) ToLinkBrandingMapOutputWithContext(ctx context.Context) LinkBrandingMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkBrandingMapOutput)
+}
+
 type LinkBrandingOutput struct{ *pulumi.OutputState }
 
 func (LinkBrandingOutput) ElementType() reflect.Type {
@@ -171,7 +221,51 @@ func (o LinkBrandingOutput) Valid() pulumi.BoolOutput {
 	return o.ApplyT(func(v *LinkBranding) pulumi.BoolOutput { return v.Valid }).(pulumi.BoolOutput)
 }
 
+type LinkBrandingArrayOutput struct{ *pulumi.OutputState }
+
+func (LinkBrandingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LinkBranding)(nil)).Elem()
+}
+
+func (o LinkBrandingArrayOutput) ToLinkBrandingArrayOutput() LinkBrandingArrayOutput {
+	return o
+}
+
+func (o LinkBrandingArrayOutput) ToLinkBrandingArrayOutputWithContext(ctx context.Context) LinkBrandingArrayOutput {
+	return o
+}
+
+func (o LinkBrandingArrayOutput) Index(i pulumi.IntInput) LinkBrandingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LinkBranding {
+		return vs[0].([]*LinkBranding)[vs[1].(int)]
+	}).(LinkBrandingOutput)
+}
+
+type LinkBrandingMapOutput struct{ *pulumi.OutputState }
+
+func (LinkBrandingMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LinkBranding)(nil)).Elem()
+}
+
+func (o LinkBrandingMapOutput) ToLinkBrandingMapOutput() LinkBrandingMapOutput {
+	return o
+}
+
+func (o LinkBrandingMapOutput) ToLinkBrandingMapOutputWithContext(ctx context.Context) LinkBrandingMapOutput {
+	return o
+}
+
+func (o LinkBrandingMapOutput) MapIndex(k pulumi.StringInput) LinkBrandingOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LinkBranding {
+		return vs[0].(map[string]*LinkBranding)[vs[1].(string)]
+	}).(LinkBrandingOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LinkBrandingInput)(nil)).Elem(), &LinkBranding{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LinkBrandingArrayInput)(nil)).Elem(), LinkBrandingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LinkBrandingMapInput)(nil)).Elem(), LinkBrandingMap{})
 	pulumi.RegisterOutputType(LinkBrandingOutput{})
+	pulumi.RegisterOutputType(LinkBrandingArrayOutput{})
+	pulumi.RegisterOutputType(LinkBrandingMapOutput{})
 }

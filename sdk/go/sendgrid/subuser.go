@@ -121,6 +121,56 @@ func (i *Subuser) ToSubuserOutputWithContext(ctx context.Context) SubuserOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(SubuserOutput)
 }
 
+// SubuserArrayInput is an input type that accepts SubuserArray and SubuserArrayOutput values.
+// You can construct a concrete instance of `SubuserArrayInput` via:
+//
+//	SubuserArray{ SubuserArgs{...} }
+type SubuserArrayInput interface {
+	pulumi.Input
+
+	ToSubuserArrayOutput() SubuserArrayOutput
+	ToSubuserArrayOutputWithContext(context.Context) SubuserArrayOutput
+}
+
+type SubuserArray []SubuserInput
+
+func (SubuserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Subuser)(nil)).Elem()
+}
+
+func (i SubuserArray) ToSubuserArrayOutput() SubuserArrayOutput {
+	return i.ToSubuserArrayOutputWithContext(context.Background())
+}
+
+func (i SubuserArray) ToSubuserArrayOutputWithContext(ctx context.Context) SubuserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubuserArrayOutput)
+}
+
+// SubuserMapInput is an input type that accepts SubuserMap and SubuserMapOutput values.
+// You can construct a concrete instance of `SubuserMapInput` via:
+//
+//	SubuserMap{ "key": SubuserArgs{...} }
+type SubuserMapInput interface {
+	pulumi.Input
+
+	ToSubuserMapOutput() SubuserMapOutput
+	ToSubuserMapOutputWithContext(context.Context) SubuserMapOutput
+}
+
+type SubuserMap map[string]SubuserInput
+
+func (SubuserMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Subuser)(nil)).Elem()
+}
+
+func (i SubuserMap) ToSubuserMapOutput() SubuserMapOutput {
+	return i.ToSubuserMapOutputWithContext(context.Background())
+}
+
+func (i SubuserMap) ToSubuserMapOutputWithContext(ctx context.Context) SubuserMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubuserMapOutput)
+}
+
 type SubuserOutput struct{ *pulumi.OutputState }
 
 func (SubuserOutput) ElementType() reflect.Type {
@@ -159,7 +209,51 @@ func (o SubuserOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v *Subuser) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }
 
+type SubuserArrayOutput struct{ *pulumi.OutputState }
+
+func (SubuserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Subuser)(nil)).Elem()
+}
+
+func (o SubuserArrayOutput) ToSubuserArrayOutput() SubuserArrayOutput {
+	return o
+}
+
+func (o SubuserArrayOutput) ToSubuserArrayOutputWithContext(ctx context.Context) SubuserArrayOutput {
+	return o
+}
+
+func (o SubuserArrayOutput) Index(i pulumi.IntInput) SubuserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Subuser {
+		return vs[0].([]*Subuser)[vs[1].(int)]
+	}).(SubuserOutput)
+}
+
+type SubuserMapOutput struct{ *pulumi.OutputState }
+
+func (SubuserMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Subuser)(nil)).Elem()
+}
+
+func (o SubuserMapOutput) ToSubuserMapOutput() SubuserMapOutput {
+	return o
+}
+
+func (o SubuserMapOutput) ToSubuserMapOutputWithContext(ctx context.Context) SubuserMapOutput {
+	return o
+}
+
+func (o SubuserMapOutput) MapIndex(k pulumi.StringInput) SubuserOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Subuser {
+		return vs[0].(map[string]*Subuser)[vs[1].(string)]
+	}).(SubuserOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SubuserInput)(nil)).Elem(), &Subuser{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubuserArrayInput)(nil)).Elem(), SubuserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubuserMapInput)(nil)).Elem(), SubuserMap{})
 	pulumi.RegisterOutputType(SubuserOutput{})
+	pulumi.RegisterOutputType(SubuserArrayOutput{})
+	pulumi.RegisterOutputType(SubuserMapOutput{})
 }

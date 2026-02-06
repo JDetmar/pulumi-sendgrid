@@ -7,7 +7,7 @@ A native Pulumi provider for managing [SendGrid](https://sendgrid.com/) resource
 ### Node.js (npm)
 
 ```bash
-npm install @pulumi/sendgrid
+npm install @jdetmar/pulumi-sendgrid
 ```
 
 ### Python (pip)
@@ -25,7 +25,7 @@ go get github.com/JDetmar/pulumi-sendgrid/sdk/go/sendgrid
 ### .NET (NuGet)
 
 ```bash
-dotnet add package Pulumi.Sendgrid
+dotnet add package Community.Pulumi.Sendgrid
 ```
 
 ## Configuration
@@ -44,7 +44,7 @@ export SENDGRID_API_KEY="SG.xxxxx"
 ## Example (TypeScript)
 
 ```typescript
-import * as sendgrid from "@pulumi/sendgrid";
+import * as sendgrid from "@jdetmar/pulumi-sendgrid";
 
 const apiKey = new sendgrid.ApiKey("myApiKey", {
   name: "my-app-api-key",

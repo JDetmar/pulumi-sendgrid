@@ -106,6 +106,56 @@ func (i *ApiKey) ToApiKeyOutputWithContext(ctx context.Context) ApiKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApiKeyOutput)
 }
 
+// ApiKeyArrayInput is an input type that accepts ApiKeyArray and ApiKeyArrayOutput values.
+// You can construct a concrete instance of `ApiKeyArrayInput` via:
+//
+//	ApiKeyArray{ ApiKeyArgs{...} }
+type ApiKeyArrayInput interface {
+	pulumi.Input
+
+	ToApiKeyArrayOutput() ApiKeyArrayOutput
+	ToApiKeyArrayOutputWithContext(context.Context) ApiKeyArrayOutput
+}
+
+type ApiKeyArray []ApiKeyInput
+
+func (ApiKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*ApiKey)(nil)).Elem()
+}
+
+func (i ApiKeyArray) ToApiKeyArrayOutput() ApiKeyArrayOutput {
+	return i.ToApiKeyArrayOutputWithContext(context.Background())
+}
+
+func (i ApiKeyArray) ToApiKeyArrayOutputWithContext(ctx context.Context) ApiKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiKeyArrayOutput)
+}
+
+// ApiKeyMapInput is an input type that accepts ApiKeyMap and ApiKeyMapOutput values.
+// You can construct a concrete instance of `ApiKeyMapInput` via:
+//
+//	ApiKeyMap{ "key": ApiKeyArgs{...} }
+type ApiKeyMapInput interface {
+	pulumi.Input
+
+	ToApiKeyMapOutput() ApiKeyMapOutput
+	ToApiKeyMapOutputWithContext(context.Context) ApiKeyMapOutput
+}
+
+type ApiKeyMap map[string]ApiKeyInput
+
+func (ApiKeyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*ApiKey)(nil)).Elem()
+}
+
+func (i ApiKeyMap) ToApiKeyMapOutput() ApiKeyMapOutput {
+	return i.ToApiKeyMapOutputWithContext(context.Background())
+}
+
+func (i ApiKeyMap) ToApiKeyMapOutputWithContext(ctx context.Context) ApiKeyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ApiKeyMapOutput)
+}
+
 type ApiKeyOutput struct{ *pulumi.OutputState }
 
 func (ApiKeyOutput) ElementType() reflect.Type {
@@ -136,7 +186,51 @@ func (o ApiKeyOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ApiKey) pulumi.StringArrayOutput { return v.Scopes }).(pulumi.StringArrayOutput)
 }
 
+type ApiKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (ApiKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*ApiKey)(nil)).Elem()
+}
+
+func (o ApiKeyArrayOutput) ToApiKeyArrayOutput() ApiKeyArrayOutput {
+	return o
+}
+
+func (o ApiKeyArrayOutput) ToApiKeyArrayOutputWithContext(ctx context.Context) ApiKeyArrayOutput {
+	return o
+}
+
+func (o ApiKeyArrayOutput) Index(i pulumi.IntInput) ApiKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApiKey {
+		return vs[0].([]*ApiKey)[vs[1].(int)]
+	}).(ApiKeyOutput)
+}
+
+type ApiKeyMapOutput struct{ *pulumi.OutputState }
+
+func (ApiKeyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*ApiKey)(nil)).Elem()
+}
+
+func (o ApiKeyMapOutput) ToApiKeyMapOutput() ApiKeyMapOutput {
+	return o
+}
+
+func (o ApiKeyMapOutput) ToApiKeyMapOutputWithContext(ctx context.Context) ApiKeyMapOutput {
+	return o
+}
+
+func (o ApiKeyMapOutput) MapIndex(k pulumi.StringInput) ApiKeyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ApiKey {
+		return vs[0].(map[string]*ApiKey)[vs[1].(string)]
+	}).(ApiKeyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ApiKeyInput)(nil)).Elem(), &ApiKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiKeyArrayInput)(nil)).Elem(), ApiKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApiKeyMapInput)(nil)).Elem(), ApiKeyMap{})
 	pulumi.RegisterOutputType(ApiKeyOutput{})
+	pulumi.RegisterOutputType(ApiKeyArrayOutput{})
+	pulumi.RegisterOutputType(ApiKeyMapOutput{})
 }

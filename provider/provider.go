@@ -45,6 +45,10 @@ func Provider() p.Provider {
 				"rootNamespace":        "Community.Pulumi",
 				"respectSchemaVersion": true,
 			},
+			"go": map[string]any{
+				"generateResourceContainerTypes": true,
+				"respectSchemaVersion":           true,
+			},
 			"java": map[string]any{
 				"basePackage": "io.github.jdetmar.pulumi",
 				"buildFiles":  "gradle",

@@ -108,6 +108,56 @@ func (i *Teammate) ToTeammateOutputWithContext(ctx context.Context) TeammateOutp
 	return pulumi.ToOutputWithContext(ctx, i).(TeammateOutput)
 }
 
+// TeammateArrayInput is an input type that accepts TeammateArray and TeammateArrayOutput values.
+// You can construct a concrete instance of `TeammateArrayInput` via:
+//
+//	TeammateArray{ TeammateArgs{...} }
+type TeammateArrayInput interface {
+	pulumi.Input
+
+	ToTeammateArrayOutput() TeammateArrayOutput
+	ToTeammateArrayOutputWithContext(context.Context) TeammateArrayOutput
+}
+
+type TeammateArray []TeammateInput
+
+func (TeammateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Teammate)(nil)).Elem()
+}
+
+func (i TeammateArray) ToTeammateArrayOutput() TeammateArrayOutput {
+	return i.ToTeammateArrayOutputWithContext(context.Background())
+}
+
+func (i TeammateArray) ToTeammateArrayOutputWithContext(ctx context.Context) TeammateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeammateArrayOutput)
+}
+
+// TeammateMapInput is an input type that accepts TeammateMap and TeammateMapOutput values.
+// You can construct a concrete instance of `TeammateMapInput` via:
+//
+//	TeammateMap{ "key": TeammateArgs{...} }
+type TeammateMapInput interface {
+	pulumi.Input
+
+	ToTeammateMapOutput() TeammateMapOutput
+	ToTeammateMapOutputWithContext(context.Context) TeammateMapOutput
+}
+
+type TeammateMap map[string]TeammateInput
+
+func (TeammateMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Teammate)(nil)).Elem()
+}
+
+func (i TeammateMap) ToTeammateMapOutput() TeammateMapOutput {
+	return i.ToTeammateMapOutputWithContext(context.Background())
+}
+
+func (i TeammateMap) ToTeammateMapOutputWithContext(ctx context.Context) TeammateMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeammateMapOutput)
+}
+
 type TeammateOutput struct{ *pulumi.OutputState }
 
 func (TeammateOutput) ElementType() reflect.Type {
@@ -154,7 +204,51 @@ func (o TeammateOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Teammate) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
 }
 
+type TeammateArrayOutput struct{ *pulumi.OutputState }
+
+func (TeammateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Teammate)(nil)).Elem()
+}
+
+func (o TeammateArrayOutput) ToTeammateArrayOutput() TeammateArrayOutput {
+	return o
+}
+
+func (o TeammateArrayOutput) ToTeammateArrayOutputWithContext(ctx context.Context) TeammateArrayOutput {
+	return o
+}
+
+func (o TeammateArrayOutput) Index(i pulumi.IntInput) TeammateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Teammate {
+		return vs[0].([]*Teammate)[vs[1].(int)]
+	}).(TeammateOutput)
+}
+
+type TeammateMapOutput struct{ *pulumi.OutputState }
+
+func (TeammateMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Teammate)(nil)).Elem()
+}
+
+func (o TeammateMapOutput) ToTeammateMapOutput() TeammateMapOutput {
+	return o
+}
+
+func (o TeammateMapOutput) ToTeammateMapOutputWithContext(ctx context.Context) TeammateMapOutput {
+	return o
+}
+
+func (o TeammateMapOutput) MapIndex(k pulumi.StringInput) TeammateOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Teammate {
+		return vs[0].(map[string]*Teammate)[vs[1].(string)]
+	}).(TeammateOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TeammateInput)(nil)).Elem(), &Teammate{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeammateArrayInput)(nil)).Elem(), TeammateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TeammateMapInput)(nil)).Elem(), TeammateMap{})
 	pulumi.RegisterOutputType(TeammateOutput{})
+	pulumi.RegisterOutputType(TeammateArrayOutput{})
+	pulumi.RegisterOutputType(TeammateMapOutput{})
 }

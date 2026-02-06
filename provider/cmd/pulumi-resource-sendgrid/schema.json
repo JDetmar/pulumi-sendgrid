@@ -12,7 +12,9 @@
       "rootNamespace": "Community.Pulumi"
     },
     "go": {
-      "importBasePath": "github.com/JDetmar/pulumi-sendgrid/sdk/go/sendgrid"
+      "generateResourceContainerTypes": true,
+      "importBasePath": "github.com/JDetmar/pulumi-sendgrid/sdk/go/sendgrid",
+      "respectSchemaVersion": true
     },
     "java": {
       "basePackage": "io.github.jdetmar.pulumi",

@@ -145,6 +145,56 @@ func (i *VerifiedSender) ToVerifiedSenderOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(VerifiedSenderOutput)
 }
 
+// VerifiedSenderArrayInput is an input type that accepts VerifiedSenderArray and VerifiedSenderArrayOutput values.
+// You can construct a concrete instance of `VerifiedSenderArrayInput` via:
+//
+//	VerifiedSenderArray{ VerifiedSenderArgs{...} }
+type VerifiedSenderArrayInput interface {
+	pulumi.Input
+
+	ToVerifiedSenderArrayOutput() VerifiedSenderArrayOutput
+	ToVerifiedSenderArrayOutputWithContext(context.Context) VerifiedSenderArrayOutput
+}
+
+type VerifiedSenderArray []VerifiedSenderInput
+
+func (VerifiedSenderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VerifiedSender)(nil)).Elem()
+}
+
+func (i VerifiedSenderArray) ToVerifiedSenderArrayOutput() VerifiedSenderArrayOutput {
+	return i.ToVerifiedSenderArrayOutputWithContext(context.Background())
+}
+
+func (i VerifiedSenderArray) ToVerifiedSenderArrayOutputWithContext(ctx context.Context) VerifiedSenderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VerifiedSenderArrayOutput)
+}
+
+// VerifiedSenderMapInput is an input type that accepts VerifiedSenderMap and VerifiedSenderMapOutput values.
+// You can construct a concrete instance of `VerifiedSenderMapInput` via:
+//
+//	VerifiedSenderMap{ "key": VerifiedSenderArgs{...} }
+type VerifiedSenderMapInput interface {
+	pulumi.Input
+
+	ToVerifiedSenderMapOutput() VerifiedSenderMapOutput
+	ToVerifiedSenderMapOutputWithContext(context.Context) VerifiedSenderMapOutput
+}
+
+type VerifiedSenderMap map[string]VerifiedSenderInput
+
+func (VerifiedSenderMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VerifiedSender)(nil)).Elem()
+}
+
+func (i VerifiedSenderMap) ToVerifiedSenderMapOutput() VerifiedSenderMapOutput {
+	return i.ToVerifiedSenderMapOutputWithContext(context.Background())
+}
+
+func (i VerifiedSenderMap) ToVerifiedSenderMapOutputWithContext(ctx context.Context) VerifiedSenderMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VerifiedSenderMapOutput)
+}
+
 type VerifiedSenderOutput struct{ *pulumi.OutputState }
 
 func (VerifiedSenderOutput) ElementType() reflect.Type {
@@ -215,7 +265,51 @@ func (o VerifiedSenderOutput) Zip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VerifiedSender) pulumi.StringPtrOutput { return v.Zip }).(pulumi.StringPtrOutput)
 }
 
+type VerifiedSenderArrayOutput struct{ *pulumi.OutputState }
+
+func (VerifiedSenderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*VerifiedSender)(nil)).Elem()
+}
+
+func (o VerifiedSenderArrayOutput) ToVerifiedSenderArrayOutput() VerifiedSenderArrayOutput {
+	return o
+}
+
+func (o VerifiedSenderArrayOutput) ToVerifiedSenderArrayOutputWithContext(ctx context.Context) VerifiedSenderArrayOutput {
+	return o
+}
+
+func (o VerifiedSenderArrayOutput) Index(i pulumi.IntInput) VerifiedSenderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VerifiedSender {
+		return vs[0].([]*VerifiedSender)[vs[1].(int)]
+	}).(VerifiedSenderOutput)
+}
+
+type VerifiedSenderMapOutput struct{ *pulumi.OutputState }
+
+func (VerifiedSenderMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*VerifiedSender)(nil)).Elem()
+}
+
+func (o VerifiedSenderMapOutput) ToVerifiedSenderMapOutput() VerifiedSenderMapOutput {
+	return o
+}
+
+func (o VerifiedSenderMapOutput) ToVerifiedSenderMapOutputWithContext(ctx context.Context) VerifiedSenderMapOutput {
+	return o
+}
+
+func (o VerifiedSenderMapOutput) MapIndex(k pulumi.StringInput) VerifiedSenderOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VerifiedSender {
+		return vs[0].(map[string]*VerifiedSender)[vs[1].(string)]
+	}).(VerifiedSenderOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VerifiedSenderInput)(nil)).Elem(), &VerifiedSender{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VerifiedSenderArrayInput)(nil)).Elem(), VerifiedSenderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VerifiedSenderMapInput)(nil)).Elem(), VerifiedSenderMap{})
 	pulumi.RegisterOutputType(VerifiedSenderOutput{})
+	pulumi.RegisterOutputType(VerifiedSenderArrayOutput{})
+	pulumi.RegisterOutputType(VerifiedSenderMapOutput{})
 }

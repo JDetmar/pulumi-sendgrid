@@ -137,6 +137,56 @@ func (i *EventWebhook) ToEventWebhookOutputWithContext(ctx context.Context) Even
 	return pulumi.ToOutputWithContext(ctx, i).(EventWebhookOutput)
 }
 
+// EventWebhookArrayInput is an input type that accepts EventWebhookArray and EventWebhookArrayOutput values.
+// You can construct a concrete instance of `EventWebhookArrayInput` via:
+//
+//	EventWebhookArray{ EventWebhookArgs{...} }
+type EventWebhookArrayInput interface {
+	pulumi.Input
+
+	ToEventWebhookArrayOutput() EventWebhookArrayOutput
+	ToEventWebhookArrayOutputWithContext(context.Context) EventWebhookArrayOutput
+}
+
+type EventWebhookArray []EventWebhookInput
+
+func (EventWebhookArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*EventWebhook)(nil)).Elem()
+}
+
+func (i EventWebhookArray) ToEventWebhookArrayOutput() EventWebhookArrayOutput {
+	return i.ToEventWebhookArrayOutputWithContext(context.Background())
+}
+
+func (i EventWebhookArray) ToEventWebhookArrayOutputWithContext(ctx context.Context) EventWebhookArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventWebhookArrayOutput)
+}
+
+// EventWebhookMapInput is an input type that accepts EventWebhookMap and EventWebhookMapOutput values.
+// You can construct a concrete instance of `EventWebhookMapInput` via:
+//
+//	EventWebhookMap{ "key": EventWebhookArgs{...} }
+type EventWebhookMapInput interface {
+	pulumi.Input
+
+	ToEventWebhookMapOutput() EventWebhookMapOutput
+	ToEventWebhookMapOutputWithContext(context.Context) EventWebhookMapOutput
+}
+
+type EventWebhookMap map[string]EventWebhookInput
+
+func (EventWebhookMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*EventWebhook)(nil)).Elem()
+}
+
+func (i EventWebhookMap) ToEventWebhookMapOutput() EventWebhookMapOutput {
+	return i.ToEventWebhookMapOutputWithContext(context.Background())
+}
+
+func (i EventWebhookMap) ToEventWebhookMapOutputWithContext(ctx context.Context) EventWebhookMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventWebhookMapOutput)
+}
+
 type EventWebhookOutput struct{ *pulumi.OutputState }
 
 func (EventWebhookOutput) ElementType() reflect.Type {
@@ -211,7 +261,51 @@ func (o EventWebhookOutput) WebhookId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventWebhook) pulumi.StringOutput { return v.WebhookId }).(pulumi.StringOutput)
 }
 
+type EventWebhookArrayOutput struct{ *pulumi.OutputState }
+
+func (EventWebhookArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*EventWebhook)(nil)).Elem()
+}
+
+func (o EventWebhookArrayOutput) ToEventWebhookArrayOutput() EventWebhookArrayOutput {
+	return o
+}
+
+func (o EventWebhookArrayOutput) ToEventWebhookArrayOutputWithContext(ctx context.Context) EventWebhookArrayOutput {
+	return o
+}
+
+func (o EventWebhookArrayOutput) Index(i pulumi.IntInput) EventWebhookOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EventWebhook {
+		return vs[0].([]*EventWebhook)[vs[1].(int)]
+	}).(EventWebhookOutput)
+}
+
+type EventWebhookMapOutput struct{ *pulumi.OutputState }
+
+func (EventWebhookMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*EventWebhook)(nil)).Elem()
+}
+
+func (o EventWebhookMapOutput) ToEventWebhookMapOutput() EventWebhookMapOutput {
+	return o
+}
+
+func (o EventWebhookMapOutput) ToEventWebhookMapOutputWithContext(ctx context.Context) EventWebhookMapOutput {
+	return o
+}
+
+func (o EventWebhookMapOutput) MapIndex(k pulumi.StringInput) EventWebhookOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EventWebhook {
+		return vs[0].(map[string]*EventWebhook)[vs[1].(string)]
+	}).(EventWebhookOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EventWebhookInput)(nil)).Elem(), &EventWebhook{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EventWebhookArrayInput)(nil)).Elem(), EventWebhookArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EventWebhookMapInput)(nil)).Elem(), EventWebhookMap{})
 	pulumi.RegisterOutputType(EventWebhookOutput{})
+	pulumi.RegisterOutputType(EventWebhookArrayOutput{})
+	pulumi.RegisterOutputType(EventWebhookMapOutput{})
 }
