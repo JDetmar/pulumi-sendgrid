@@ -1,5 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as sendgrid from "@pulumi/sendgrid";
+import * as sendgrid from "@jdetmar/pulumi-sendgrid";
 
 const myApiKey = new sendgrid.ApiKey("myApiKey", {
   name: "my-app-api-key",
