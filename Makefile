@@ -91,6 +91,8 @@ sdk/java: $(SCHEMA_FILE)
 sdk/python: $(SCHEMA_FILE)
 	rm -rf $@
 	$(PULUMI) package gen-sdk --language python $(SCHEMA_FILE) --version "${VERSION_GENERIC}"
+	# Pulumi SDK generator doesn't set version in setup.py, so we patch it manually
+	sed -i.bak 's/VERSION = "0.0.0"/VERSION = "${VERSION_GENERIC}"/' ${PACKDIR}/python/setup.py && rm ${PACKDIR}/python/setup.py.bak
 	# Copy README to Python SDK if it exists
 	-cp README.md ${PACKDIR}/python/
 
