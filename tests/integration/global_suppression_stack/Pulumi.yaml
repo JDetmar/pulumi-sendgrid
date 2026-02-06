@@ -1,3 +1,0 @@
-name: global-suppression-integration-test
-runtime: go
-description: Integration test for SendGrid GlobalSuppression resource

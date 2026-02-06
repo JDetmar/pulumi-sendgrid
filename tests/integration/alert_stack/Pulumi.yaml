@@ -1,3 +1,0 @@
-name: alert-integration-test
-runtime: go
-description: Integration test for SendGrid Alert resource

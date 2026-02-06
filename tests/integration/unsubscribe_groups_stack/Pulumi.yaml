@@ -1,3 +1,0 @@
-name: unsubscribe-groups-integration-test
-runtime: go
-description: Integration test for SendGrid UnsubscribeGroup resource
