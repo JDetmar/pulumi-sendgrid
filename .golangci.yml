@@ -31,7 +31,7 @@ linters:
       - pkg/vendored
       - third_party$
       - builtin$
-      - examples$
+      - examples
 formatters:
   enable:
     - gci
@@ -53,4 +53,4 @@ formatters:
       - pkg/vendored
       - third_party$
       - builtin$
-      - examples$
+      - examples

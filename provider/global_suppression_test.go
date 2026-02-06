@@ -172,17 +172,14 @@ func TestSendGridClient_GetGlobalSuppression(t *testing.T) {
 			name:           "successful get - email is suppressed",
 			email:          "test@example.com",
 			responseStatus: http.StatusOK,
-			responseBody: `[{
-				"email": "test@example.com",
-				"created": 1680000000
-			}]`,
-			expectError: false,
+			responseBody:   `{"recipient_email": "test@example.com"}`,
+			expectError:    false,
 		},
 		{
-			name:           "email not suppressed - empty array",
+			name:           "email not suppressed - empty object",
 			email:          "not-suppressed@example.com",
 			responseStatus: http.StatusOK,
-			responseBody:   `[]`,
+			responseBody:   `{}`,
 			expectError:    false,
 			expectNotFound: true,
 		},
@@ -214,9 +211,8 @@ func TestSendGridClient_GetGlobalSuppression(t *testing.T) {
 
 			client := NewSendGridClient("test-api-key", server.URL)
 
-			var result []struct {
-				Email     string `json:"email"`
-				CreatedAt int64  `json:"created"`
+			var result struct {
+				RecipientEmail string `json:"recipient_email"`
 			}
 
 			encodedEmail := url.PathEscape(tt.email)
@@ -232,10 +228,9 @@ func TestSendGridClient_GetGlobalSuppression(t *testing.T) {
 			} else {
 				require.NoError(t, err)
 				if tt.expectNotFound {
-					assert.Empty(t, result)
+					assert.Empty(t, result.RecipientEmail)
 				} else {
-					assert.NotEmpty(t, result)
-					assert.Equal(t, tt.email, result[0].Email)
+					assert.Equal(t, tt.email, result.RecipientEmail)
 				}
 			}
 		})
@@ -368,9 +363,8 @@ func TestGlobalSuppression_ServerErrors(t *testing.T) {
 
 		client := NewSendGridClient("test-api-key", server.URL)
 
-		var result []struct {
-			Email     string `json:"email"`
-			CreatedAt int64  `json:"created"`
+		var result struct {
+			RecipientEmail string `json:"recipient_email"`
 		}
 		err := client.Get(context.Background(), "/v3/asm/suppressions/global/test@example.com", &result)
 

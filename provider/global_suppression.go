@@ -131,9 +131,9 @@ func (g *GlobalSuppression) Read(ctx context.Context, req infer.ReadRequest[Glob
 
 	// Check if the email is in the global suppression list
 	// GET /v3/asm/suppressions/global/{email}
-	var result []struct {
-		Email     string `json:"email"`
-		CreatedAt int64  `json:"created"`
+	// Returns {"recipient_email": "..."} (single object, not array)
+	var result struct {
+		RecipientEmail string `json:"recipient_email"`
 	}
 
 	if err := client.Get(ctx, fmt.Sprintf("/v3/asm/suppressions/global/%s", encodedEmail), &result); err != nil {
@@ -146,25 +146,14 @@ func (g *GlobalSuppression) Read(ctx context.Context, req infer.ReadRequest[Glob
 	}
 
 	// If the result is empty, the email is not suppressed
-	if len(result) == 0 {
-		// Return empty response to indicate resource no longer exists
+	if result.RecipientEmail == "" {
 		return infer.ReadResponse[GlobalSuppressionArgs, GlobalSuppressionState]{}, nil
-	}
-
-	// Find the email in the results
-	var createdAt int64
-	for _, item := range result {
-		if item.Email == id {
-			createdAt = item.CreatedAt
-			break
-		}
 	}
 
 	state := GlobalSuppressionState{
 		GlobalSuppressionArgs: GlobalSuppressionArgs{
 			Email: id,
 		},
-		CreatedAt: createdAt,
 	}
 
 	inputs := GlobalSuppressionArgs{

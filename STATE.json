@@ -88,29 +88,31 @@
         "provider/ip_pool_test.go",
         "tests/integration/ip_pools_stack/"
       ],
-      "notes": "Full CRUD for IP pools. Supports name (max 64 chars). Outputs poolName and ips list. Uses pool name as resource ID with URL encoding for special characters. Integration test skipped - requires dedicated IP plan (403 access forbidden without it). Unit tests verify all CRUD operations, error handling, and URL encoding."
+      "notes": "Full CRUD for IP pools. Integration test attempted but 403 Forbidden - requires dedicated IP plan. Unit tests verify all CRUD operations, error handling, and URL encoding."
     },
     "suppressions": {
-      "status": "unit_tests_only",
+      "status": "completed",
       "unit_tests": "passed",
-      "integration_tests": "not_implemented",
-      "drift_tests": "not_implemented",
+      "integration_tests": "passed",
+      "drift_tests": "passed",
       "files": [
         "provider/global_suppression.go",
-        "provider/global_suppression_test.go"
+        "provider/global_suppression_test.go",
+        "tests/integration/global_suppression_stack/"
       ],
-      "notes": "Implemented GlobalSuppression resource for managing email addresses in SendGrid's global suppression list. Full CRUD operations: POST /v3/asm/suppressions/global to add, GET /v3/asm/suppressions/global/{email} to read, DELETE /v3/asm/suppressions/global/{email} to remove. Uses email address as resource ID with proper URL encoding. Integration tests skipped - requires live SendGrid API key."
+      "notes": "Full CRUD for global suppressions. Fixed Read deserialization bug - API returns {\"recipient_email\":\"...\"} object, not array. Integration test verified create, refresh (drift detection), and destroy."
     },
     "webhooks": {
-      "status": "unit_tests_only",
+      "status": "completed",
       "unit_tests": "passed",
-      "integration_tests": "not_implemented",
-      "drift_tests": "not_implemented",
+      "integration_tests": "passed",
+      "drift_tests": "passed",
       "files": [
         "provider/event_webhook.go",
-        "provider/event_webhook_test.go"
+        "provider/event_webhook_test.go",
+        "tests/integration/event_webhook_stack/"
       ],
-      "notes": "Implemented EventWebhook resource for managing SendGrid Event Webhooks. Full CRUD operations: POST/GET/PATCH/DELETE /v3/user/webhooks/event/settings/{id}. Supports all event types (bounce, click, deferred, delivered, dropped, open, processed, spam_report, unsubscribe, group_resubscribe, group_unsubscribe), enabled/disabled state, friendly name, and webhook URL. Integration tests skipped - requires live SendGrid API key and webhook endpoint."
+      "notes": "Full CRUD for event webhooks. Integration test verified create, refresh (detected groupResubscribe/groupUnsubscribe API defaults), and destroy."
     },
     "subusers": {
       "status": "unit_tests_only",
@@ -121,29 +123,31 @@
         "provider/subuser.go",
         "provider/subuser_test.go"
       ],
-      "notes": "Implemented Subuser resource for managing SendGrid Subusers. Full CRUD operations: POST /v3/subusers to create, GET /v3/subusers/{username} to read, PATCH /v3/subusers/{username} to update disabled status, DELETE /v3/subusers/{username} to delete. Supports username, email, password, IPs, region, and disabled state. Uses username as resource ID with URL encoding. Integration tests skipped - requires live SendGrid API key and Pro plan for regional subusers."
+      "notes": "Full CRUD for subusers. Fixed error handling (setDisabled error no longer swallowed) and password preservation in Read. Integration test attempted but 403 Forbidden - requires Pro plan with subuser permissions."
     },
     "teammates": {
-      "status": "unit_tests_only",
+      "status": "completed",
       "unit_tests": "passed",
-      "integration_tests": "not_implemented",
-      "drift_tests": "not_implemented",
+      "integration_tests": "passed",
+      "drift_tests": "passed",
       "files": [
         "provider/teammate.go",
-        "provider/teammate_test.go"
+        "provider/teammate_test.go",
+        "tests/integration/teammate_stack/"
       ],
-      "notes": "Implemented Teammate resource for managing SendGrid Teammates. Supports inviting teammates via email with configurable permissions/scopes. Full CRUD: POST /v3/teammates to invite, GET /v3/teammates/{username} to read, PATCH /v3/teammates/{username} to update permissions, DELETE /v3/teammates/{username} to delete. Handles pending invitations separately via /v3/teammates/pending endpoint. Integration tests skipped - requires live SendGrid account."
+      "notes": "Full CRUD for teammates. Fixed paginated API response deserialization (GET /v3/teammates and /v3/teammates/pending return {\"result\":[...]} wrapper). Integration test verified create, refresh (detected isAdmin API default), and destroy."
     },
     "alerts": {
-      "status": "unit_tests_only",
+      "status": "completed",
       "unit_tests": "passed",
-      "integration_tests": "not_implemented",
-      "drift_tests": "not_implemented",
+      "integration_tests": "passed",
+      "drift_tests": "passed",
       "files": [
         "provider/alert.go",
-        "provider/alert_test.go"
+        "provider/alert_test.go",
+        "tests/integration/alert_stack/"
       ],
-      "notes": "Implemented Alert resource for managing SendGrid Alerts. Supports two alert types: usage_limit (percentage-based email usage alerts) and stats_notification (periodic stats emails with daily/weekly/monthly frequency). Full CRUD: POST /v3/alerts to create, GET /v3/alerts/{id} to read, PATCH /v3/alerts/{id} to update, DELETE /v3/alerts/{id} to delete. Integration tests skipped - requires live SendGrid API key."
+      "notes": "Full CRUD for alerts. Integration test verified create, refresh (no drift - clean), and destroy."
     }
   },
   "current_task": null,
