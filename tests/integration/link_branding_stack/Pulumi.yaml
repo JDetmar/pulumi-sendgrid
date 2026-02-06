@@ -1,3 +1,0 @@
-name: link-branding-integration-test
-runtime: go
-description: Integration test for SendGrid LinkBranding resource

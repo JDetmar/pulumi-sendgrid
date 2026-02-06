@@ -1,3 +1,0 @@
-name: teammate-integration-test
-runtime: go
-description: Integration test for SendGrid Teammate resource

@@ -1,3 +1,0 @@
-name: template-versions-integration-test
-runtime: go
-description: Integration test for SendGrid TemplateVersion resource

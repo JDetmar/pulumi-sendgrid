@@ -1,3 +1,0 @@
-name: domain-authentication-integration-test
-runtime: go
-description: Integration test for SendGrid DomainAuthentication resource

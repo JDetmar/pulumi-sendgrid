@@ -1,3 +1,0 @@
-name: verified-senders-integration-test
-runtime: go
-description: Integration test for SendGrid VerifiedSender resource
