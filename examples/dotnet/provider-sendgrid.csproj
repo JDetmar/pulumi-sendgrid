@@ -7,7 +7,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Pulumi" Version="3.*" />
-		<PackageReference Include="Pulumi.Sendgrid" Version="0.0.*" />
+		<PackageReference Include="Community.Pulumi.Sendgrid" Version="0.0.*" />
 	</ItemGroup>
 
 </Project>

@@ -36,8 +36,33 @@ func Provider() p.Provider {
 	prov, err := infer.NewProviderBuilder().
 		WithDisplayName("SendGrid").
 		WithDescription("A Pulumi provider for managing SendGrid resources.").
-		WithHomepage("https://www.pulumi.com").
+		WithHomepage("https://github.com/JDetmar/pulumi-sendgrid").
+		WithRepository("https://github.com/JDetmar/pulumi-sendgrid").
+		WithPluginDownloadURL("github://api.github.com/JDetmar/pulumi-sendgrid").
 		WithNamespace("pulumi").
+		WithLanguageMap(map[string]any{
+			"csharp": map[string]any{
+				"rootNamespace":        "Community.Pulumi",
+				"respectSchemaVersion": true,
+			},
+			"go": map[string]any{
+				"generateResourceContainerTypes": true,
+				"respectSchemaVersion":           true,
+			},
+			"java": map[string]any{
+				"basePackage": "io.github.jdetmar.pulumi",
+				"buildFiles":  "gradle",
+			},
+			"nodejs": map[string]any{
+				"packageName":          "@jdetmar/pulumi-sendgrid",
+				"packageDescription":   "A Pulumi provider for managing SendGrid resources.",
+				"respectSchemaVersion": true,
+			},
+			"python": map[string]any{
+				"packageName":        "pulumi_sendgrid",
+				"packageDescription": "A Pulumi provider for managing SendGrid resources.",
+			},
+		}).
 		WithResources(
 			infer.Resource(&ApiKey{}),
 			infer.Resource(&Template{}),

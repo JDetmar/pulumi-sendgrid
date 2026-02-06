@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Pulumi;
-using Sendgrid = Pulumi.Sendgrid;
+using Sendgrid = Community.Pulumi.Sendgrid;
 
 return await Deployment.RunAsync(() =>
 {

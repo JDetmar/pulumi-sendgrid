@@ -2,25 +2,32 @@
   "name": "sendgrid",
   "displayName": "SendGrid",
   "description": "A Pulumi provider for managing SendGrid resources.",
-  "homepage": "https://www.pulumi.com",
+  "homepage": "https://github.com/JDetmar/pulumi-sendgrid",
+  "repository": "https://github.com/JDetmar/pulumi-sendgrid",
+  "pluginDownloadURL": "github://api.github.com/JDetmar/pulumi-sendgrid",
   "namespace": "pulumi",
   "language": {
     "csharp": {
-      "respectSchemaVersion": true
+      "respectSchemaVersion": true,
+      "rootNamespace": "Community.Pulumi"
     },
     "go": {
       "generateResourceContainerTypes": true,
       "importBasePath": "github.com/JDetmar/pulumi-sendgrid/sdk/go/sendgrid",
       "respectSchemaVersion": true
     },
+    "java": {
+      "basePackage": "io.github.jdetmar.pulumi",
+      "buildFiles": "gradle"
+    },
     "nodejs": {
+      "packageDescription": "A Pulumi provider for managing SendGrid resources.",
+      "packageName": "@jdetmar/pulumi-sendgrid",
       "respectSchemaVersion": true
     },
     "python": {
-      "pyproject": {
-        "enabled": true
-      },
-      "respectSchemaVersion": true
+      "packageDescription": "A Pulumi provider for managing SendGrid resources.",
+      "packageName": "pulumi_sendgrid"
     }
   },
   "config": {

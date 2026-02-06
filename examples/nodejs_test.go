@@ -12,7 +12,7 @@ import (
 
 func TestNodejsExampleLifecycle(t *testing.T) {
 	pt := pulumitest.NewPulumiTest(t, "nodejs",
-		opttest.YarnLink("@pulumi/sendgrid"),
+		opttest.YarnLink("@jdetmar/pulumi-sendgrid"),
 		opttest.AttachProviderServer("sendgrid", providerFactory),
 	)
 

@@ -19,3 +19,4 @@ sdk/java/build.gradle
 sdk/python/venv
 provider/coverage.txt
 coverage.out
+*.local.md

@@ -1,7 +1,9 @@
 {
-    "name": "@pulumi/sendgrid",
+    "name": "@jdetmar/pulumi-sendgrid",
     "version": "1.0.0-alpha.0+dev",
-    "homepage": "https://www.pulumi.com",
+    "description": "A Pulumi provider for managing SendGrid resources.",
+    "homepage": "https://github.com/JDetmar/pulumi-sendgrid",
+    "repository": "https://github.com/JDetmar/pulumi-sendgrid",
     "scripts": {
         "build": "tsc"
     },
@@ -15,6 +17,7 @@
     "pulumi": {
         "resource": true,
         "name": "sendgrid",
-        "version": "1.0.0-alpha.0+dev"
+        "version": "1.0.0-alpha.0+dev",
+        "server": "github://api.github.com/JDetmar/pulumi-sendgrid"
     }
 }
