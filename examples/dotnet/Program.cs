@@ -1,20 +1,45 @@
 using System.Collections.Generic;
-using System.Linq;
 using Pulumi;
 using Sendgrid = Pulumi.Sendgrid;
 
-return await Deployment.RunAsync(() => 
+return await Deployment.RunAsync(() =>
 {
-    var myRandomResource = new Sendgrid.Random("myRandomResource", new()
+    var myApiKey = new Sendgrid.ApiKey("myApiKey", new()
     {
-        Length = 24,
+        Name = "my-app-api-key",
+        Scopes = new[] { "mail.send", "alerts.read" },
     });
 
-    var myRandomComponent = new Sendgrid.RandomComponent("myRandomComponent", new()
+    var myTemplate = new Sendgrid.Template("myTemplate", new()
     {
-        Length = 24,
+        Name = "welcome-email",
+        Generation = "dynamic",
     });
 
-    return new Dictionary<string, object?>{};
+    var myEventWebhook = new Sendgrid.EventWebhook("myEventWebhook", new()
+    {
+        Url = "https://example.com/webhooks/sendgrid",
+        FriendlyName = "My App Webhook",
+        Enabled = false,
+        Delivered = true,
+        Open = true,
+        Click = true,
+        Bounce = true,
+        Dropped = true,
+        SpamReport = true,
+    });
+
+    var myDomainAuth = new Sendgrid.DomainAuthentication("myDomainAuth", new()
+    {
+        Domain = "example.com",
+        AutomaticSecurity = true,
+    });
+
+    return new Dictionary<string, object?>
+    {
+        ["apiKeyId"] = myApiKey.ApiKeyId,
+        ["templateId"] = myTemplate.TemplateId,
+        ["webhookId"] = myEventWebhook.WebhookId,
+        ["domainId"] = myDomainAuth.DomainId,
+    };
 });
-

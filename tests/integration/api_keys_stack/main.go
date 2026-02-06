@@ -25,7 +25,7 @@ func main() {
 		// Export the outputs for verification
 		ctx.Export("apiKeyId", apiKey.ApiKeyId)
 		ctx.Export("apiKeyName", apiKey.Name)
-		ctx.Export("apiKeyValue", apiKey.ApiKey)
+		ctx.Export("apiKeyValue", apiKey.ApiKeyValue)
 
 		return nil
 	})

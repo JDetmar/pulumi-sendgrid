@@ -25,7 +25,8 @@ func main() {
 
 		// Create a second group with minimal options
 		group2, err := sendgrid.NewUnsubscribeGroup(ctx, "test-unsubscribe-group-minimal", &sendgrid.UnsubscribeGroupArgs{
-			Name: pulumi.String(testName + "-minimal"),
+			Name:        pulumi.String(testName + "-minimal"),
+			Description: pulumi.String("Minimal test group"),
 		})
 		if err != nil {
 			return err

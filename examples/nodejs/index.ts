@@ -1,12 +1,34 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as sendgrid from "@jdetmar/pulumi-sendgrid";
+import * as sendgrid from "@pulumi/sendgrid";
 
-const myRandomResource = new sendgrid.Random("myRandomResource", {
-  length: 24,
+const myApiKey = new sendgrid.ApiKey("myApiKey", {
+  name: "my-app-api-key",
+  scopes: ["mail.send", "alerts.read"],
 });
-const myRandomComponent = new sendgrid.RandomComponent("myRandomComponent", {
-  length: 24,
+
+const myTemplate = new sendgrid.Template("myTemplate", {
+  name: "welcome-email",
+  generation: "dynamic",
 });
-export const output = {
-  value: myRandomResource.result,
-};
+
+const myEventWebhook = new sendgrid.EventWebhook("myEventWebhook", {
+  url: "https://example.com/webhooks/sendgrid",
+  friendlyName: "My App Webhook",
+  enabled: false,
+  delivered: true,
+  open: true,
+  click: true,
+  bounce: true,
+  dropped: true,
+  spamReport: true,
+});
+
+const myDomainAuth = new sendgrid.DomainAuthentication("myDomainAuth", {
+  domain: "example.com",
+  automaticSecurity: true,
+});
+
+export const apiKeyId = myApiKey.apiKeyId;
+export const templateId = myTemplate.templateId;
+export const webhookId = myEventWebhook.webhookId;
+export const domainId = myDomainAuth.domainId;

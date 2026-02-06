@@ -2,15 +2,41 @@ name: sendgrid
 runtime: yaml
 
 resources:
-  myRandomResource:
-    type: sendgrid:Random
+  myApiKey:
+    type: sendgrid:ApiKey
     properties:
-      length: 24
-  myRandomComponent:
-    type: sendgrid:RandomComponent
+      name: "my-app-api-key"
+      scopes:
+        - "mail.send"
+        - "alerts.read"
+
+  myTemplate:
+    type: sendgrid:Template
     properties:
-      length: 24
+      name: "welcome-email"
+      generation: "dynamic"
+
+  myEventWebhook:
+    type: sendgrid:EventWebhook
+    properties:
+      url: "https://example.com/webhooks/sendgrid"
+      friendlyName: "My App Webhook"
+      enabled: false
+      delivered: true
+      open: true
+      click: true
+      bounce: true
+      dropped: true
+      spamReport: true
+
+  myDomainAuth:
+    type: sendgrid:DomainAuthentication
+    properties:
+      domain: "example.com"
+      automaticSecurity: true
 
 outputs:
-  output:
-    value: ${myRandomResource.result}
+  apiKeyId: ${myApiKey.apiKeyId}
+  templateId: ${myTemplate.templateId}
+  webhookId: ${myEventWebhook.webhookId}
+  domainId: ${myDomainAuth.domainId}

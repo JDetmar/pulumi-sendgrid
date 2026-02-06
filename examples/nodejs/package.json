@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "typescript": "^4.0.0",
-    "@pulumi/pulumi": "3.213.0"
+    "@pulumi/pulumi": "3.213.0",
+    "@pulumi/sendgrid": "^1.0.0"
   }
 }
