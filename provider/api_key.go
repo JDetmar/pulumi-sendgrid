@@ -34,7 +34,7 @@ type ApiKeyArgs struct { //nolint:revive // name matches Pulumi resource token
 
 	// Scopes is the list of permissions for this API key (optional).
 	// If omitted, the key will have "Full Access" permissions by default.
-	// See https://docs.sendgrid.com/api-reference/how-to-use-the-sendgrid-v3-api/authorization
+	// See https://www.twilio.com/docs/sendgrid/api-reference/api-key-permissions/api-key-permissions
 	// for available scopes.
 	Scopes []string `pulumi:"scopes,optional"`
 }
